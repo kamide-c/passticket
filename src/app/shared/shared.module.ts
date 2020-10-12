@@ -11,6 +11,9 @@ import { MatListModule } from '@angular/material/list';
 import { RecommendedComponent } from './components/recommended/recommended.component';
 import { EventsListComponent } from './components/events-list/events-list.component';
 
+// pipes
+import { SafePipe } from './pipes/safe.pipe';
+
 const modules = [
   MaterialModule,
   FlexLayoutModule,
@@ -21,8 +24,8 @@ const modules = [
 const components = [RecommendedComponent, EventsListComponent];
 
 @NgModule({
-  declarations: [components],
+  declarations: [components, SafePipe],
   imports: [CommonModule, modules],
-  exports: [modules, components],
+  exports: [modules, components, SafePipe],
 })
 export class SharedModule {}
