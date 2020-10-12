@@ -61,7 +61,13 @@
         fxLayout="column"
         fxLayoutAlign="center stretch"
       >
-        <button mat-stroked-button color="primary">Acessar</button>
+        <button
+          mat-stroked-button
+          color="primary"
+          (click)="goToRouter(item.titulo)"
+        >
+          Acessar
+        </button>
       </div>
     </div>
     <mat-divider></mat-divider>
