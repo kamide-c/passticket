@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SpiderService } from 'src/app/core/services/spider.service';
+import { SpiderService } from '../../core/services/spider.service';
 
 @Component({
   selector: 'app-home',
