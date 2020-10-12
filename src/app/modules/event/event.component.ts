@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { SpiderService } from 'src/app/core/services/spider.service';
-import { filter, map } from 'rxjs/operators';
+import { SpiderService } from '../../core/services/spider.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-event',
