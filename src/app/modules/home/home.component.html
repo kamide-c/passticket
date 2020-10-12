@@ -1,0 +1,19 @@
+<div class="home-header">
+  <h1>Viva a LIVE!</h1>
+  <p>
+    Fique conectado com seus artistas favoritos ao vivo, sets íntimos
+    transmitidos diretamente de suas casas para a sua.
+    <br />
+    Descubra as melhores transmissões ao vivo de todo o mundo - continuamente
+    atualizado para trazer o que há de mais recente para você!
+  </p>
+</div>
+<mat-card class="example-card">
+  <mat-card-content>
+    <h2>Passticket recomenda</h2>
+    <app-recommended
+      [events]="recommended"
+      *ngIf="recommended"
+    ></app-recommended>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,60 @@
+.cdk-virtual-scroll-data-source-example .example-viewport {
+  height: 350px;
+}
+
+.cdk-virtual-scroll-data-source-example
+  .example-viewport
+  .cdk-virtual-scroll-content-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.recommended-card {
+  text-decoration: none;
+  width: 300px;
+  height: 300px;
+  white-space: normal;
+  overflow: hidden;
+  margin-left: 15px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 0;
+}
+
+.recommended-description {
+  position: absolute;
+  top: 190px;
+  left: 15px;
+  padding: 8px 15px 0px 0px;
+  margin-bottom: -30px;
+  color: white;
+  width: 240px;
+
+  h2 {
+    hyphens: auto;
+    line-height: 19px;
+    font-size: 18px;
+  }
+}
+
+.recommended-date {
+  position: absolute;
+  padding: 4px 8px;
+  right: 10px;
+  bottom: 15px;
+  text-align: center;
+  background-color: #ffffff;
+  border-radius: 3px;
+  font-weight: 500;
+  box-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.31);
+}
+
+.shadow {
+  height: 300px;
+  width: 300px;
+  background-image: linear-gradient(to bottom, transparent 60%, black 90%);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
