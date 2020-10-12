@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SpiderService } from '../../core/services/spider.service';
 import { map } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-event',
@@ -14,7 +15,8 @@ export class EventComponent implements OnInit {
   eventStart;
   constructor(
     private route: ActivatedRoute,
-    private _spiderService: SpiderService
+    private _spiderService: SpiderService,
+    private _snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -39,5 +41,24 @@ export class EventComponent implements OnInit {
 
   goToBuyTickets() {
     window.open(this.evento.link, '_blank');
+  }
+
+  /* To copy any Text */
+  copyText(val: string) {
+    let selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = val;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
+
+    this._snackBar.open('Link copiado para a área de transfrência', '!', {
+      duration: 2000,
+    });
   }
 }

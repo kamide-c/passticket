@@ -21,13 +21,25 @@
             {{ evento.data | date: "yyyy" }}
           </span>
           <h4 style="margin-top: 0">{{ evento.local }}</h4>
-          <div fxLayout="column" fxLayoutAlign="center stretch">
+          <div
+            fxLayout="column"
+            fxLayoutAlign="center stretch"
+            fxLayoutGap="1rem"
+          >
             <button
               mat-raised-button
               color="primary"
               (click)="goToBuyTickets()"
             >
               Obter ingressos
+            </button>
+            <button
+              mat-raised-button
+              color="accent"
+              (click)="copyText(evento.link)"
+            >
+              <mat-icon>share</mat-icon>
+              Compartilhar
             </button>
           </div>
         </div>

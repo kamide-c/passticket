@@ -6,6 +6,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 // Components
 import { RecommendedComponent } from './components/recommended/recommended.component';
@@ -20,6 +21,7 @@ const modules = [
   ScrollingModule,
   MatDividerModule,
   MatListModule,
+  MatSnackBarModule,
 ];
 const components = [RecommendedComponent, EventsListComponent];
 
