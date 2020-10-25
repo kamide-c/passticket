@@ -23,6 +23,9 @@ steps:
 - task: CmdLine@2
   inputs:
     script: 'cp $(Build.Repository.LocalPath)/dist/passtick/indext.html $(Build.Repository.LocalPath)/dist/passtick/hostingstart.html'
+- task: CmdLine@2
+  inputs:
+    script: 'cp $(Build.Repository.LocalPath)/dist/passtick/indext.html $(Build.Repository.LocalPath)/dist/passtick/hostingstart.html'
 - task: CopyFiles@2
   inputs:
     SourceFolder: 'dist'
