@@ -22,7 +22,7 @@ steps:
   displayName: 'npm install and build'
 - task: CmdLine@2
   inputs:
-    script: 'cp $(Build.Repository.LocalPath)/dist/passtick/indext.html $(Build.Repository.LocalPath)/dist/passtick/hostingstart.html'
+    script: 'ls -la & pwd'
 - task: CmdLine@2
   inputs:
     script: 'cp $(Build.Repository.LocalPath)/dist/passtick/indext.html $(Build.Repository.LocalPath)/dist/passtick/hostingstart.html'
