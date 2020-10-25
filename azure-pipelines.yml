@@ -22,7 +22,7 @@ steps:
   displayName: 'npm install and build'
 - task: CmdLine@2
   inputs:
-    script: 'cp /dist/indext.html /dist/hostingstart.html'
+    script: 'cp $(Build.Repository.LocalPath)/dist/indext.html $(Build.Repository.LocalPath)/dist/hostingstart.html'
 - task: CopyFiles@2
   inputs:
     SourceFolder: 'dist'
