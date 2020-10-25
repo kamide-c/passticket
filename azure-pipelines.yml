@@ -22,10 +22,10 @@ steps:
   displayName: 'npm install and build'
 - task: CmdLine@2
   inputs:
-    script: 'ls -la & pwd'
+    script: 'cd $(pwd)/dist & ls -la'
 - task: CmdLine@2
   inputs:
-    script: 'cp $(Build.Repository.LocalPath)/dist/passtick/indext.html $(Build.Repository.LocalPath)/dist/passtick/hostingstart.html'
+    script: 'cp $(pwd)/dist/passtick/indext.html $(pwd)/dist/passtick/hostingstart.html'
 - task: CopyFiles@2
   inputs:
     SourceFolder: 'dist'
