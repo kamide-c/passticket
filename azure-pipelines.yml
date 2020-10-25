@@ -20,6 +20,9 @@ steps:
     npm install
     ng build --prod
   displayName: 'npm install and build'
+- task: CmdLine@2
+  inputs:
+    script: 'cp /dist/indext.html /dist/hostingstart.html'
 - task: CopyFiles@2
   inputs:
     SourceFolder: 'dist'
