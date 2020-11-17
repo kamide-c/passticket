@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<!-- <mat-toolbar color="primary">
   <div
     fxLayout="row"
     fxLayoutAlign="center center"
@@ -8,9 +8,23 @@
     <img src="assets/images/Logo_branco.png" alt="Passticket" class="logo" />
   </div>
   <span class="spacer"></span>
-  <!-- <button mat-button aria-label="Sign Up">
+  <button mat-button aria-label="Sign Up">
     <mat-icon>place</mat-icon>
     {{ place }}
-  </button> -->
-  <!-- <button mat-button aria-label="Log in">Log in</button> -->
-</mat-toolbar>
+  </button>
+  <button mat-button aria-label="Log in">Log in</button>
+</mat-toolbar> -->
+<nav mat-tab-nav-bar [backgroundColor]="'primary'" mat-align-tabs="center">
+  <a mat-tab-link>
+    <mat-icon>search</mat-icon>
+    Busca de evento
+  </a>
+  <a mat-tab-link>
+    <mat-icon>place</mat-icon>
+    Explore
+  </a>
+  <a mat-tab-link>
+    <mat-icon>wifi_protected_setup</mat-icon>
+    Revenda de ingresso
+  </a>
+</nav>

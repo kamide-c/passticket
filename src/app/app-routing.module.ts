@@ -12,6 +12,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/event/event.module').then((m) => m.EventModule),
   },
+  {
+    path: 'searchResult/:term',
+    loadChildren: () =>
+      import('./modules/search-result/search-result.module').then(
+        (m) => m.SearchResultModule
+      ),
+  },
 ];
 
 @NgModule({

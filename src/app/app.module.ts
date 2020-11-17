@@ -10,10 +10,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 
 import { SpiderService } from './core/services/spider.service';
-import { SearchResultComponent } from './modules/search-result/search-result.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, SearchResultComponent],
+  declarations: [AppComponent, HeaderComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

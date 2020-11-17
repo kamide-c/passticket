@@ -22,7 +22,11 @@
       <form class="example-form">
         <div fxLayout="row" fxLayoutAlign="start center">
           <div fxFlex>
-            <mat-form-field class="example-full-width" class="searchField">
+            <mat-form-field
+              class="example-full-width"
+              class="searchField"
+              floatLabel="never"
+            >
               <input
                 type="text"
                 placeholder="Pesquise no PassTicket"
@@ -42,7 +46,14 @@
             </mat-form-field>
           </div>
           <div class="margin-15-l">
-            <button mat-raised-button color="primary" class="margin-15-l">
+            <button
+              mat-raised-button
+              color="primary"
+              class="margin-15-l"
+              [routerLink]="[
+                myControl.value && '/searchResult/' + myControl.value
+              ]"
+            >
               Procurar
             </button>
           </div>

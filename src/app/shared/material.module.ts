@@ -10,6 +10,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTabsModule } from '@angular/material/tabs';
 
 const materialModules = [
   MatToolbarModule,
@@ -22,6 +23,7 @@ const materialModules = [
   MatDividerModule,
   MatListModule,
   MatSnackBarModule,
+  MatTabsModule,
 ];
 
 @NgModule({
