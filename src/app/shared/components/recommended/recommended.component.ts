@@ -5,6 +5,7 @@ import {
   ChangeDetectionStrategy,
   ViewEncapsulation,
 } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recommended',
@@ -17,11 +18,15 @@ export class RecommendedComponent implements OnInit {
   @Input() events: any[];
   items: any;
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.items = Array.from({ length: this.events.length }).map(
       (_, i) => this.events[i]
     );
+  }
+
+  goToRouter(title) {
+    this.router.navigate(['event', title]);
   }
 }

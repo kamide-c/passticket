@@ -47,6 +47,12 @@ mat-card {
 
 .searchBar {
   margin-bottom: 100px;
+
+  > div {
+    background-color: white;
+    padding: 0 15px;
+    border-radius: 10px;
+  }
 }
 
 .searchField {
@@ -66,6 +72,6 @@ mat-card {
   }
 
   .searchBar {
-    margin-bottom: 0;
+    margin-bottom: 1rem;
   }
 }

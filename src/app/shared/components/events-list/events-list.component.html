@@ -5,55 +5,66 @@
   >
     <div
       fxLayout="row"
+      fxLayout.xs="column"
       fxLayoutAlign="space-between stretch"
       fxLayoutGap="1rem"
       class="item"
     >
-      <div>
-        <div
-          class="item-thumbnail"
-          [ngStyle]="{ 'background-image': 'url(' + item.poster + ')' }"
-        ></div>
-      </div>
       <div
-        fxLayout="column"
-        fxLayoutAlign="center center"
-        class="item-date"
-        fxHide.sm
-        fxHide.xs
-      >
-        <div class="month">{{ item.data | date: "MMM" }}</div>
-        <div class="day">{{ item.data | date: "dd" }}</div>
-      </div>
-      <div
-        fxFlex="70"
         fxLayout="row"
-        fxLayout.sm="column"
-        fxLayout.xs="column"
-        fxLayoutAlign="space-between center"
-        fxLayoutAlign.sm="center start"
-        fxLayoutAlign.xs="center start"
+        fxLayoutAlign="space-between stretch"
+        fxLayoutGap="1rem"
+        fxFlex
       >
         <div>
-          {{ item.titulo }}
+          <div
+            class="item-thumbnail"
+            [ngStyle]="{ 'background-image': 'url(' + item.poster + ')' }"
+          ></div>
         </div>
         <div
           fxLayout="column"
-          fxLayoutAlign="center end"
+          fxLayoutAlign="center center"
+          class="item-date"
+          fxHide.sm
+          fxHide.xs
+        >
+          <div class="month">{{ item.data | date: "MMM" }}</div>
+          <div class="day">{{ item.data | date: "dd" }}</div>
+        </div>
+        <div
+          fxFlex="80"
+          fxFlex.sm="100"
+          fxFlex.xs="100"
+          fxLayout="row"
+          fxLayout.sm="column"
+          fxLayout.xs="column"
+          fxLayoutAlign="space-between center"
           fxLayoutAlign.sm="center start"
           fxLayoutAlign.xs="center start"
         >
           <div>
-            {{ item.local }}
+            {{ item.titulo }}
           </div>
-          <div>
-            <span fxHide.lg fxHide.md>
-              {{ item.data | date: "MMM" }} {{ item.data | date: "dd" }}
-            </span>
-            {{ item.hora_inicio }}
+          <div
+            fxLayout="column"
+            fxLayoutAlign="center end"
+            fxLayoutAlign.sm="center start"
+            fxLayoutAlign.xs="center start"
+          >
+            <div>
+              {{ item.local }}
+            </div>
+            <div>
+              <span fxHide.lg fxHide.md>
+                {{ item.data | date: "MMM" }} {{ item.data | date: "dd" }}
+              </span>
+              {{ item.hora_inicio }}
+            </div>
           </div>
         </div>
       </div>
+
       <div
         fxFlex="15"
         fxFlex.sm="25"

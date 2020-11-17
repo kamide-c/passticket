@@ -4,9 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from './material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ScrollingModule } from '@angular/cdk/scrolling';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatListModule } from '@angular/material/list';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Components
 import { RecommendedComponent } from './components/recommended/recommended.component';
@@ -19,9 +17,8 @@ const modules = [
   MaterialModule,
   FlexLayoutModule,
   ScrollingModule,
-  MatDividerModule,
-  MatListModule,
-  MatSnackBarModule,
+  FormsModule,
+  ReactiveFormsModule,
 ];
 const components = [RecommendedComponent, EventsListComponent];
 

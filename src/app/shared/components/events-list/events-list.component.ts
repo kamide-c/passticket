@@ -25,6 +25,6 @@ export class EventsListComponent implements OnInit {
   }
 
   goToRouter(title) {
-    this.router.navigate(['e', title]);
+    this.router.navigate(['event', title]);
   }
 }

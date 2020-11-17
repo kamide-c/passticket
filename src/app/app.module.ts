@@ -10,18 +10,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 
 import { SpiderService } from './core/services/spider.service';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SearchResultComponent } from './modules/search-result/search-result.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent],
+  declarations: [AppComponent, HeaderComponent, SearchResultComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     SharedModule,
-    FormsModule,
-    ReactiveFormsModule,
   ],
   providers: [SpiderService],
   bootstrap: [AppComponent],
