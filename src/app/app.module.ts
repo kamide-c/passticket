@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 
 import { SpiderService } from './core/services/spider.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
@@ -19,6 +20,8 @@ import { SpiderService } from './core/services/spider.service';
     AppRoutingModule,
     HttpClientModule,
     SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [SpiderService],
   bootstrap: [AppComponent],

@@ -27,3 +27,45 @@ mat-card {
     font-weight: 500;
   }
 }
+
+.header-logo {
+  border-right: 1px solid black;
+}
+
+.logo {
+  width: 220px;
+}
+
+.header-title {
+  h1 {
+    line-height: 1.25;
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+  }
+}
+
+.searchBar {
+  margin-bottom: 100px;
+}
+
+.searchField {
+  width: 100%;
+
+  &.mat-form-field-appearance-outline {
+    .mat-form-field-wrapper {
+      padding-bottom: 0 !important;
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .header-logo {
+    border-right: none;
+    margin-bottom: 100px;
+  }
+
+  .searchBar {
+    margin-bottom: 0;
+  }
+}

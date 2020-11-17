@@ -1,6 +1,16 @@
 <mat-toolbar color="primary">
-  <span [routerLink]="['']" style="cursor: pointer">Passticket</span>
+  <div
+    fxLayout="row"
+    fxLayoutAlign="center center"
+    [routerLink]="['']"
+    style="cursor: pointer"
+  >
+    <img src="assets/images/Logo_branco.png" alt="Passticket" class="logo" />
+  </div>
   <span class="spacer"></span>
-  <!-- <button mat-button aria-label="Sign Up">Sign Up</button>
-  <button mat-button aria-label="Log in">Log in</button> -->
+  <!-- <button mat-button aria-label="Sign Up">
+    <mat-icon>place</mat-icon>
+    {{ place }}
+  </button> -->
+  <!-- <button mat-button aria-label="Log in">Log in</button> -->
 </mat-toolbar>

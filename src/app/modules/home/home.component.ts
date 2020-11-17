@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 import { SpiderService } from '../../core/services/spider.service';
 
 @Component({
@@ -9,6 +12,11 @@ import { SpiderService } from '../../core/services/spider.service';
 export class HomeComponent implements OnInit {
   recommended: any[];
   events: any[];
+
+  myControl = new FormControl();
+  options: string[] = ['One', 'Two', 'Three'];
+  filteredOptions: Observable<string[]>;
+
   constructor(private _spiderService: SpiderService) {}
 
   ngOnInit(): void {
@@ -18,5 +26,18 @@ export class HomeComponent implements OnInit {
         this.events = res.slice(10);
       }
     });
+
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+      startWith(''),
+      map((value) => this._filter(value))
+    );
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.options.filter((option) =>
+      option.toLowerCase().includes(filterValue)
+    );
   }
 }

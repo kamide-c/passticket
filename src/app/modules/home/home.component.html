@@ -1,25 +1,70 @@
-<div class="home-header">
-  <h1>Viva a LIVE!</h1>
-  <p>
-    Fique conectado com seus artistas favoritos ao vivo, sets íntimos
-    transmitidos diretamente de suas casas para a sua.
-    <br />
-    Descubra as melhores transmissões ao vivo de todo o mundo - continuamente
-    atualizado para trazer o que há de mais recente para você!
-  </p>
+<div fxLayout="column" fxLayoutAlign="start stretch">
+  <div
+    fxLayout="rox"
+    fxLayout.xs="column"
+    fxLayoutAlign="start center"
+    class="margin-100-tb"
+  >
+    <div class="header-logo">
+      <img src="assets/images/Logo.png" alt="Passticket" class="logo" />
+    </div>
+    <div class="header-title margin-20-l">
+      <h1>Obtenha ingressos para turnês, shows e eventos em sua cidade.</h1>
+      <span
+        >Busque uma cidade, uma data, um lugar famoso ou seu artista
+        favorito!</span
+      >
+    </div>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="center center" class="searchBar">
+    <div fxFlex="90%" fxFlex.gt-sm="75%">
+      <form class="example-form">
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <div fxFlex>
+            <mat-form-field class="example-full-width" class="searchField">
+              <input
+                type="text"
+                placeholder="Pesquise no PassTicket"
+                aria-label="Number"
+                matInput
+                [formControl]="myControl"
+                [matAutocomplete]="auto"
+              />
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option
+                  *ngFor="let option of filteredOptions | async"
+                  [value]="option"
+                >
+                  {{ option }}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+          <div class="margin-15-l">
+            <button mat-raised-button color="primary" class="margin-15-l">
+              Procurar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <mat-card>
+    <mat-card-content>
+      <h2>Passticket recomenda</h2>
+      <app-recommended
+        [events]="recommended"
+        *ngIf="recommended"
+      ></app-recommended>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card>
+    <mat-card-content>
+      <h2>Próximos eventos</h2>
+      <app-events-list [events]="events" *ngIf="events"></app-events-list>
+    </mat-card-content>
+  </mat-card>
 </div>
-<mat-card>
-  <mat-card-content>
-    <h2>Passticket recomenda</h2>
-    <app-recommended
-      [events]="recommended"
-      *ngIf="recommended"
-    ></app-recommended>
-  </mat-card-content>
-</mat-card>
-<mat-card>
-  <mat-card-content>
-    <h2>Próximos eventos</h2>
-    <app-events-list [events]="events" *ngIf="events"></app-events-list>
-  </mat-card-content>
-</mat-card>
