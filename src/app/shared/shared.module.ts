@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // Components
 import { RecommendedComponent } from './components/recommended/recommended.component';
 import { EventsListComponent } from './components/events-list/events-list.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
 
 // pipes
 import { SafePipe } from './pipes/safe.pipe';
@@ -24,6 +25,7 @@ import {
   MAT_MOMENT_DATE_FORMATS,
   MomentDateAdapter,
 } from '@angular/material-moment-adapter';
+import { RouterModule } from '@angular/router';
 
 const modules = [
   MaterialModule,
@@ -32,8 +34,13 @@ const modules = [
   FormsModule,
   ReactiveFormsModule,
   SatDatepickerModule,
+  RouterModule,
 ];
-const components = [RecommendedComponent, EventsListComponent];
+const components = [
+  RecommendedComponent,
+  EventsListComponent,
+  SearchBarComponent,
+];
 
 @NgModule({
   declarations: [components, SafePipe],

@@ -12,6 +12,7 @@ export class SearchResultComponent implements OnInit {
   stringToSeek: string;
   datesToSeek: string;
   events: any[];
+  dates: any = { begin: null, end: null };
 
   constructor(
     private _router: Router,
@@ -23,17 +24,19 @@ export class SearchResultComponent implements OnInit {
     this.stringToSeek = this._route.snapshot.params.stringToSeek;
 
     this._route.queryParams.subscribe((params) => {
-      if (!this.isEmpty(params))
+      if (!this.isEmpty(params)) {
         this.datesToSeek =
           moment(params['begin']).format('DD/MM/YYYY') +
           ' a ' +
           moment(params['end']).format('DD/MM/YYYY');
+
+        this.dates = params;
+      }
     });
 
     this._spiderService.getEvents().subscribe((res: any[]) => {
       if (res) {
         this.events = res;
-        console.log(res);
       }
     });
   }

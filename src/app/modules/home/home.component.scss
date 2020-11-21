@@ -47,16 +47,6 @@ mat-card {
 
 .searchBar {
   margin-bottom: 100px;
-
-  > div {
-    background-color: white;
-    padding: 0 15px;
-    border-radius: 8px;
-  }
-}
-
-.searchField {
-  width: 100%;
 }
 
 @media only screen and (max-width: 600px) {
@@ -66,13 +56,6 @@ mat-card {
   }
 
   .searchBar {
-    margin-bottom: 1rem;
-  }
-}
-
-@media only screen and (max-width: 960px) {
-  .searchButton {
-    width: 100%;
-    margin-bottom: 1rem;
+    margin-bottom: 0;
   }
 }

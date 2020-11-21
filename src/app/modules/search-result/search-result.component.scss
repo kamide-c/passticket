@@ -1,28 +1,40 @@
 :host::ng-deep {
+  .recommended-card {
+    position: relative;
+    text-decoration: none;
+    height: 151px;
+    white-space: normal;
+    overflow: hidden;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  .recommended-description {
+    padding: 16px;
+
+    h2 {
+      hyphens: auto;
+      line-height: 19px;
+      font-size: 18px;
+    }
+  }
+
+  .recommended-date {
+    position: absolute;
+    padding: 4px 8px;
+    right: 10px;
+    bottom: 15px;
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 3px;
+    font-weight: 500;
+    box-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.31);
+  }
+
   mat-card {
     height: 100%;
-  }
-
-  h4 {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .img-thumbnail {
-    height: 230px;
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Do not repeat the image */
-    background-size: cover; /* Resize the background image to cover the entire container */
-  }
-
-  .mat-list-base .mat-list-item .mat-list-item-content,
-  .mat-list-base .mat-list-option .mat-list-item-content {
-    padding: 0 !important;
-  }
-
-  .mat-list-base .mat-list-item.mat-2-line,
-  .mat-list-base .mat-list-option.mat-2-line {
-    height: auto;
   }
 }
