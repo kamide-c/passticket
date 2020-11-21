@@ -13,12 +13,25 @@ import { EventsListComponent } from './components/events-list/events-list.compon
 // pipes
 import { SafePipe } from './pipes/safe.pipe';
 
+// packages
+import {
+  DateAdapter,
+  MAT_DATE_FORMATS,
+  MAT_DATE_LOCALE,
+  SatDatepickerModule,
+} from 'saturn-datepicker';
+import {
+  MAT_MOMENT_DATE_FORMATS,
+  MomentDateAdapter,
+} from '@angular/material-moment-adapter';
+
 const modules = [
   MaterialModule,
   FlexLayoutModule,
   ScrollingModule,
   FormsModule,
   ReactiveFormsModule,
+  SatDatepickerModule,
 ];
 const components = [RecommendedComponent, EventsListComponent];
 
@@ -26,5 +39,13 @@ const components = [RecommendedComponent, EventsListComponent];
   declarations: [components, SafePipe],
   imports: [CommonModule, modules],
   exports: [modules, components, SafePipe],
+  providers: [
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE],
+    },
+    { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
+  ],
 })
 export class SharedModule {}

@@ -9,7 +9,7 @@
       <img src="assets/images/Logo.png" alt="Passticket" class="logo" />
     </div>
     <div class="header-title margin-20-l">
-      <h1>Obtenha ingressos para turnês, shows e eventos em sua cidade.</h1>
+      <h1>Encontre ingressos para turnês, shows e eventos em sua cidade.</h1>
       <span
         >Busque uma cidade, uma data, um lugar famoso ou seu artista
         favorito!</span
@@ -20,8 +20,19 @@
   <div fxLayout="row" fxLayoutAlign="center center" class="searchBar">
     <div fxFlex="100%" fxFlex.gt-sm="75%">
       <form class="example-form">
-        <div fxLayout="row" fxLayoutAlign="start center">
-          <div fxFlex>
+        <div
+          fxFlex="100"
+          fxLayout="row"
+          fxLayout.sm="column"
+          fxLayout.xs="column"
+          fxLayoutGap="16px"
+          fxLayoutGap.sm="0px"
+          fxLayoutGap.xs="0px"
+          fxLayoutAlign="start center"
+          fxLayoutAlign.sm="center stretch"
+          fxLayoutAlign.xs="center stretch"
+        >
+          <div fxFlex="100">
             <mat-form-field
               class="example-full-width"
               class="searchField"
@@ -45,14 +56,43 @@
               </mat-autocomplete>
             </mat-form-field>
           </div>
-          <div class="margin-15-l">
+          <div fxFlex>
+            <mat-form-field class="searchField" floatLabel="never">
+              <input
+                #inputDates
+                matInput
+                placeholder="Escolha o período"
+                [satDatepicker]="picker"
+                [formControl]="date"
+                [readonly]="true"
+                (focus)="picker.open()"
+              />
+              <sat-datepicker
+                #picker
+                [rangeMode]="true"
+                [closeAfterSelection]="false"
+                (closed)="inputDates.blur()"
+              >
+              </sat-datepicker>
+              <sat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+              ></sat-datepicker-toggle>
+            </mat-form-field>
+          </div>
+
+          <div>
             <button
               mat-raised-button
               color="primary"
-              class="margin-15-l"
+              class="margin-15-l searchButton"
               [routerLink]="[
-                myControl.value && '/searchResult/' + myControl.value
+                searchValidate() ? '/searchResult/' + myControl.value : ''
               ]"
+              [queryParams]="{
+                begin: formatDate(date.value.begin),
+                end: formatDate(date.value.end)
+              }"
             >
               Procurar
             </button>

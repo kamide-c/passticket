@@ -1,4 +1,10 @@
-<!-- <mat-toolbar color="primary">
+<mat-toolbar
+  color="primary"
+  fxHide.lg
+  fxHide.md
+  *ngIf="showLogo()"
+  class="margin-no-b"
+>
   <div
     fxLayout="row"
     fxLayoutAlign="center center"
@@ -7,23 +13,28 @@
   >
     <img src="assets/images/Logo_branco.png" alt="Passticket" class="logo" />
   </div>
-  <span class="spacer"></span>
-  <button mat-button aria-label="Sign Up">
-    <mat-icon>place</mat-icon>
-    {{ place }}
-  </button>
-  <button mat-button aria-label="Log in">Log in</button>
-</mat-toolbar> -->
-<nav mat-tab-nav-bar [backgroundColor]="'primary'" mat-align-tabs="center">
-  <a mat-tab-link>
+</mat-toolbar>
+
+<nav mat-tab-nav-bar mat-align-tabs="center" class="margin-24-b">
+  <a
+    mat-tab-link
+    class="logo"
+    [routerLink]="'/'"
+    *ngIf="showLogo()"
+    fxHide.sm
+    fxHide.xs
+  >
+    <img src="assets/images/Logo.png" alt="Passticket" class="logo" />
+  </a>
+  <a mat-tab-link [active]="activeLink('home')" [routerLink]="'/home'">
     <mat-icon>search</mat-icon>
     Busca de evento
   </a>
-  <a mat-tab-link>
+  <a mat-tab-link [active]="activeLink('explore')">
     <mat-icon>place</mat-icon>
     Explore
   </a>
-  <a mat-tab-link>
+  <a mat-tab-link [active]="activeLink('resale')">
     <mat-icon>wifi_protected_setup</mat-icon>
     Revenda de ingresso
   </a>

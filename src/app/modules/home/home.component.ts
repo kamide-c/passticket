@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { SpiderService } from '../../core/services/spider.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,8 @@ export class HomeComponent implements OnInit {
   recommended: any[];
   events: any[];
 
-  myControl = new FormControl();
+  myControl = new FormControl('');
+  date = new FormControl({ begin: null, end: null });
   options: string[] = ['One', 'Two', 'Three'];
   filteredOptions: Observable<string[]>;
 
@@ -38,6 +40,16 @@ export class HomeComponent implements OnInit {
 
     return this.options.filter((option) =>
       option.toLowerCase().includes(filterValue)
+    );
+  }
+
+  formatDate(date) {
+    return date && moment(date).format('YYYY-MM-DD');
+  }
+
+  searchValidate() {
+    return (
+      this.myControl.value.trim().length !== 0 || this.date.value.begin !== null
     );
   }
 }

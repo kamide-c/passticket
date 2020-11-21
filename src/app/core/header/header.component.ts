@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -7,13 +7,20 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  busca: boolean;
-  explorer: boolean;
-  revenda: boolean;
-  constructor(private router: Router) {}
+  constructor(private location: Location) {}
 
   ngOnInit(): void {
     this.findMe();
+  }
+
+  activeLink(path) {
+    const location = this.location.path();
+
+    return location.includes(path);
+  }
+
+  showLogo() {
+    return this.location.path() !== '/home';
   }
 
   findMe() {

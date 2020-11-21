@@ -1,1 +1,6 @@
-<h2>Exibindo resultados para</h2>
+<h2 class="margin-no-b">Exibindo resultados para</h2>
+<p class="margin-no-t">
+  {{ stringToSeek }}
+  <ng-container *ngIf="stringToSeek && datesToSeek"> - </ng-container>
+  {{ datesToSeek }}
+</p>
