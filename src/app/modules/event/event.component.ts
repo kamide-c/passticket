@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { SpiderService } from '../../core/services/spider.service';
 import { map } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-event',
@@ -16,7 +17,8 @@ export class EventComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private _spiderService: SpiderService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private _location: Location
   ) {}
 
   ngOnInit(): void {
@@ -60,5 +62,9 @@ export class EventComponent implements OnInit {
     this._snackBar.open('Link copiado para a área de transfrência', '!', {
       duration: 2000,
     });
+  }
+
+  backClicked() {
+    this._location.back();
   }
 }

@@ -4,3 +4,44 @@
   <ng-container *ngIf="stringToSeek && datesToSeek"> - </ng-container>
   {{ datesToSeek }}
 </p>
+<div class="content">
+  <div fxLayout="row wrap" fxLayoutGap="16px grid">
+    <div
+      [fxFlex]="100 / 5 + '%'"
+      fxFlex.xs="100%"
+      fxFlex.sm="50%"
+      [fxFlex.md]="100 / 4 + '%'"
+      *ngFor="let event of events"
+    >
+      <mat-card class="padding-no">
+        <div class="padding-16">
+          <h4 class="margin-no">{{ event.titulo }}</h4>
+        </div>
+        <div
+          class="img-thumbnail"
+          [ngStyle]="{ 'background-image': 'url(' + event.poster + ')' }"
+        ></div>
+        <mat-card-content class="padding-16 padding-no-b">
+          <mat-list fxLayout="column" fxLayout.sm="column" fxLayout.xs="column">
+            <mat-list-item>
+              <mat-icon mat-list-icon>watch_later</mat-icon>
+              <div mat-line>
+                {{ event.data | date: "EEEE, MMMM dd, yyyy" }}
+              </div>
+              <div mat-line>{{ event.hora_inicio }}</div>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon mat-list-icon>place</mat-icon>
+              <div mat-line>
+                {{ event.local }}
+              </div>
+            </mat-list-item>
+          </mat-list>
+          <button mat-button color="primary" (click)="goToRouter(event.titulo)">
+            Encontrar ingressos
+          </button>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

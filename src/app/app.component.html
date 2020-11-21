@@ -1,9 +1,16 @@
 <app-header></app-header>
 
 <div fxLayout="row" fxLayoutGap="1rem">
-  <div fxFlex></div>
-  <div style="width: 100%; max-width: 1038px">
-    <router-outlet></router-outlet>
-  </div>
-  <div fxFlex></div>
+  <ng-container *ngIf="!locations(); else fullWidth">
+    <div fxFlex></div>
+    <div style="width: 100%; max-width: 1038px">
+      <router-outlet></router-outlet>
+    </div>
+    <div fxFlex></div>
+  </ng-container>
+  <ng-template #fullWidth>
+    <div style="width: 100%" class="padding-16">
+      <router-outlet></router-outlet>
+    </div>
+  </ng-template>
 </div>

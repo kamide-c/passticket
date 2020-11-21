@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
+import { SpiderService } from 'src/app/core/services/spider.service';
 
 @Component({
   selector: 'app-search-result',
@@ -10,8 +11,13 @@ import * as moment from 'moment';
 export class SearchResultComponent implements OnInit {
   stringToSeek: string;
   datesToSeek: string;
+  events: any[];
 
-  constructor(private _route: ActivatedRoute) {}
+  constructor(
+    private _router: Router,
+    private _route: ActivatedRoute,
+    private _spiderService: SpiderService
+  ) {}
 
   ngOnInit(): void {
     this.stringToSeek = this._route.snapshot.params.stringToSeek;
@@ -23,6 +29,13 @@ export class SearchResultComponent implements OnInit {
           ' a ' +
           moment(params['end']).format('DD/MM/YYYY');
     });
+
+    this._spiderService.getEvents().subscribe((res: any[]) => {
+      if (res) {
+        this.events = res;
+        console.log(res);
+      }
+    });
   }
 
   isEmpty(obj) {
@@ -30,5 +43,9 @@ export class SearchResultComponent implements OnInit {
       if (obj.hasOwnProperty(key)) return false;
     }
     return true;
+  }
+
+  goToRouter(title) {
+    this._router.navigate(['event', title]);
   }
 }
