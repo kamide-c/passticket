@@ -9,9 +9,7 @@ import { Location } from '@angular/common';
 export class HeaderComponent implements OnInit {
   constructor(private location: Location) {}
 
-  ngOnInit(): void {
-    this.findMe();
-  }
+  ngOnInit(): void {}
 
   activeLink(path) {
     const location = this.location.path();
@@ -21,26 +19,5 @@ export class HeaderComponent implements OnInit {
 
   showLogo() {
     return this.location.path() !== '/home';
-  }
-
-  findMe() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        console.log(position);
-      });
-    } else {
-      console.log('Geolocation is not supported by this browser.');
-    }
-  }
-
-  trackMe() {
-    if (navigator.geolocation) {
-      // this.isTracking = true;
-      navigator.geolocation.watchPosition((position) => {
-        console.log(position);
-      });
-    } else {
-      alert('Geolocation is not supported by this browser.');
-    }
   }
 }

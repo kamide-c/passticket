@@ -1,0 +1,38 @@
+<app-search-bar></app-search-bar>
+<agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [scrollwheel]="false">
+  <agm-marker [latitude]="lat" [longitude]="lng"> </agm-marker>
+  <ng-container *ngIf="events">
+    <agm-marker
+      *ngFor="let event of events; let i = index; trackBy: i"
+      [latitude]="event.latitude"
+      [longitude]="event.longitude"
+    >
+      <agm-info-window [disableAutoPan]="true" [isOpen]="true">
+        <mat-card>
+          <mat-card-header>
+            <div
+              mat-card-avatar
+              class="header-image"
+              [ngStyle]="{ 'background-image': 'url(' + event.poster + ')' }"
+            ></div>
+            <mat-card-title class="margin-no">{{
+              event.titulo
+            }}</mat-card-title>
+            <mat-card-subtitle class="margin-no">{{
+              eventDate(event.data) | date: "dd/MM"
+            }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-actions>
+            <button
+              mat-button
+              color="primary"
+              (click)="goToRouter(event.titulo)"
+            >
+              Encontrar ingresso
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </agm-info-window>
+    </agm-marker>
+  </ng-container>
+</agm-map>
