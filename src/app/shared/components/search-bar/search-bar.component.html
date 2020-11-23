@@ -81,10 +81,7 @@
   </div>
 </form>
 
-<div
-  class="margin-16-tb"
-  *ngIf="inputDates.value || place.value.formatted_address"
->
+<div *ngIf="inputDates.value || place.value.formatted_address">
   <mat-chip-list aria-label="filters selection" #chipList>
     <mat-chip
       color="primary"

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-header',
@@ -7,7 +8,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(private location: Location) {}
+  constructor(private location: Location, public dialog: MatDialog) {}
 
   ngOnInit(): void {}
 
@@ -20,4 +21,14 @@ export class HeaderComponent implements OnInit {
   showLogo() {
     return this.location.path() !== '/home';
   }
+
+  openDialog() {
+    this.dialog.open(HeaderResaleDialog);
+  }
 }
+
+@Component({
+  selector: 'header-resale-dialog',
+  templateUrl: 'header__resale.html',
+})
+export class HeaderResaleDialog {}

@@ -34,7 +34,7 @@
     <mat-icon>place</mat-icon>
     Explore
   </a>
-  <a mat-tab-link [active]="activeLink('resale')">
+  <a mat-tab-link [active]="activeLink('resale')" (click)="openDialog()">
     <mat-icon>wifi_protected_setup</mat-icon>
     Revenda de ingresso
   </a>

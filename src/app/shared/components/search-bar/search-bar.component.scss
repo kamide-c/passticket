@@ -1,4 +1,6 @@
 .searchBar {
+  margin-bottom: 1rem;
+
   > div {
     background-color: white;
     padding: 0 15px;
@@ -15,9 +17,10 @@
 }
 
 @media only screen and (max-width: 960px) {
-  .searchBar {
-    margin-bottom: 1rem;
+  .searchBar > div {
+    padding-bottom: 1rem;
   }
+
   .searchButton {
     width: 100%;
     margin-bottom: 1rem;
