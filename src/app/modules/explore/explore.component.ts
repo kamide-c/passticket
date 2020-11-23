@@ -34,6 +34,8 @@ export class ExploreComponent implements OnInit {
       });
     } else {
       console.log('Geolocation is not supported by this browser.');
+      this.lat = -23.5657261;
+      this.lng = -46.6534232;
     }
   }
 
