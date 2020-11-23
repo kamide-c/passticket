@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 
 import { SpiderService } from './core/services/spider.service';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
@@ -19,6 +20,10 @@ import { SpiderService } from './core/services/spider.service';
     AppRoutingModule,
     HttpClientModule,
     SharedModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAqD36CZLk6QJIHovC5N9qhp25YeltAPKQ',
+      libraries: ['places'],
+    }),
   ],
   providers: [SpiderService],
   bootstrap: [AppComponent],

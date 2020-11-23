@@ -5,11 +5,13 @@ import { MaterialModule } from './material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
 
 // Components
 import { RecommendedComponent } from './components/recommended/recommended.component';
 import { EventsListComponent } from './components/events-list/events-list.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { SelectLocationDialog } from './components/search-bar/search-bar.component';
 
 // pipes
 import { SafePipe } from './pipes/safe.pipe';
@@ -35,11 +37,13 @@ const modules = [
   ReactiveFormsModule,
   SatDatepickerModule,
   RouterModule,
+  MatGoogleMapsAutocompleteModule,
 ];
 const components = [
   RecommendedComponent,
   EventsListComponent,
   SearchBarComponent,
+  SelectLocationDialog,
 ];
 
 @NgModule({

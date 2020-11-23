@@ -20,7 +20,6 @@ export class ExploreComponent implements OnInit {
 
     this._spiderService.getEvents().subscribe((res: any[]) => {
       if (res) {
-        console.log(res);
         this.events = res;
       }
     });

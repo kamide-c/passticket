@@ -11,15 +11,16 @@
     fxLayoutAlign.sm="center stretch"
     fxLayoutAlign.xs="center stretch"
   >
-    <div fxFlex="100">
+    <div fxFlex="100" fxLayout="row" fxLayoutAlign="start center">
       <mat-form-field
         class="example-full-width"
         class="searchField"
         floatLabel="never"
+        appearance="none"
       >
         <input
           type="text"
-          placeholder="Pesquise por cidade, lugar ou seu artista favorito"
+          placeholder="Pesquise o evento, festival ou show do seu artista favorito"
           aria-label="Number"
           matInput
           [formControl]="myControl"
@@ -34,27 +35,31 @@
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
-    </div>
-    <div fxFlex>
-      <mat-form-field class="searchField" floatLabel="never">
-        <input
-          #inputDates
-          matInput
-          placeholder="Escolha o período"
-          [satDatepicker]="picker"
-          [formControl]="date"
-          [readonly]="true"
-          (focus)="picker.open()"
-        />
-        <sat-datepicker
-          #picker
-          [rangeMode]="true"
-          [closeAfterSelection]="false"
-          (closed)="inputDates.blur()"
-        >
-        </sat-datepicker>
-        <sat-datepicker-toggle matSuffix [for]="picker"></sat-datepicker-toggle>
-      </mat-form-field>
+
+      <button
+        mat-icon-button
+        color="primary"
+        aria-label="calendario"
+        (click)="picker.open()"
+        #tooltip="matTooltip"
+        matTooltip="Selecione o intervalo de datas"
+        [matTooltipPosition]="'above'"
+        matTooltipClass="tooltip"
+      >
+        <mat-icon>calendar_today</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        color="primary"
+        aria-label="location"
+        (click)="openDialog()"
+        #tooltip="matTooltip"
+        matTooltip="Selecione o local do evento"
+        [matTooltipPosition]="'above'"
+        matTooltipClass="tooltip"
+      >
+        <mat-icon>location_on</mat-icon>
+      </button>
     </div>
 
     <div>
@@ -75,3 +80,52 @@
     </div>
   </div>
 </form>
+
+<div
+  class="margin-16-tb"
+  *ngIf="inputDates.value || place.value.formatted_address"
+>
+  <mat-chip-list aria-label="filters selection" #chipList>
+    <mat-chip
+      color="primary"
+      selected
+      [removable]="true"
+      (removed)="removeOption()"
+      *ngIf="inputDates.value"
+    >
+      {{ inputDates.value }}
+      <mat-icon matChipRemove>cancel</mat-icon>
+    </mat-chip>
+    <mat-chip
+      color="primary"
+      selected
+      [removable]="true"
+      (removed)="removePlace()"
+      *ngIf="place.value.formatted_address"
+    >
+      {{ place.value.formatted_address }}
+      <mat-icon matChipRemove>cancel</mat-icon>
+    </mat-chip>
+  </mat-chip-list>
+</div>
+
+<!-- Calendar dialog -->
+<mat-form-field class="searchField" floatLabel="never" style="display: none">
+  <input
+    #inputDates
+    matInput
+    placeholder="Escolha o período"
+    [satDatepicker]="picker"
+    [formControl]="date"
+    [readonly]="true"
+    (focus)="picker.open()"
+  />
+  <sat-datepicker
+    #picker
+    touchUi
+    [rangeMode]="true"
+    [closeAfterSelection]="true"
+  >
+  </sat-datepicker>
+  <sat-datepicker-toggle matSuffix [for]="picker"></sat-datepicker-toggle>
+</mat-form-field>

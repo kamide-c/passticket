@@ -11,6 +11,9 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 const materialModules = [
   MatToolbarModule,
@@ -24,6 +27,9 @@ const materialModules = [
   MatListModule,
   MatSnackBarModule,
   MatTabsModule,
+  MatChipsModule,
+  MatDialogModule,
+  MatTooltipModule,
 ];
 
 @NgModule({
