@@ -14,6 +14,8 @@ import { SharedModule } from './shared/shared.module';
 
 import { SpiderService } from './core/services/spider.service';
 import { AgmCoreModule } from '@agm/core';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, HeaderResaleDialog],
@@ -27,6 +29,7 @@ import { AgmCoreModule } from '@agm/core';
       apiKey: 'AIzaSyAqD36CZLk6QJIHovC5N9qhp25YeltAPKQ',
       libraries: ['places'],
     }),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [SpiderService],
   bootstrap: [AppComponent],

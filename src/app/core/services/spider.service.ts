@@ -6,11 +6,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class SpiderService {
-  private _jsonURL = 'assets/spider.json';
-
   constructor(private _httpClient: HttpClient) {}
 
-  public getEvents(): Observable<any> {
-    return this._httpClient.get(this._jsonURL);
+  public getEvents(id?: string): Observable<any> {
+    const path = '/' + id;
+
+    return this._httpClient.get('/api/Events' + (id ? path : ''));
   }
 }

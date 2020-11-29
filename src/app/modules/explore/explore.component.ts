@@ -1,3 +1,4 @@
+import { AgmInfoWindow } from '@agm/core';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SpiderService } from 'src/app/core/services/spider.service';
@@ -12,8 +13,13 @@ export class ExploreComponent implements OnInit {
   lng;
   zoom = 13;
   events: Array<any>;
+  currentIW: AgmInfoWindow;
+  previousIW: AgmInfoWindow;
 
-  constructor(private _spiderService: SpiderService, private _router: Router) {}
+  constructor(private _spiderService: SpiderService, private _router: Router) {
+    this.currentIW = null;
+    this.previousIW = null;
+  }
 
   ngOnInit(): void {
     this.findMe();
@@ -54,7 +60,21 @@ export class ExploreComponent implements OnInit {
     return new Date(date);
   }
 
-  goToRouter(title) {
-    this._router.navigate(['event', title]);
+  goToRouter(id) {
+    this._router.navigate(['event', id]);
+  }
+
+  mapClick(ev) {
+    if (this.previousIW) {
+      this.previousIW.close();
+    }
+  }
+
+  markerClick(infoWindow) {
+    if (this.previousIW) {
+      this.currentIW = infoWindow;
+      this.previousIW.close();
+    }
+    this.previousIW = infoWindow;
   }
 }

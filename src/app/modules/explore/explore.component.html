@@ -2,15 +2,22 @@
   <app-search-bar></app-search-bar>
 </div>
 
-<agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [scrollwheel]="false">
+<agm-map
+  [latitude]="lat"
+  [longitude]="lng"
+  [zoom]="zoom"
+  [scrollwheel]="false"
+  (mapClick)="mapClick($event)"
+>
   <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
   <ng-container *ngIf="events">
     <agm-marker
       *ngFor="let event of events; let i = index; trackBy: i"
       [latitude]="event.latitude"
       [longitude]="event.longitude"
+      (markerClick)="markerClick(iw)"
     >
-      <agm-info-window [disableAutoPan]="true" [isOpen]="true">
+      <agm-info-window [disableAutoPan]="true" [isOpen]="false" #iw>
         <mat-card>
           <mat-card-header>
             <div
@@ -26,11 +33,7 @@
             }}</mat-card-subtitle>
           </mat-card-header>
           <mat-card-actions>
-            <button
-              mat-button
-              color="primary"
-              (click)="goToRouter(event.titulo)"
-            >
+            <button mat-button color="primary" (click)="goToRouter(event.id)">
               Encontrar ingresso
             </button>
           </mat-card-actions>

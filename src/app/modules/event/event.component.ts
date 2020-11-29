@@ -24,21 +24,11 @@ export class EventComponent implements OnInit {
   ngOnInit(): void {
     const data = this.route.snapshot.params;
 
-    this._spiderService
-      .getEvents()
-      .pipe(
-        map((res) => {
-          return res.filter((item) => {
-            if (item.titulo === data.titulo) {
-              this.evento = item;
-              this.eventStart = this.evento.data;
-              this.url = `https://www.stay22.com/embed/gm?aid=5f845198216db60017f08372&address=${this.evento.local}&checkin=${this.eventStart}`;
-              return item;
-            }
-          });
-        })
-      )
-      .subscribe();
+    this._spiderService.getEvents(data.id).subscribe((res) => {
+      this.evento = res[0];
+      this.eventStart = this.evento.data;
+      this.url = `https://www.stay22.com/embed/gm?aid=5f845198216db60017f08372&address=${this.evento.local}&checkin=${this.eventStart}`;
+    });
   }
 
   goToBuyTickets() {
