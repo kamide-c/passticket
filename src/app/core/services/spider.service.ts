@@ -1,18 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SpiderService {
-  private _url = 'http://40.74.238.182:8080/Events';
+  environmentUrl = 'Debug api';
 
-  constructor(private _httpClient: HttpClient) {}
+  constructor(private _httpClient: HttpClient) {
+    this.environmentUrl = environment.baseUrl;
+  }
 
   public getEvents(id?: string): Observable<any> {
     const path = '/' + id;
 
-    return this._httpClient.get(this._url + (id ? path : ''));
+    return this._httpClient.get(
+      this.environmentUrl + '/Events' + (id ? path : '')
+    );
   }
 }
