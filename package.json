@@ -27,6 +27,7 @@
     "@angular/service-worker": "~10.0.2",
     "@types/googlemaps": "^3.39.12",
     "moment": "^2.29.1",
+    "ngx-skeleton-loader": "^2.6.1",
     "rxjs": "~6.5.5",
     "saturn-datepicker": "^8.0.5",
     "snazzy-info-window": "^1.1.1",

@@ -1,15 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { SpiderService } from './core/services/spider.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'passtick';
 
-  constructor(private location: Location) {}
+  constructor(
+    private location: Location,
+    private _spiderService: SpiderService
+  ) {}
+
+  ngOnInit(): void {
+    this._spiderService.getEvents().subscribe();
+  }
 
   locations() {
     const location = this.location.path();

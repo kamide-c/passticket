@@ -6,10 +6,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 // Components
 import { RecommendedComponent } from './components/recommended/recommended.component';
+import { RecommendedSkeletonLoaderComponent } from './components/recommended/recommended-skeleton-loader/recommended-skeleton-loader.component';
 import { EventsListComponent } from './components/events-list/events-list.component';
+import { EventsListSkeletonLoaderComponent } from './components/events-list/events-list-skeleton-loader/events-list-skeleton-loader.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { SelectLocationDialog } from './components/search-bar/search-bar.component';
 
@@ -38,12 +41,15 @@ const modules = [
   SatDatepickerModule,
   RouterModule,
   MatGoogleMapsAutocompleteModule,
+  NgxSkeletonLoaderModule.forRoot(),
 ];
 const components = [
   RecommendedComponent,
   EventsListComponent,
   SearchBarComponent,
   SelectLocationDialog,
+  RecommendedSkeletonLoaderComponent,
+  EventsListSkeletonLoaderComponent,
 ];
 
 @NgModule({

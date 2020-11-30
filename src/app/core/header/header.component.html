@@ -15,7 +15,7 @@
   </div>
 </mat-toolbar>
 
-<nav mat-tab-nav-bar mat-align-tabs="center" class="margin-24-b">
+<nav mat-tab-nav-bar mat-align-tabs="center">
   <a
     mat-tab-link
     class="logo"
@@ -39,3 +39,10 @@
     Revenda de ingresso
   </a>
 </nav>
+
+<mat-progress-bar
+  mode="indeterminate"
+  *ngIf="showLoadingProgressBar"
+></mat-progress-bar>
+
+<div class="margin-24-b"></div>

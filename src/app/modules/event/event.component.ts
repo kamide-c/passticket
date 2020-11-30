@@ -24,7 +24,7 @@ export class EventComponent implements OnInit {
   ngOnInit(): void {
     const data = this.route.snapshot.params;
 
-    this._spiderService.getEvents(data.id).subscribe((res) => {
+    this._spiderService.getEvent(data.id).subscribe((res) => {
       this.evento = res[0];
       this.eventStart = this.evento.data;
       this.url = `https://www.stay22.com/embed/gm?aid=5f845198216db60017f08372&address=${this.evento.local}&checkin=${this.eventStart}`;

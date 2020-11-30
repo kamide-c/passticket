@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
+import { SpiderService } from '../services/spider.service';
 
 @Component({
   selector: 'app-header',
@@ -8,9 +10,23 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(private location: Location, public dialog: MatDialog) {}
+  showLoadingProgressBar = false;
+  private _subscriptions: Subscription = new Subscription();
 
-  ngOnInit(): void {}
+  constructor(
+    private location: Location,
+    public dialog: MatDialog,
+    private _spiderService: SpiderService
+  ) {}
+
+  ngOnInit(): void {
+    this._subscriptions.add(
+      this._spiderService.loadingSubject.subscribe((isLoading: boolean) => {
+        console.log(isLoading);
+        this.showLoadingProgressBar = isLoading;
+      })
+    );
+  }
 
   activeLink(path) {
     const location = this.location.path();
