@@ -4,7 +4,8 @@ const PROXY_CONFIG = [
     target: 'http://40.74.238.182:8080/',
     secure: false,
     logLevel: 'debug',
-    pathRewrite: { '^/api': '' }
+    pathRewrite: { '^/api': '' },
+    changeOrigin: true
   }
 ];
 
