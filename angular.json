@@ -76,7 +76,7 @@
           "configurations": {
             "production": {
               "browserTarget": "passtick:build:production",
-              "proxyConfig": "./proxy.conf.js"
+              "proxyConfig": "./proxy.conf-prod.js"
             }
           }
         },
