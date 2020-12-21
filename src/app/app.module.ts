@@ -29,7 +29,9 @@ import { environment } from '../environments/environment';
       apiKey: 'AIzaSyAqD36CZLk6QJIHovC5N9qhp25YeltAPKQ',
       libraries: ['places'],
     }),
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+    }),
   ],
   providers: [SpiderService],
   bootstrap: [AppComponent],

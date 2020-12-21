@@ -22,7 +22,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this._subscriptions.add(
       this._spiderService.loadingSubject.subscribe((isLoading: boolean) => {
-        console.log(isLoading);
         this.showLoadingProgressBar = isLoading;
       })
     );

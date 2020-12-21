@@ -9,13 +9,18 @@
   [scrollwheel]="false"
   (mapClick)="mapClick($event)"
 >
-  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+  <agm-marker
+    [latitude]="lat"
+    [longitude]="lng"
+    [iconUrl]="'assets/images/red-pin.png'"
+  ></agm-marker>
   <ng-container *ngIf="events">
     <agm-marker
       *ngFor="let event of events; let i = index; trackBy: i"
       [latitude]="event.latitude"
       [longitude]="event.longitude"
       (markerClick)="markerClick(iw)"
+      [iconUrl]="'assets/images/blue-pin.png'"
     >
       <agm-info-window [disableAutoPan]="true" [isOpen]="false" #iw>
         <mat-card>
@@ -23,7 +28,9 @@
             <div
               mat-card-avatar
               class="header-image"
-              [ngStyle]="{ 'background-image': 'url(' + event.poster + ')' }"
+              [ngStyle]="{
+                'background-image': 'url(assets/images/default-image.png)'
+              }"
             ></div>
             <mat-card-title class="margin-no">{{
               event.titulo

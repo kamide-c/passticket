@@ -30,6 +30,8 @@ export class SearchBarComponent implements OnInit {
   myControl = new FormControl('');
   date = new FormControl({ begin: null, end: null });
   place = new FormControl('');
+  location = new FormControl('');
+  placeResult = new FormControl('');
   options: string[] = ['One', 'Two', 'Three'];
   filteredOptions: Observable<string[]>;
 
@@ -43,6 +45,7 @@ export class SearchBarComponent implements OnInit {
         end: new Date(moment(this.dates.end).format()),
       });
     }
+    this.placeToSeek && this.place.setValue(this.placeToSeek);
 
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
@@ -64,7 +67,9 @@ export class SearchBarComponent implements OnInit {
 
   searchValidate() {
     return (
-      this.myControl.value.trim().length !== 0 || this.date.value.begin !== null
+      this.myControl.value.trim().length !== 0 ||
+      this.date.value.begin !== null ||
+      this.place.value !== null
     );
   }
 
@@ -79,11 +84,11 @@ export class SearchBarComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(SelectLocationDialog, {
       width: '1280px',
-      data: { place: this.place },
+      data: { placeResult: this.placeResult, location: this.location },
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(this.place);
+    dialogRef.afterClosed().subscribe(() => {
+      this.place.setValue(this.placeResult.value.formatted_address);
       console.log('The dialog was closed');
     });
   }
@@ -95,7 +100,7 @@ export class SearchBarComponent implements OnInit {
   styleUrls: ['./search-bar.component.scss'],
 })
 export class SelectLocationDialog {
-  googleMapAutocomplete = this.data.place;
+  googleMapAutocomplete = this.data.placeResult;
   constructor(
     public dialogRef: MatDialogRef<SelectLocationDialog>,
     @Inject(MAT_DIALOG_DATA) public data: any
@@ -106,6 +111,7 @@ export class SelectLocationDialog {
   }
 
   onLocationSelected(location: Location) {
+    this.data.location = location;
     console.log('onLocationSelected: ', location);
   }
 

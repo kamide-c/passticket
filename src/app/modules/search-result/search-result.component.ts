@@ -13,6 +13,7 @@ export class SearchResultComponent implements OnInit {
   datesToSeek: string;
   events: any[];
   dates: any = { begin: null, end: null };
+  place: string;
 
   constructor(
     private _router: Router,
@@ -30,7 +31,12 @@ export class SearchResultComponent implements OnInit {
           ' a ' +
           moment(params['end']).format('DD/MM/YYYY');
 
-        this.dates = params;
+        this.dates = {
+          begin: params['begin'],
+          end: params['end'],
+        };
+
+        this.place = params['location'];
       }
     });
 

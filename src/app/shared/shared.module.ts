@@ -31,6 +31,7 @@ import {
   MomentDateAdapter,
 } from '@angular/material-moment-adapter';
 import { RouterModule } from '@angular/router';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 const modules = [
   MaterialModule,
@@ -42,6 +43,7 @@ const modules = [
   RouterModule,
   MatGoogleMapsAutocompleteModule,
   NgxSkeletonLoaderModule.forRoot(),
+  Ng2SearchPipeModule,
 ];
 const components = [
   RecommendedComponent,

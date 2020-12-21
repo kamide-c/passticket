@@ -19,7 +19,6 @@ export class HomeComponent implements OnInit {
       this.events = storagedEvents.slice(10);
     } else {
       this._spiderService.getEvents().subscribe((res: any[]) => {
-        console.log(res);
         if (res) {
           this.recommended = res.slice(0, 10);
           this.events = res.slice(10);

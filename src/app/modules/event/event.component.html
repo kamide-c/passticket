@@ -1,3 +1,5 @@
+<div class="margin-24-b"></div>
+
 <button mat-button color="primary" (click)="backClicked()" class="margin-16-b">
   <mat-icon>keyboard_arrow_left</mat-icon>
   Voltar
@@ -15,7 +17,9 @@
       <div fxLayout="row" fxLayoutAlign="center center">
         <div
           class="event-img"
-          [ngStyle]="{ 'background-image': 'url(' + evento.poster + ')' }"
+          [ngStyle]="{
+            'background-image': 'url(assets/images/default-image.png)'
+          }"
         ></div>
       </div>
       <mat-card-content>

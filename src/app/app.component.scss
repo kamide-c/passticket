@@ -1,12 +1,12 @@
 :host::ng-deep {
   .canvas {
     width: 100%;
-    height: calc(100% - 11rem);
+    height: calc(100% - 10rem);
   }
 
   @media only screen and (max-width: 960px) {
     .canvas {
-      height: calc(100% - 18rem);
+      height: calc(100% - 17rem);
     }
   }
 }
