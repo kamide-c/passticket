@@ -26,7 +26,7 @@ export class EventComponent implements OnInit {
 
     this._spiderService.getEvent(data.id).subscribe((res) => {
       this.evento = res[0];
-      this.eventStart = this.evento.data;
+      this.eventStart = this.evento.d_date;
       this.url = `https://www.stay22.com/embed/gm?aid=5f845198216db60017f08372&address=${this.evento.local}&checkin=${this.eventStart}`;
     });
   }

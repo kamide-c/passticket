@@ -2,11 +2,17 @@
   .canvas {
     width: 100%;
     height: calc(100% - 10rem);
+    &.withFilters {
+      height: calc(100% - 13rem) !important;
+    }
   }
 
   @media only screen and (max-width: 960px) {
     .canvas {
       height: calc(100% - 17rem);
+      &.withFilters {
+        height: calc(100% - 20rem) !important;
+      }
     }
   }
 }

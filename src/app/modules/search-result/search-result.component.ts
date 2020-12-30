@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import * as moment from 'moment';
+import { filter, map } from 'rxjs/operators';
 import { SpiderService } from 'src/app/core/services/spider.service';
 
 @Component({
@@ -19,7 +20,13 @@ export class SearchResultComponent implements OnInit {
     private _router: Router,
     private _route: ActivatedRoute,
     private _spiderService: SpiderService
-  ) {}
+  ) {
+    _router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe((event: NavigationEnd) => {
+        this.ngOnInit();
+      });
+  }
 
   ngOnInit(): void {
     this.stringToSeek = this._route.snapshot.params.stringToSeek;
@@ -40,11 +47,26 @@ export class SearchResultComponent implements OnInit {
       }
     });
 
-    this._spiderService.getEvents().subscribe((res: any[]) => {
-      if (res) {
-        this.events = res;
-      }
-    });
+    this._spiderService
+      .getEvents()
+      .pipe(
+        map((response) => {
+          if (this.dates.begin) {
+            return response.filter(
+              (item) =>
+                new Date(item.d_date) >= new Date(this.dates.begin) &&
+                new Date(item.d_date) <= new Date(this.dates.end)
+            );
+          } else {
+            return response;
+          }
+        })
+      )
+      .subscribe((res: any[]) => {
+        if (res) {
+          this.events = res;
+        }
+      });
   }
 
   isEmpty(obj) {

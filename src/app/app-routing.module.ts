@@ -13,6 +13,11 @@ const routes: Routes = [
       import('./modules/explore/explore.module').then((m) => m.ExploreModule),
   },
   {
+    path: 'explore/:stringToSeek',
+    loadChildren: () =>
+      import('./modules/explore/explore.module').then((m) => m.ExploreModule),
+  },
+  {
     path: 'event/:id',
     loadChildren: () =>
       import('./modules/event/event.module').then((m) => m.EventModule),

@@ -26,8 +26,8 @@
         <div fxLayout="column">
           <h2>{{ evento.titulo }}</h2>
           <span>
-            {{ evento.data | date: "MMM" }} {{ evento.data | date: "dd" }},
-            {{ evento.data | date: "yyyy" }}
+            {{ evento.d_date | date: "MMM" }} {{ evento.d_date | date: "dd" }},
+            {{ evento.d_date | date: "yyyy" }}
           </span>
           <h4 style="margin-top: 0">{{ evento.local }}</h4>
           <div

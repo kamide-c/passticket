@@ -74,13 +74,13 @@
         mat-raised-button
         color="primary"
         class="searchButton"
-        [routerLink]="[
-          searchValidate() ? '/searchResult/' + myControl.value : ''
-        ]"
+        [routerLink]="[searchValidate() ? routePath : '']"
         [queryParams]="{
           begin: formatDate(date.value.begin),
           end: formatDate(date.value.end),
-          location: place.value
+          location: place.value,
+          latitude: location.value.latitude,
+          longitude: location.value.longitude
         }"
       >
         Procurar

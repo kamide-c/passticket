@@ -31,8 +31,8 @@
           fxHide.sm
           fxHide.xs
         >
-          <div class="month">{{ item.data | date: "MMM" }}</div>
-          <div class="day">{{ item.data | date: "dd" }}</div>
+          <div class="month">{{ item.d_date | date: "MMM" }}</div>
+          <div class="day">{{ item.d_date | date: "dd" }}</div>
         </div>
         <div
           fxFlex="80"
@@ -59,7 +59,7 @@
             </div>
             <div>
               <span fxHide.lg fxHide.md>
-                {{ item.data | date: "MMM" }} {{ item.data | date: "dd" }}
+                {{ item.d_date | date: "MMM" }} {{ item.d_date | date: "dd" }}
               </span>
               {{ item.hora_inicio }}
             </div>

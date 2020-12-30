@@ -15,6 +15,7 @@ import {
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
 import PlaceResult = google.maps.places.PlaceResult;
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-bar',
@@ -35,7 +36,9 @@ export class SearchBarComponent implements OnInit {
   options: string[] = ['One', 'Two', 'Three'];
   filteredOptions: Observable<string[]>;
 
-  constructor(public dialog: MatDialog) {}
+  routePath: string;
+
+  constructor(public dialog: MatDialog, public router: Router) {}
 
   ngOnInit(): void {
     this.stringToSeek && this.myControl.setValue(this.stringToSeek);
@@ -66,10 +69,16 @@ export class SearchBarComponent implements OnInit {
   }
 
   searchValidate() {
+    if (this.router.url.match('explore')) {
+      this.routePath = '/explore' + this.myControl.value;
+    } else {
+      this.routePath = '/searchResult/' + this.myControl.value;
+    }
+
     return (
       this.myControl.value.trim().length !== 0 ||
       this.date.value.begin !== null ||
-      this.place.value !== null
+      this.place.value !== (null || '')
     );
   }
 
@@ -88,7 +97,7 @@ export class SearchBarComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(() => {
-      this.place.setValue(this.placeResult.value.formatted_address);
+      this.place.setValue(this.placeResult.value.name);
       console.log('The dialog was closed');
     });
   }
@@ -111,7 +120,7 @@ export class SelectLocationDialog {
   }
 
   onLocationSelected(location: Location) {
-    this.data.location = location;
+    this.data.location.setValue(location);
     console.log('onLocationSelected: ', location);
   }
 
