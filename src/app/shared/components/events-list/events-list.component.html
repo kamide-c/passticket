@@ -16,14 +16,12 @@
         fxLayoutGap="1rem"
         fxFlex
       >
-        <div>
-          <div
-            class="item-thumbnail"
-            [ngStyle]="{
-              'background-image': 'url(assets/images/default-image.png)'
-            }"
-          ></div>
-        </div>
+        <div
+          class="item-thumbnail"
+          [style.background-image]="
+            'url(' + (getPoster(item.poster) | async) + ')'
+          "
+        ></div>
         <div
           fxLayout="column"
           fxLayoutAlign="center center"

@@ -75,11 +75,12 @@ export class SearchBarComponent implements OnInit {
       this.routePath = '/searchResult/' + this.myControl.value;
     }
 
-    return (
-      this.myControl.value.trim().length !== 0 ||
-      this.date.value.begin !== null ||
-      this.place.value !== (null || '')
-    );
+    // return (
+    //   this.myControl.value.trim().length !== 0 ||
+    //   this.date.value.begin !== null ||
+    //   this.place.value !== (null || '')
+    // );
+    return true;
   }
 
   removeOption() {

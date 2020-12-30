@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SpiderService } from '../../core/services/spider.service';
-import { map } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Location } from '@angular/common';
 
@@ -14,6 +13,8 @@ export class EventComponent implements OnInit {
   evento: any;
   url: any;
   eventStart;
+  imagePath: any;
+
   constructor(
     private route: ActivatedRoute,
     private _spiderService: SpiderService,
@@ -28,6 +29,12 @@ export class EventComponent implements OnInit {
       this.evento = res[0];
       this.eventStart = this.evento.d_date;
       this.url = `https://www.stay22.com/embed/gm?aid=5f845198216db60017f08372&address=${this.evento.local}&checkin=${this.eventStart}`;
+
+      this._spiderService.getPoster(this.evento.poster).subscribe((poster) => {
+        this.imagePath = poster[0].bin
+          ? 'data:image/jpg;base64,' + poster[0].bin
+          : 'assets/images/default-image.png';
+      });
     });
   }
 

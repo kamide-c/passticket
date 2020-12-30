@@ -17,9 +17,7 @@
       <div fxLayout="row" fxLayoutAlign="center center">
         <div
           class="event-img"
-          [ngStyle]="{
-            'background-image': 'url(assets/images/default-image.png)'
-          }"
+          [style.background-image]="'url(' + imagePath + ')'"
         ></div>
       </div>
       <mat-card-content>
