@@ -1,0 +1,9 @@
+{
+  "/api/*": {
+    "target": "http://40.74.238.182:8080/",
+    "protocol": "http:",
+    "secure": false,
+    "logLevel": "debug",
+    "pathRewrite": { "^/api": "" }
+  }
+}
