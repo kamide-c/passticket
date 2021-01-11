@@ -29,12 +29,6 @@ export class EventComponent implements OnInit {
       this.evento = res[0];
       this.eventStart = this.evento.d_date;
       this.url = `https://www.stay22.com/embed/gm?aid=5f845198216db60017f08372&address=${this.evento.local}&checkin=${this.eventStart}`;
-
-      this._spiderService.getPoster(this.evento.poster).subscribe((poster) => {
-        this.imagePath = poster[0].bin
-          ? 'data:image/jpg;base64,' + poster[0].bin
-          : 'assets/images/default-image.png';
-      });
     });
   }
 

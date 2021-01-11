@@ -7,9 +7,7 @@
     <div *cdkVirtualFor="let item of items; let i = index" class="example-item">
       <mat-card
         class="recommended-card"
-        [ngStyle]="{
-          'background-image': 'url(assets/images/default-image.png)'
-        }"
+        [style.background-image]="'url(' + item.poster + ')'"
         (click)="goToRouter(item.id)"
       >
         <mat-card-content>

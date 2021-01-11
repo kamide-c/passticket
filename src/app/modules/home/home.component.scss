@@ -26,6 +26,10 @@ mat-card {
   }
 }
 
+.header-home {
+  margin: 2rem 0;
+}
+
 .header-logo {
   border-right: 1px solid black;
 }
@@ -50,7 +54,13 @@ mat-card {
 @media only screen and (max-width: 600px) {
   .header-logo {
     border-right: none;
-    margin-bottom: 100px;
+    margin-bottom: 2rem;
+  }
+
+  .header-title {
+    h1 {
+      margin-bottom: 0.5rem;
+    }
   }
 
   .searchBarComponent {

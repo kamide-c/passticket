@@ -28,13 +28,4 @@ export class EventsListComponent implements OnInit {
   goToRouter(id) {
     this.router.navigate(['event', id]);
   }
-
-  async getPoster(posterId: string): Promise<string> {
-    let poster = await this._spiderService.getPoster(posterId).toPromise();
-    let imagePath = poster[0].bin
-      ? 'data:image/jpg;base64,' + poster[0].bin
-      : 'assets/images/default-image.png';
-
-    return imagePath;
-  }
 }

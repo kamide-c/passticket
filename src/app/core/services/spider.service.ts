@@ -62,28 +62,4 @@ export class SpiderService {
       })
     );
   }
-
-  public getPoster(posterId: string) {
-    this.loadingSubject.next(true);
-    let PosterObservable: any;
-
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        responseType: 'text',
-      }),
-    };
-
-    PosterObservable = this._httpClient
-      .get(environment.baseUrl + '/Posters/' + posterId, httpOptions)
-      .pipe(
-        map((res) => {
-          this.loadingSubject.next(false);
-
-          return res;
-        })
-      );
-
-    return PosterObservable;
-  }
 }

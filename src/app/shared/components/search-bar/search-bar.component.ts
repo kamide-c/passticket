@@ -16,6 +16,7 @@ import {
 } from '@angular/material/dialog';
 import PlaceResult = google.maps.places.PlaceResult;
 import { Router } from '@angular/router';
+import { CalendarFooterComponent } from './calendar-footer/calendar-footer.component';
 
 @Component({
   selector: 'app-search-bar',
@@ -37,6 +38,7 @@ export class SearchBarComponent implements OnInit {
   filteredOptions: Observable<string[]>;
 
   routePath: string;
+  calendarFooter = CalendarFooterComponent;
 
   constructor(public dialog: MatDialog, public router: Router) {}
 
@@ -123,6 +125,11 @@ export class SelectLocationDialog {
   onLocationSelected(location: Location) {
     this.data.location.setValue(location);
     console.log('onLocationSelected: ', location);
+  }
+
+  clear() {
+    this.data.location.setValue('');
+    this.data.placeResult.setValue('');
   }
 
   onNoClick(): void {

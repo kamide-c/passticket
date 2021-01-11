@@ -11,7 +11,8 @@
     fxLayoutAlign.sm="center stretch"
     fxLayoutAlign.xs="center stretch"
   >
-    <div fxFlex="100" fxLayout="row" fxLayoutAlign="start center">
+    <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+      <mat-icon [style.color]="'#949494'">search</mat-icon>
       <mat-form-field
         class="example-full-width"
         class="searchField"
@@ -42,9 +43,10 @@
           </mat-option>
         </mat-autocomplete> -->
       </mat-form-field>
-
+    </div>
+    <div>
       <button
-        mat-icon-button
+        mat-button
         color="primary"
         aria-label="calendario"
         (click)="picker.open()"
@@ -52,11 +54,18 @@
         matTooltip="Selecione o intervalo de datas"
         [matTooltipPosition]="'above'"
         matTooltipClass="tooltip"
+        class="filterButton"
       >
         <mat-icon>calendar_today</mat-icon>
+        <ng-container *ngIf="inputDates.value; else anyday">
+          {{ inputDates.value }}
+        </ng-container>
+        <ng-template #anyday> Qualquer data </ng-template>
       </button>
+    </div>
+    <div>
       <button
-        mat-icon-button
+        mat-button
         color="primary"
         aria-label="location"
         (click)="openDialog()"
@@ -64,8 +73,13 @@
         matTooltip="Selecione o local do evento"
         [matTooltipPosition]="'above'"
         matTooltipClass="tooltip"
+        class="filterButton"
       >
         <mat-icon>location_on</mat-icon>
+        <ng-container *ngIf="place.value; else anywere">
+          {{ place.value }}
+        </ng-container>
+        <ng-template #anywere> Qualquer lugar </ng-template>
       </button>
     </div>
 
@@ -89,7 +103,7 @@
   </div>
 </form>
 
-<div *ngIf="inputDates.value || place.value">
+<!-- <div *ngIf="inputDates.value || place.value">
   <mat-chip-list aria-label="filters selection" #chipList>
     <mat-chip
       color="primary"
@@ -112,7 +126,7 @@
       <mat-icon matChipRemove>cancel</mat-icon>
     </mat-chip>
   </mat-chip-list>
-</div>
+</div> -->
 
 <!-- Calendar dialog -->
 <mat-form-field class="searchField" floatLabel="never" style="display: none">
@@ -130,6 +144,8 @@
     touchUi
     [rangeMode]="true"
     [closeAfterSelection]="true"
+    [calendarFooterComponent]="calendarFooter"
+    [selectFirstDateOnClose]="true"
   >
   </sat-datepicker>
   <sat-datepicker-toggle matSuffix [for]="picker"></sat-datepicker-toggle>

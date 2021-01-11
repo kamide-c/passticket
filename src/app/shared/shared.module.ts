@@ -15,6 +15,7 @@ import { EventsListComponent } from './components/events-list/events-list.compon
 import { EventsListSkeletonLoaderComponent } from './components/events-list/events-list-skeleton-loader/events-list-skeleton-loader.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { SelectLocationDialog } from './components/search-bar/search-bar.component';
+import { CalendarFooterComponent } from './components/search-bar/calendar-footer/calendar-footer.component';
 
 // pipes
 import { SafePipe } from './pipes/safe.pipe';
@@ -52,6 +53,7 @@ const components = [
   SelectLocationDialog,
   RecommendedSkeletonLoaderComponent,
   EventsListSkeletonLoaderComponent,
+  CalendarFooterComponent,
 ];
 
 @NgModule({

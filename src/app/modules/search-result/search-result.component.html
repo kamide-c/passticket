@@ -16,9 +16,7 @@
     <mat-card (click)="goToRouter(event.id)" class="padding-no">
       <mat-card-content
         class="search-card"
-        [ngStyle]="{
-          'background-image': 'url(assets/images/default-image.png)'
-        }"
+        [style.background-image]="'url(' + event.poster + ')'"
       >
         <div class="search-date">
           <div fxLayout="column" fxLayoutAlign="space-between center">

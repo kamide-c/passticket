@@ -18,9 +18,7 @@
       >
         <div
           class="item-thumbnail"
-          [style.background-image]="
-            'url(' + (getPoster(item.poster) | async) + ')'
-          "
+          [style.background-image]="'url(' + item.poster + ')'"
         ></div>
         <div
           fxLayout="column"
