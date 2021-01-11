@@ -15,15 +15,13 @@
     <div fxFlex="100">
       <mat-form-field class="searchField" floatLabel="never">
         <input
-          type="text"
           placeholder="Pesquise por cidade ou local"
           matInput
           matGoogleMapsAutocomplete
           [formControl]="googleMapAutocomplete"
-          country="br"
-          type="address"
           (onAutocompleteSelected)="onAutocompleteSelected($event)"
           (onLocationSelected)="onLocationSelected($event)"
+          [autoCompleteOptions]="options"
         />
       </mat-form-field>
     </div>

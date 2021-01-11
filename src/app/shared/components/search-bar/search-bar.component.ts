@@ -113,6 +113,12 @@ export class SearchBarComponent implements OnInit {
 })
 export class SelectLocationDialog {
   googleMapAutocomplete = this.data.placeResult;
+
+  options = {
+    types: ['(cities)'],
+    componentRestrictions: { country: 'br' },
+  };
+
   constructor(
     public dialogRef: MatDialogRef<SelectLocationDialog>,
     @Inject(MAT_DIALOG_DATA) public data: any
