@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   Component,
   Inject,
   Input,
@@ -31,31 +32,37 @@ export class SearchBarComponent implements OnInit {
 
   myControl = new FormControl('');
   date = new FormControl({ begin: null, end: null });
-  place = new FormControl('');
-  location = new FormControl('');
-  placeResult = new FormControl('');
+  place = new FormControl();
+  location = new FormControl();
+  placeResult = new FormControl();
   options: string[] = ['One', 'Two', 'Three'];
   filteredOptions: Observable<string[]>;
 
   routePath: string;
   calendarFooter = CalendarFooterComponent;
 
-  constructor(public dialog: MatDialog, public router: Router) {}
+  constructor(
+    public dialog: MatDialog,
+    public router: Router,
+    private cd: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
-    this.stringToSeek && this.myControl.setValue(this.stringToSeek);
+    if (this.stringToSeek) this.myControl.setValue(this.stringToSeek);
     if (this.dates && this.dates.begin) {
       this.date = new FormControl({
         begin: new Date(moment(this.dates.begin).format()),
         end: new Date(moment(this.dates.end).format()),
       });
     }
-    this.placeToSeek && this.place.setValue(this.placeToSeek);
+    if (this.placeToSeek) this.place.setValue(this.placeToSeek);
 
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
       map((value) => this._filter(value))
     );
+
+    this.cd.detectChanges();
   }
 
   private _filter(value: string): string[] {

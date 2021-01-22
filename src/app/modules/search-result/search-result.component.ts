@@ -15,6 +15,12 @@ export class SearchResultComponent implements OnInit {
   events: any[];
   dates: any = { begin: null, end: null };
   place: string;
+  filter = {
+    buscageral: null,
+    data_inicio: null,
+    data_fim: null,
+    cidade: null,
+  };
 
   constructor(
     private _router: Router,
@@ -23,7 +29,7 @@ export class SearchResultComponent implements OnInit {
   ) {
     _router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
-      .subscribe((event: NavigationEnd) => {
+      .subscribe(() => {
         this.ngOnInit();
       });
   }
@@ -44,29 +50,19 @@ export class SearchResultComponent implements OnInit {
         };
 
         this.place = params['location'];
+
+        this.filter.buscageral = this.stringToSeek;
+        this.filter.data_inicio = this.dates.begin;
+        this.filter.data_fim = this.dates.end;
+        this.filter.cidade = this.place;
       }
     });
 
-    this._spiderService
-      .getEvents({})
-      .pipe(
-        map((response) => {
-          if (this.dates.begin) {
-            return response.filter(
-              (item) =>
-                new Date(item.d_date) >= new Date(this.dates.begin) &&
-                new Date(item.d_date) <= new Date(this.dates.end)
-            );
-          } else {
-            return response;
-          }
-        })
-      )
-      .subscribe((res: any[]) => {
-        if (res) {
-          this.events = res;
-        }
-      });
+    this._spiderService.getEvents(this.filter).subscribe((res: any) => {
+      if (res) {
+        this.events = res.data;
+      }
+    });
   }
 
   isEmpty(obj) {
