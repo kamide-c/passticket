@@ -15,9 +15,7 @@ export class AppComponent implements OnInit {
     private _spiderService: SpiderService
   ) {}
 
-  ngOnInit(): void {
-    this._spiderService.getEvents().subscribe();
-  }
+  ngOnInit(): void {}
 
   locations() {
     const location = this.location.path();

@@ -58,7 +58,7 @@ export class ExploreComponent implements OnInit {
       }
     });
 
-    this._spiderService.getEvents().subscribe((res: any[]) => {
+    this._spiderService.getEvents({}).subscribe((res: any[]) => {
       if (res) {
         this.events = res;
       }

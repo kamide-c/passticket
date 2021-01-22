@@ -48,7 +48,7 @@ export class SearchResultComponent implements OnInit {
     });
 
     this._spiderService
-      .getEvents()
+      .getEvents({})
       .pipe(
         map((response) => {
           if (this.dates.begin) {

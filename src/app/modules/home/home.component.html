@@ -25,7 +25,7 @@
     </div>
   </div>
 
-  <mat-card>
+  <!-- <mat-card>
     <mat-card-content>
       <h2>Passticket recomenda</h2>
       <app-recommended
@@ -33,12 +33,7 @@
         *ngIf="recommended"
       ></app-recommended>
     </mat-card-content>
-  </mat-card>
+  </mat-card> -->
 
-  <mat-card>
-    <mat-card-content>
-      <h2>Próximos eventos</h2>
-      <app-events-list [events]="events" *ngIf="events"></app-events-list>
-    </mat-card-content>
-  </mat-card>
+  <app-events-list></app-events-list>
 </div>

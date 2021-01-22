@@ -9,9 +9,24 @@ import { environment } from 'src/environments/environment';
 })
 export class SpiderService {
   loadingSubject = new Subject();
+
+  public filters = {
+    descricao: null,
+    informacoes: null,
+    atracoes: null,
+    titulo: null,
+    endereco: null,
+    cidade: null,
+    estado: null,
+    local: null,
+    ticketeria: null,
+    buscageral: null,
+    data_inicio: null,
+    data_fim: null,
+  };
   constructor(private _httpClient: HttpClient) {}
 
-  public getEvents(): Observable<any> {
+  public getEvents(filter: any): Observable<any> {
     this.loadingSubject.next(true);
     let EventsObservable: any;
 
@@ -23,20 +38,10 @@ export class SpiderService {
     };
 
     EventsObservable = this._httpClient
-      .get(environment.baseUrl + '/Events', httpOptions)
+      .post(environment.baseUrl + '/Events/filtro', filter, httpOptions)
       .pipe(
         switchMap((response) => {
-          if (!localStorage.getItem('EventsJson')) {
-            this.loadingSubject.next(false);
-            localStorage.setItem('EventsJson', JSON.stringify(response));
-          } else if (
-            response !== JSON.parse(localStorage.getItem('EventsJson'))
-          ) {
-            this.loadingSubject.next(false);
-            localStorage.setItem('EventsJson', JSON.stringify(response));
-          } else {
-            this.loadingSubject.next(false);
-          }
+          this.loadingSubject.next(false);
 
           return of(response);
         })
