@@ -28,6 +28,7 @@
              matGoogleMapsAutocomplete
              [value]="formGroup.value.city"
              [country]="'br'"
+
              (onAutocompleteSelected)="onAutocompleteSelected($event)"
              (onLocationSelected)="onLocationSelected($event)">
     </mat-form-field>

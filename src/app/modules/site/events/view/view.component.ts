@@ -28,11 +28,9 @@ export class ViewComponent implements OnInit {
     this.eventsService.event(this.id)
       .subscribe(response => {
         if (!response.success || !response.data?.length) {
-          // @todo treat this error
           return;
         }
         this.event = response.data[0];
-        console.log(this.event);
       }).add(() => this.loading = false);
   }
 
