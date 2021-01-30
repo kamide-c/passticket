@@ -1,34 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-@import "@angular/material/prebuilt-themes/indigo-pink.css";
-@import "./app/styles/helper";
-@import "~saturn-datepicker/bundle.css";
 
-html,
-body {
-  height: 100%;
-}
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  background-color: #ededed;
-}
-
-nav {
-  .logo {
-    img {
-      height: 1.5em;
-    }
-    position: absolute;
-    left: 3px;
-    top: 3px;
-    opacity: 1;
-  }
-
-  .mat-tab-label-active {
-    opacity: 1;
-  }
-}
-
-.mat-card {
-  border-radius: 8px !important;
-}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

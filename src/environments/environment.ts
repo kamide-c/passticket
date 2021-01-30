@@ -3,8 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  baseUrl: '/api',
+  baseUrl: 'https://passticket-app.herokuapp.com',
+  production: false
 };
 
 /*

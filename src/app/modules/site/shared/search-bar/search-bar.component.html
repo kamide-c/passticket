@@ -1,0 +1,39 @@
+<div fxLayoutAlign="space-between center" [formGroup]="formGroup">
+  <div>
+    <mat-form-field>
+      <input
+        matInput
+        formControlName="search"
+        placeholder="Pesquise o evento, festival ou show do seu artista favorito"
+      />
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Selecine uma data</mat-label>
+      <mat-date-range-input [rangePicker]="picker">
+        <input matStartDate formControlName="date_begin" placeholder="Start date">
+        <input matEndDate formControlName="date_end" placeholder="End date">
+      </mat-date-range-input>
+
+      <mat-date-range-picker #picker></mat-date-range-picker>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <mat-label>Address << using the directive >></mat-label>
+      <input matInput
+             matGoogleMapsAutocomplete
+             [country]="'br'"
+             (onAutocompleteSelected)="onAutocompleteSelected($event)"
+             (onLocationSelected)="onLocationSelected($event)">
+    </mat-form-field>
+  </div>
+  <div>
+    <button mat-flat-button color="primary" (click)="doFilter()">
+      <mat-icon>search</mat-icon>
+      Buscar evento
+    </button>
+  </div>
+</div>

@@ -3,44 +3,21 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: '',
     loadChildren: () =>
-      import('./modules/home/home.module').then((m) => m.HomeModule),
+      import('./modules/site/site.module').then(
+        (m) => m.SiteModule
+      )
   },
   {
-    path: 'explore',
-    loadChildren: () =>
-      import('./modules/explore/explore.module').then((m) => m.ExploreModule),
-  },
-  {
-    path: 'explore/:stringToSeek',
-    loadChildren: () =>
-      import('./modules/explore/explore.module').then((m) => m.ExploreModule),
-  },
-  {
-    path: 'event/:id',
-    loadChildren: () =>
-      import('./modules/event/event.module').then((m) => m.EventModule),
-  },
-  {
-    path: 'searchResult',
-    loadChildren: () =>
-      import('./modules/search-result/search-result.module').then(
-        (m) => m.SearchResultModule
-      ),
-  },
-  {
-    path: 'searchResult/:stringToSeek',
-    loadChildren: () =>
-      import('./modules/search-result/search-result.module').then(
-        (m) => m.SearchResultModule
-      ),
-  },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+    path: '',
+    redirectTo: '',
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
