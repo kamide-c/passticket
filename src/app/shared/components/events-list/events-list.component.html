@@ -7,7 +7,9 @@
         itemSize="50"
         class="example-viewport"
       >
-        <div
+        <mat-selection-list
+          #dataSources
+          [multiple]="false"
           *cdkVirtualFor="
             let dataSource of dataSources;
             let i = index;
@@ -17,13 +19,14 @@
           "
           class="example-item"
         >
-          <ng-container *ngIf="dataSource; else elseLoadingCard">
+          <mat-list-option *ngIf="dataSource; else elseLoadingCard">
             <div
               fxLayout="row"
               fxLayout.xs="column"
               fxLayoutAlign="space-between stretch"
               fxLayoutGap="1rem"
               class="item"
+              (click)="goToRouter(dataSource.id)"
             >
               <div
                 fxLayout="row"
@@ -86,16 +89,10 @@
                 fxLayout="column"
                 fxLayoutAlign="center stretch"
               >
-                <button
-                  mat-stroked-button
-                  color="primary"
-                  (click)="goToRouter(dataSource.id)"
-                >
-                  Acessar
-                </button>
+                <button mat-stroked-button color="primary">Acessar</button>
               </div>
             </div>
-          </ng-container>
+          </mat-list-option>
 
           <ng-template #elseLoadingCard>
             <app-events-list-skeleton-loader
@@ -103,7 +100,7 @@
             ></app-events-list-skeleton-loader>
           </ng-template>
           <mat-divider *ngIf="!last"></mat-divider>
-        </div>
+        </mat-selection-list>
       </cdk-virtual-scroll-viewport>
     </ng-container>
 
