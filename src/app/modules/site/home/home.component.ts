@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {IEventFilter} from '../../../core/interfaces/event';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -7,14 +8,39 @@ import {IEventFilter} from '../../../core/interfaces/event';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  public filter: IEventFilter;
+  public filterSaoPaulo: IEventFilter;
+  public filterRioDeJaneiro: IEventFilter;
+  public filterCuritiba: IEventFilter;
 
-  constructor() { }
+  constructor(private router: Router) {
+    this.filterSaoPaulo = {
+      Paginacao: {
+        page_size: 4,
+        page_number: 1
+      },
+      cidade: 'São Paulo',
+    };
+    this.filterRioDeJaneiro = {
+      Paginacao: {
+        page_size: 4,
+        page_number: 1
+      },
+      cidade: 'Rio de Janeiro',
+    };
+    this.filterCuritiba = {
+      Paginacao: {
+        page_size: 4,
+        page_number: 1
+      },
+      cidade: 'Curitiba',
+    };
+
+  }
 
   ngOnInit(): void {
   }
 
   public filtered(filter: IEventFilter): void {
-    this.filter = filter;
+    this.router.navigate(['events'], { queryParams: { filter: JSON.stringify(filter) } , queryParamsHandling: 'merge' });
   }
 }

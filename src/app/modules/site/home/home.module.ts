@@ -4,6 +4,9 @@ import {HomeComponent} from './home.component';
 import {HomeRoutingModule} from './home-routing.module';
 import {EventsListModule} from '../shared/events-list/events-list.module';
 import {SearchBarModule} from '../shared/search-bar/search-bar.module';
+import {FlexModule} from "@angular/flex-layout";
+import {MatButtonModule} from "@angular/material/button";
+import {MatIconModule} from "@angular/material/icon";
 
 
 @NgModule({
@@ -15,6 +18,9 @@ import {SearchBarModule} from '../shared/search-bar/search-bar.module';
     HomeRoutingModule,
     EventsListModule,
     SearchBarModule,
+    FlexModule,
+    MatButtonModule,
+    MatIconModule,
   ],
   exports: [
     HomeComponent,

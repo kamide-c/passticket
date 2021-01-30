@@ -1,1 +1,7 @@
-LISTA DE EVENTS
+<div class="container">
+  <app-search-bar (filtered)="doFilter($event)"></app-search-bar>
+  <div fxLayout="row" fxLayoutAlign="start center">
+    <h2>Eventos</h2>
+  </div>
+  <app-events-list [filter]="filter" [changeFilter]="filterChange"></app-events-list>
+</div>

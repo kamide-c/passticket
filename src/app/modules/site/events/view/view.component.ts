@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {EventsService} from '../../../../core/services/events/events.service';
+import {IEvent} from "../../../../core/interfaces/event";
 
 @Component({
   selector: 'app-view',
@@ -6,10 +9,31 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./view.component.scss']
 })
 export class ViewComponent implements OnInit {
-
-  constructor() { }
+  private id: string | null;
+  public loading = false;
+  public event: IEvent;
+  constructor(private activatedRoute: ActivatedRoute, private eventsService: EventsService) {
+    this.id = this.activatedRoute.snapshot.paramMap.get('id');
+  }
 
   ngOnInit(): void {
+    this.get();
+  }
+
+  public get(): void {
+    if (!this.id || this.loading) {
+      return;
+    }
+    this.loading = true;
+    this.eventsService.event(this.id)
+      .subscribe(response => {
+        if (!response.success || !response.data?.length) {
+          // @todo treat this error
+          return;
+        }
+        this.event = response.data[0];
+        console.log(this.event);
+      }).add(() => this.loading = false);
   }
 
 }

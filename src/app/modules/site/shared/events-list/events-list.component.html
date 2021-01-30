@@ -1,3 +1,7 @@
-<ng-container *ngFor="let event of events">
-  <app-event [event]="event"></app-event>
-</ng-container>
+<div fxLayout="column" fxLayoutAlign="start center">
+  <div fxFlexFill fxLayout="row wrap"  fxLayoutGap="10px grid" class="events">
+    <app-event fxFlex="25" *ngFor="let event of events" [event]="event"></app-event>
+  </div>
+  <mat-progress-spinner class="margin-top" *ngIf="loading" mode="indeterminate"></mat-progress-spinner>
+</div>
+

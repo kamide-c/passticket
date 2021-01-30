@@ -6,7 +6,7 @@ export class ScrollPaginationService {
 
   constructor() {}
 
-	public listener(element: HTMLElement, invertScroll?: boolean): Observable<any> {
+	public listener(element?: HTMLElement, invertScroll?: boolean): Observable<any> {
 		const subject = new Subject<any>();
 		if (element) {
 			element.addEventListener('scroll', () => {

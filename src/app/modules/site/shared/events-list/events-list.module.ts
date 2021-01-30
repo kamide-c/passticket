@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import {EventsListComponent} from './events-list.component';
 import {EventComponent} from './event/event.component';
 import {RouterModule} from "@angular/router";
+import {FlexModule} from "@angular/flex-layout";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   exports: [
@@ -15,7 +17,9 @@ import {RouterModule} from "@angular/router";
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    FlexModule,
+    MatProgressSpinnerModule
   ]
 })
 export class EventsListModule { }

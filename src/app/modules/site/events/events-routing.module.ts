@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {ViewComponent} from './view/view.component';
 import {EventsComponent} from './events.component';
+import {ListComponent} from './list/list.component';
 
 const routes: Routes = [
   {
@@ -10,7 +11,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: EventsComponent,
+        component: ListComponent,
       },
       {
         path: 'view/:id',

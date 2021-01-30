@@ -9,6 +9,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {FlexLayoutModule, FlexModule} from '@angular/flex-layout';
 import {HomeModule} from './home/home.module';
 import {EventsModule} from './events/events.module';
+import {MatButtonModule} from '@angular/material/button';
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   declarations: [HeaderComponent, FooterComponent],
@@ -19,13 +21,14 @@ import {EventsModule} from './events/events.module';
   imports: [
     HomeModule,
     EventsModule,
-    SiteRoutingModule,
     CommonModule,
     MatToolbarModule,
     MatTabsModule,
     MatIconModule,
     FlexModule,
     FlexLayoutModule,
+    MatButtonModule,
+    RouterModule,
   ]
 })
 export class SiteModule { }

@@ -11,17 +11,18 @@ import {ApiInterceptor} from './core/interceptors/api/api.interceptor';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {AgmCoreModule} from '@agm/core';
+import {SiteRoutingModule} from './modules/site/site-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     ArtistComponent,
-    SiteComponent
+    SiteComponent,
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
+    SiteRoutingModule,
     SiteModule,
+    BrowserModule,
     ArtistModule,
     BrowserAnimationsModule,
     HttpClientModule,

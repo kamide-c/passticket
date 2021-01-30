@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -9,13 +8,9 @@ import { Location } from '@angular/common';
 export class HeaderComponent implements OnInit {
 
   constructor(
-      private location: Location,
   ) { }
 
   ngOnInit(): void {
   }
 
-  public showLogo(): boolean {
-      return this.location.path() !== '/home';
-  }
 }

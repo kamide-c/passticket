@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {SiteComponent} from './site.component';
 
 const routes: Routes = [
+
   {
     path: '',
     component: SiteComponent,
@@ -28,7 +29,7 @@ const routes: Routes = [
         pathMatch: 'full'
       },
     ],
-  }
+  },
 ];
 
 @NgModule({
