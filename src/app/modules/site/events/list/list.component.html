@@ -1,5 +1,5 @@
 <div class="container">
-  <app-search-bar (filtered)="doFilter($event)"></app-search-bar>
+  <app-search-bar [filter]="filter" (filtered)="doFilter($event)"></app-search-bar>
   <div fxLayout="row" fxLayoutAlign="start center">
     <h2>Eventos</h2>
   </div>

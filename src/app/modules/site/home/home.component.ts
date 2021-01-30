@@ -8,31 +8,25 @@ import {Router} from "@angular/router";
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  public filterSaoPaulo: IEventFilter;
-  public filterRioDeJaneiro: IEventFilter;
-  public filterCuritiba: IEventFilter;
+  public filterSaoPaulo: any;
+  public filterRioDeJaneiro: any;
+  public filterCuritiba: any;
 
   constructor(private router: Router) {
     this.filterSaoPaulo = {
-      Paginacao: {
-        page_size: 4,
-        page_number: 1
-      },
-      cidade: 'São Paulo',
+      page_size: 4,
+      page_number: 1,
+      city: 'São Paulo',
     };
     this.filterRioDeJaneiro = {
-      Paginacao: {
-        page_size: 4,
-        page_number: 1
-      },
-      cidade: 'Rio de Janeiro',
+      page_size: 4,
+      page_number: 1,
+      city: 'Rio de Janeiro',
     };
     this.filterCuritiba = {
-      Paginacao: {
-        page_size: 4,
-        page_number: 1
-      },
-      cidade: 'Curitiba',
+      page_size: 4,
+      page_number: 1,
+      city: 'Curitiba',
     };
 
   }
@@ -41,6 +35,5 @@ export class HomeComponent implements OnInit {
   }
 
   public filtered(filter: IEventFilter): void {
-    this.router.navigate(['events'], { queryParams: { filter: JSON.stringify(filter) } , queryParamsHandling: 'merge' });
   }
 }

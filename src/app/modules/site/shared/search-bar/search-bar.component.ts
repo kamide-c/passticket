@@ -1,6 +1,7 @@
 import {Component, OnInit, Output, ViewEncapsulation, EventEmitter, Input} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {IEventFilter} from '../../../../core/interfaces/event';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-search-bar',
@@ -14,9 +15,12 @@ export class SearchBarComponent implements OnInit {
   private filtered = new EventEmitter<IEventFilter>();
   @Input()
   private emitEventOnChange = null;
+  @Input()
+  private filter;
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router,
   ) {
     this.formGroup = this.formBuilder.group({
       search: [],
@@ -26,7 +30,11 @@ export class SearchBarComponent implements OnInit {
     });
   }
 
-  public ngOnInit(): void {}
+  public ngOnInit(): void {
+    if (this.filter) {
+      this.formGroup.patchValue(this.filter);
+    }
+  }
 
   public onAutocompleteSelected(address: any): void {
     const formattedAddress = this.getAddress(address);
@@ -48,6 +56,7 @@ export class SearchBarComponent implements OnInit {
       formData.date_begin = new Date();
     }
     this.filtered.emit(formData);
+    this.router.navigate(['events'], { queryParams: { filter: JSON.stringify(this.formGroup.value) } , queryParamsHandling: 'merge' });
   }
 
   private getAddress(address: any) {

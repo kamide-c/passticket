@@ -10,11 +10,9 @@ import {ActivatedRoute, Router} from "@angular/router";
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-  public filter: IEventFilter = {
-    Paginacao: {
-      page_number: 1,
-      page_size: 20
-    }
+  public filter: any = {
+    page_number: 1,
+    page_size: 20
   };
   public scrollPaginationSubscription: Subscription;
   public filterChange: any;

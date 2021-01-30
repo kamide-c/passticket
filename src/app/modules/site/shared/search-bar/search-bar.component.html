@@ -26,6 +26,7 @@
       <mat-label>Digite o endereço</mat-label>
       <input matInput
              matGoogleMapsAutocomplete
+             [value]="formGroup.value.city"
              [country]="'br'"
              (onAutocompleteSelected)="onAutocompleteSelected($event)"
              (onLocationSelected)="onLocationSelected($event)">
