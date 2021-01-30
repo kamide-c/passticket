@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {IEventFilter} from '../../../core/interfaces/event';
 
 @Component({
   selector: 'app-events',
@@ -7,7 +6,5 @@ import {IEventFilter} from '../../../core/interfaces/event';
   styleUrls: ['./events.component.scss']
 })
 export class EventsComponent implements OnInit {
-  public filter: IEventFilter;
-  public ngOnInit() {
-  }
+  public ngOnInit(): void {}
 }

@@ -14,7 +14,6 @@ export class ListComponent implements OnInit {
     page_number: 1,
     page_size: 20
   };
-  public scrollPaginationSubscription: Subscription;
   public filterChange: any;
   constructor(
     private scrollPaginationService: ScrollPaginationService,
@@ -31,7 +30,7 @@ export class ListComponent implements OnInit {
     //
   }
 
-  public doFilter(searchFilter: any) {
+  public doFilter(searchFilter: any): void {
     this.filterChange = searchFilter;
   }
 }

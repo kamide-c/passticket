@@ -23,12 +23,12 @@
   </div>
   <div>
     <mat-form-field>
-      <mat-label>Digite o endereço</mat-label>
+      <mat-label>Cidade</mat-label>
       <input matInput
              matGoogleMapsAutocomplete
              [value]="formGroup.value.city"
              [country]="'br'"
-
+             [types]="['(cities)']"
              (onAutocompleteSelected)="onAutocompleteSelected($event)"
              (onLocationSelected)="onLocationSelected($event)">
     </mat-form-field>

@@ -11,6 +11,7 @@ import {IEvent} from "../../../../core/interfaces/event";
 export class ViewComponent implements OnInit {
   private id: string | null;
   public loading = false;
+  // @ts-ignore
   public event: IEvent;
   constructor(private activatedRoute: ActivatedRoute, private eventsService: EventsService) {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');

@@ -1,14 +1,21 @@
 {
-  "name": "pass-ticket",
+  "name": "passticket",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "node server.js",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ngcc"
+    "build:stats": "ng build --stats-json",
+    "analyze": "webpack-bundle-analyzer dist/passtick/stats.json",
+    "postinstall": "ngcc",
+    "heroku-postbuild": "ng build --prod"
+  },
+  "engines": {
+    "node": "12.16.2",
+    "npm": "6.14.4"
   },
   "private": true,
   "dependencies": {

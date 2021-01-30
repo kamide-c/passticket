@@ -15,8 +15,8 @@ export class SearchBarComponent implements OnInit {
   private filtered = new EventEmitter<IEventFilter>();
   @Input()
   private emitEventOnChange = null;
-  @Input()
-  private filter;
+  // @ts-ignore
+  @Input() public filter;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -62,9 +62,12 @@ export class SearchBarComponent implements OnInit {
   private getAddress(address: any) {
     let city = '';
     let state = '';
+    // @ts-ignore
     address.address_components?.forEach(addressComponent => {
+      // @ts-ignore
       if (addressComponent.types.some(type => type === 'administrative_area_level_2')) {
         city = addressComponent.long_name;
+        // @ts-ignore
       } else if (addressComponent.types.some(type => type === 'administrative_area_level_1')) {
         state = addressComponent.short_name;
       }

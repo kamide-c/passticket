@@ -12,11 +12,12 @@ import {Subscription} from 'rxjs';
 export class EventsListComponent implements OnInit {
   @Input()
   public filter: any;
-  @Input()
-  private paginate: boolean;
+  // @ts-ignore
+  @Input() public paginate: boolean;
   private page = 1;
   public loading = false;
   public events: Array<IEvent> = [];
+  // @ts-ignore
   public scrollPaginationSubscription: Subscription;
   constructor(
     private eventsService: EventsService,

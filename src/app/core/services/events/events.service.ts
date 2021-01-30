@@ -13,7 +13,8 @@ export class EventsService {
   constructor(private httpClient: HttpClient) {}
 
   public events(filter: any): Observable<IPaginatedResponse<IEvent>> {
-    let filterTreated: IEventFilter = {};
+    // @ts-ignore
+    const filterTreated: IEventFilter = {};
     if (!filter.date_begin) {
       filterTreated.data_inicio = moment().toISOString();
     }
