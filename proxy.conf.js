@@ -1,7 +1,7 @@
 const PROXY_CONFIG = [
   {
     context: ['/api'],
-    target: 'http://40.74.238.182:8080/',
+    target: 'https://passticket-app.herokuapp.com',
     secure: false,
     logLevel: 'debug',
     pathRewrite: { '^/api': '' },

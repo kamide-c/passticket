@@ -1,4 +1,4 @@
-<form class="searchBar">
+<form class="searchBar" [formGroup]="form" (ngSubmit)="onSubmit()">
   <div
     fxFlex="100"
     fxLayout="row"
@@ -24,7 +24,7 @@
           placeholder="Pesquise o evento, festival ou show do seu artista favorito"
           aria-label="Number"
           matInput
-          [formControl]="myControl"
+          formControlName="myControl"
         />
         <!-- <input
           type="text"
@@ -47,6 +47,7 @@
     <div>
       <button
         mat-button
+        type="button"
         color="primary"
         aria-label="calendario"
         (click)="picker.open()"
@@ -65,6 +66,7 @@
     </div>
     <div>
       <button
+        type="button"
         mat-button
         color="primary"
         aria-label="location"
@@ -76,8 +78,8 @@
         class="filterButton"
       >
         <mat-icon>location_on</mat-icon>
-        <ng-container *ngIf="place.value; else anywere">
-          {{ place.value }}
+        <ng-container *ngIf="form.controls['place'].value; else anywere">
+          {{ form.controls["place"].value }}
         </ng-container>
         <ng-template #anywere> Qualquer lugar </ng-template>
       </button>
@@ -88,63 +90,33 @@
         mat-raised-button
         color="primary"
         class="searchButton"
-        [routerLink]="[searchValidate() ? routePath : '']"
-        [queryParams]="{
-          begin: formatDate(date.value.begin),
-          end: formatDate(date.value.end),
-          location: place.value
-        }"
+        type="submit"
       >
         Procurar
       </button>
     </div>
   </div>
+
+  <!-- Calendar dialog -->
+  <mat-form-field class="searchField" floatLabel="never" style="display: none">
+    <input
+      #inputDates
+      matInput
+      placeholder="Escolha o período"
+      [satDatepicker]="picker"
+      formControlName="date"
+      [readonly]="true"
+      (focus)="picker.open()"
+    />
+    <sat-datepicker
+      #picker
+      touchUi
+      [rangeMode]="true"
+      [closeAfterSelection]="true"
+      [calendarFooterComponent]="calendarFooter"
+      [selectFirstDateOnClose]="true"
+    >
+    </sat-datepicker>
+    <sat-datepicker-toggle matSuffix [for]="picker"></sat-datepicker-toggle>
+  </mat-form-field>
 </form>
-
-<!-- <div *ngIf="inputDates.value || place.value">
-  <mat-chip-list aria-label="filters selection" #chipList>
-    <mat-chip
-      color="primary"
-      selected
-      [removable]="true"
-      (removed)="removeOption()"
-      *ngIf="inputDates.value"
-    >
-      {{ inputDates.value }}
-      <mat-icon matChipRemove>cancel</mat-icon>
-    </mat-chip>
-    <mat-chip
-      color="primary"
-      selected
-      [removable]="true"
-      (removed)="removePlace()"
-      *ngIf="place.value"
-    >
-      {{ place.value }}
-      <mat-icon matChipRemove>cancel</mat-icon>
-    </mat-chip>
-  </mat-chip-list>
-</div> -->
-
-<!-- Calendar dialog -->
-<mat-form-field class="searchField" floatLabel="never" style="display: none">
-  <input
-    #inputDates
-    matInput
-    placeholder="Escolha o período"
-    [satDatepicker]="picker"
-    [formControl]="date"
-    [readonly]="true"
-    (focus)="picker.open()"
-  />
-  <sat-datepicker
-    #picker
-    touchUi
-    [rangeMode]="true"
-    [closeAfterSelection]="true"
-    [calendarFooterComponent]="calendarFooter"
-    [selectFirstDateOnClose]="true"
-  >
-  </sat-datepicker>
-  <sat-datepicker-toggle matSuffix [for]="picker"></sat-datepicker-toggle>
-</mat-form-field>

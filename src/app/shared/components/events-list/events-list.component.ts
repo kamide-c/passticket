@@ -76,4 +76,8 @@ export class EventsListComponent implements OnInit {
 
     return index;
   }
+
+  test(e) {
+    console.log(e);
+  }
 }

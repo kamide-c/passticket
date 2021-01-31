@@ -6,7 +6,7 @@ import {
   OnInit,
   ViewEncapsulation,
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import * as moment from 'moment';
@@ -30,11 +30,14 @@ export class SearchBarComponent implements OnInit {
   @Input('dates') dates: any;
   @Input('placeToSeek') placeToSeek: string;
 
-  myControl = new FormControl('');
-  date = new FormControl({ begin: null, end: null });
-  place = new FormControl();
-  location = new FormControl();
-  placeResult = new FormControl();
+  form = new FormGroup({
+    myControl: new FormControl(''),
+    date: new FormControl({ begin: null, end: null }),
+    place: new FormControl(),
+    location: new FormControl(),
+    placeResult: new FormControl(),
+  });
+
   options: string[] = ['One', 'Two', 'Three'];
   filteredOptions: Observable<string[]>;
 
@@ -48,16 +51,17 @@ export class SearchBarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (this.stringToSeek) this.myControl.setValue(this.stringToSeek);
+    if (this.stringToSeek)
+      this.form.get('myControl').setValue(this.stringToSeek);
     if (this.dates && this.dates.begin) {
-      this.date = new FormControl({
+      this.form.get('date').setValue({
         begin: new Date(moment(this.dates.begin).format()),
         end: new Date(moment(this.dates.end).format()),
       });
     }
-    if (this.placeToSeek) this.place.setValue(this.placeToSeek);
+    if (this.placeToSeek) this.form.get('place').setValue(this.placeToSeek);
 
-    this.filteredOptions = this.myControl.valueChanges.pipe(
+    this.filteredOptions = this.form.get('myControl').valueChanges.pipe(
       startWith(''),
       map((value) => this._filter(value))
     );
@@ -79,9 +83,9 @@ export class SearchBarComponent implements OnInit {
 
   searchValidate() {
     if (this.router.url.match('explore')) {
-      this.routePath = '/explore' + this.myControl.value;
+      this.routePath = '/explore' + this.form.get('myControl').value;
     } else {
-      this.routePath = '/searchResult/' + this.myControl.value;
+      this.routePath = '/searchResult/' + this.form.get('myControl').value;
     }
 
     // return (
@@ -93,23 +97,37 @@ export class SearchBarComponent implements OnInit {
   }
 
   removeOption() {
-    this.date = new FormControl({ begin: null, end: null });
+    this.form.get('date').setValue({ begin: null, end: null });
   }
 
   removePlace() {
-    this.place = new FormControl('');
+    this.form.get('place').setValue('');
   }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(SelectLocationDialog, {
       width: '1280px',
-      data: { placeResult: this.placeResult, location: this.location },
+      data: {
+        placeResult: this.form.get('placeResult'),
+        location: this.form.get('location'),
+      },
     });
 
     dialogRef.afterClosed().subscribe(() => {
-      this.place.setValue(this.placeResult.value.name);
+      this.form.get('place').setValue(this.form.get('placeResult').value.name);
       console.log('The dialog was closed');
     });
+  }
+
+  onSubmit() {
+    this.router.navigate([
+      this.searchValidate() ? this.routePath : '',
+      {
+        begin: this.formatDate(this.form.get('date').value.begin),
+        end: this.formatDate(this.form.get('date').value.end),
+        location: this.form.get('place').value,
+      },
+    ]); //your router URL need to pass it here
   }
 }
 
