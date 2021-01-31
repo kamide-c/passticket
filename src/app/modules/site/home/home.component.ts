@@ -36,4 +36,8 @@ export class HomeComponent implements OnInit {
 
   public filtered(filter: IEventFilter): void {
   }
+
+  public seeMore(filter: any) {
+    this.router.navigate(['events'], { queryParams: { filter: JSON.stringify(filter) } , queryParamsHandling: 'merge' });
+  }
 }

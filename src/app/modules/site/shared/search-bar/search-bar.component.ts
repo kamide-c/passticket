@@ -17,6 +17,7 @@ export class SearchBarComponent implements OnInit {
   private emitEventOnChange = null;
   // @ts-ignore
   @Input() public filter;
+  @Input() public clearButton: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -33,6 +34,9 @@ export class SearchBarComponent implements OnInit {
   public ngOnInit(): void {
     if (this.filter) {
       this.formGroup.patchValue(this.filter);
+    }
+    if (typeof this.clearButton === 'undefined') {
+      this.clearButton = true;
     }
   }
 
@@ -76,5 +80,10 @@ export class SearchBarComponent implements OnInit {
       city,
       state,
     };
+  }
+
+  public clearFilter(): void {
+    this.formGroup.reset();
+    this.doFilter(true);
   }
 }

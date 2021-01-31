@@ -1,42 +1,36 @@
 <form class="search-bar" fxLayoutAlign="space-between center" [formGroup]="formGroup" (ngSubmit)="doFilter()">
-  <div>
-    <mat-form-field>
-      <input
-        matInput
-        formControlName="search"
-        (ngModelChange)="doFilter()"
-        placeholder="Pesquise o evento, festival ou show do seu artista favorito"
-      />
-    </mat-form-field>
-  </div>
-  <div>
-    <mat-form-field appearance="fill">
-      <mat-label>Selecine uma data</mat-label>
-      <mat-date-range-input [rangePicker]="picker">
-        <input matStartDate (ngModelChange)="doFilter()" formControlName="date_begin" placeholder="Início">
-        <input matEndDate (ngModelChange)="doFilter()" formControlName="date_end" placeholder="Final">
-      </mat-date-range-input>
-
-      <mat-date-range-picker #picker></mat-date-range-picker>
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    </mat-form-field>
-  </div>
-  <div>
-    <mat-form-field>
-      <mat-label>Cidade</mat-label>
-      <input matInput
-             matGoogleMapsAutocomplete
-             [value]="formGroup.value.city"
-             [country]="'br'"
-             [types]="['(cities)']"
-             (onAutocompleteSelected)="onAutocompleteSelected($event)"
-             (onLocationSelected)="onLocationSelected($event)">
-    </mat-form-field>
-  </div>
-  <div>
-    <button mat-flat-button color="primary" (click)="doFilter(true)">
-      <mat-icon>search</mat-icon>
-      Buscar evento
-    </button>
-  </div>
+  <mat-form-field fxFlex class="search">
+    <input
+      matInput
+      formControlName="search"
+      (ngModelChange)="doFilter()"
+      placeholder="Pesquise o evento, festival ou show do seu artista favorito"
+    />
+  </mat-form-field>
+  <mat-form-field class="date-interval">
+    <mat-label>Selecine uma data</mat-label>
+    <mat-date-range-input [rangePicker]="picker">
+      <input matStartDate (ngModelChange)="doFilter()" formControlName="date_begin" placeholder="Início">
+      <input matEndDate (ngModelChange)="doFilter()" formControlName="date_end" placeholder="Final">
+    </mat-date-range-input>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  </mat-form-field>
+  <mat-form-field class="city">
+    <mat-label>Cidade</mat-label>
+    <input matInput
+           matGoogleMapsAutocomplete
+           [value]="formGroup.value.city"
+           [country]="'br'"
+           [types]="['(cities)']"
+           (onAutocompleteSelected)="onAutocompleteSelected($event)"
+           (onLocationSelected)="onLocationSelected($event)">
+  </mat-form-field>
+  <button *ngIf="clearButton" type="button" mat-flat-button color="default" (click)="clearFilter()">
+    Limpar
+  </button>
+  <button mat-flat-button color="primary" type="submit" (click)="doFilter(true)">
+    <mat-icon>search</mat-icon>
+    Buscar evento
+  </button>
 </form>

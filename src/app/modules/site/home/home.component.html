@@ -7,7 +7,7 @@
       <span>Busque uma cidade, uma data, um lugar famoso ou seu artista
         favorito!</span>
     </div>
-    <app-search-bar class="search-bar" (filtered)="filtered($event)"></app-search-bar>
+    <app-search-bar class="search-bar" [clearButton]="false" (filtered)="filtered($event)"></app-search-bar>
   </div>
 </div>
 
@@ -15,7 +15,7 @@
   <div class="city">
     <div fxLayout="row" fxLayoutAlign="start center">
       <h2>Eventos em São Paulo</h2>
-      <button mat-button>
+      <button class="margin-left" (click)="seeMore(filterRioDeJaneiro)" mat-button>
         <mat-icon>link</mat-icon>
         Ver mais
       </button>
@@ -26,7 +26,7 @@
   <div class="city">
     <div fxLayout="row" fxLayoutAlign="start center">
       <h2>Eventos no Rio</h2>
-      <button mat-button>
+      <button class="margin-left" (click)="seeMore(filterRioDeJaneiro)" mat-button>
         <mat-icon>link</mat-icon>
         Ver mais
       </button>
@@ -37,7 +37,7 @@
   <div class="city">
     <div fxLayout="row" fxLayoutAlign="start center">
       <h2>Eventos em Curitiba</h2>
-      <button mat-button>
+      <button class="margin-left" (click)="seeMore(filterRioDeJaneiro)" mat-button>
         <mat-icon>link</mat-icon>
         Ver mais
       </button>
