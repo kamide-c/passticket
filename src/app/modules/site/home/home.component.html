@@ -1,0 +1,47 @@
+<div class="banner">
+  <div class="container" fxFlex fxFlexFill fxLayoutAlign="center center">
+    <div class="title margin-right" fxLayout="column">
+      <h1>
+        Encontre todos os ingressos das plataformas digitais em um só lugar
+      </h1>
+      <span>Busque uma cidade, uma data, um lugar famoso ou seu artista
+        favorito!</span>
+    </div>
+    <app-search-bar class="search-bar" [clearButton]="false" (filtered)="filtered($event)"></app-search-bar>
+  </div>
+</div>
+
+<div class="container">
+  <div class="city">
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <h2>Eventos em São Paulo</h2>
+      <button class="margin-left" (click)="seeMore(filterRioDeJaneiro)" mat-button>
+        <mat-icon>link</mat-icon>
+        Ver mais
+      </button>
+    </div>
+    <app-events-list [paginate]="false" [filter]="filterSaoPaulo"></app-events-list>
+  </div>
+
+  <div class="city">
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <h2>Eventos no Rio</h2>
+      <button class="margin-left" (click)="seeMore(filterRioDeJaneiro)" mat-button>
+        <mat-icon>link</mat-icon>
+        Ver mais
+      </button>
+    </div>
+    <app-events-list [paginate]="false" [filter]="filterRioDeJaneiro"></app-events-list>
+  </div>
+
+  <div class="city">
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <h2>Eventos em Curitiba</h2>
+      <button class="margin-left" (click)="seeMore(filterRioDeJaneiro)" mat-button>
+        <mat-icon>link</mat-icon>
+        Ver mais
+      </button>
+    </div>
+    <app-events-list [paginate]="false" [filter]="filterCuritiba"></app-events-list>
+  </div>
+</div>
