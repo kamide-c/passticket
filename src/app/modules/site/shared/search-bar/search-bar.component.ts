@@ -17,6 +17,7 @@ export class SearchBarComponent implements OnInit {
   private emitEventOnChange = null;
   // @ts-ignore
   @Input() public filter;
+  // @ts-ignore
   @Input() public clearButton: boolean;
 
   constructor(
