@@ -1,0 +1,15 @@
+<header class="header">
+  <div class="container" fxFlex fxLayoutAlign="space-between center">
+    <a [routerLink]="['/']" class="logo">
+      <img src="assets/images/logo.png" alt="Passticket" class="logo" />
+    </a>
+    <div>
+      <button color="primary" mat-flat-button [routerLink]="['/']">
+        Revender meu Ingresso
+      </button>
+      <button mat-button [routerLink]="['events']">
+        Comprar um Ingresso
+      </button>
+    </div>
+  </div>
+</header>

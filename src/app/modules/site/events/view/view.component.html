@@ -1,0 +1,49 @@
+<div fxLayoutAlign="center center" fxLayout="column">
+  <mat-progress-spinner *ngIf="loading"></mat-progress-spinner>
+
+  <ng-container *ngIf="event">
+    <div fxLayout="column" fxLayoutAlign="start start"
+         class="top"
+         [style.background-image]="'url(' + event?.poster + ')'">
+      <div class="background"></div>
+      <div class="container" fxFlexFill fxFlex fxLayoutAlign="end end">
+        <div class="description" fxLayout="row">
+          <button color="primary" class="margin-right" mat-icon-button [routerLink]="['/','events']">
+            <mat-icon>arrow_left</mat-icon>
+          </button>
+          <div fxLayout="column">
+            <div class="title">
+              {{ event?.titulo }}
+            </div>
+            <div class="date">
+              {{ event?.data | date }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container content" fxLayout="row" *ngIf="event">
+      <div fxFlex="70" >
+        <div class="body-description padding" [innerHTML]="event.descricao"></div>
+      </div>
+      <div class="padding column" fxLayout="column" fxFlex="30">
+        <div class="margin-bottom">
+          <a [href]="event.link" target="_blank" mat-flat-button color="primary">Comprar ingresso</a>
+          <a [href]="event.link" target="_blank" mat-button color="primary">Mais informações</a>
+        </div>
+        <div class="margin-bottom" fxLayout="row" fxLayoutAlign="start center">
+          <mat-icon>room</mat-icon>
+          <div><span *ngIf="event.endereco !== 'Não informado'">{{ event.endereco }}<br></span> <b>{{ event.cidade }}</b> - {{ event.estado }}</div>
+        </div>
+        <div class="margin-bottom" fxLayout="row" fxLayoutAlign="start center">
+          <mat-icon>apartment</mat-icon>
+          <div>{{ event.local }}</div>
+        </div>
+        <div class="margin-bottom" fxLayout="row" fxLayoutAlign="start center">
+          <mat-icon>event</mat-icon>
+          <div><b>{{ event.d_date | date }}</b> às <b>{{ event.hora_inicio }}</b></div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

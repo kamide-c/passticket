@@ -1,46 +1,29 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import {AppComponent} from './app.component';
 
 const routes: Routes = [
+ /*
+  @todo using site routing for now...
   {
-    path: 'home',
-    loadChildren: () =>
-      import('./modules/home/home.module').then((m) => m.HomeModule),
-  },
-  {
-    path: 'explore',
-    loadChildren: () =>
-      import('./modules/explore/explore.module').then((m) => m.ExploreModule),
-  },
-  {
-    path: 'explore/:stringToSeek',
-    loadChildren: () =>
-      import('./modules/explore/explore.module').then((m) => m.ExploreModule),
-  },
-  {
-    path: 'event/:id',
-    loadChildren: () =>
-      import('./modules/event/event.module').then((m) => m.EventModule),
-  },
-  {
-    path: 'searchResult',
-    loadChildren: () =>
-      import('./modules/search-result/search-result.module').then(
-        (m) => m.SearchResultModule
-      ),
-  },
-  {
-    path: 'searchResult/:stringToSeek',
-    loadChildren: () =>
-      import('./modules/search-result/search-result.module').then(
-        (m) => m.SearchResultModule
-      ),
-  },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+    path: '',
+    component: AppComponent,
+    canActivate: [],
+    children: [
+
+      {
+        path: '',
+        loadChildren: () =>
+          import('./modules/site/site.module').then(
+            (m) => m.SiteModule
+          )
+      },
+    ]
+  }*/
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
