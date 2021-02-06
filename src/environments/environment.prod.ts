@@ -1,4 +1,4 @@
 export const environment = {
-  production: true,
-  baseUrl: '/api',
+  baseUrl: 'https://passticket-app.herokuapp.com',
+  production: true
 };

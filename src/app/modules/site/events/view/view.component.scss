@@ -1,0 +1,39 @@
+.top {
+  width: 100%;
+  height: 180px;
+  background-size: cover;
+  position: relative;
+  .background {
+    background: rgb(0,0,0);
+    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.4682247899159664) 100%);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+  }
+  .container {
+    position: relative;
+    .description {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      color: #FFF;
+      z-index: 100;
+      padding-left: 20px;
+      padding-right: 20px;
+      padding-bottom: 10px;
+      .title {
+        font-weight: bold;
+        font-size: 30px;
+      }
+    }
+  }
+}
+.content {
+  .column {
+    mat-icon {
+      margin-right: 10px;
+    }
+  }
+}
