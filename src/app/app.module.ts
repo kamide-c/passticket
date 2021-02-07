@@ -22,7 +22,7 @@ import {SiteRoutingModule} from './modules/site/site-routing.module';
   imports: [
     SiteRoutingModule,
     SiteModule,
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     ArtistModule,
     BrowserAnimationsModule,
     HttpClientModule,
