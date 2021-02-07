@@ -1,2 +1,9 @@
 {
+  "/api/*": {
+    "target": "https://passticket-app.herokuapp.com/",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": { "^/api": "" }
+  }
 }
