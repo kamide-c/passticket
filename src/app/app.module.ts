@@ -5,20 +5,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ArtistComponent } from './modules/artist/artist.component';
 import { SiteComponent } from './modules/site/site.component';
-import {SiteModule} from './modules/site/site.module';
-import {ArtistModule} from './modules/artist/artist.module';
-import {ApiInterceptor} from './core/interceptors/api/api.interceptor';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import { SiteModule } from './modules/site/site.module';
+import { ArtistModule } from './modules/artist/artist.module';
+import { ApiInterceptor } from './core/interceptors/api/api.interceptor';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {AgmCoreModule} from '@agm/core';
-import {SiteRoutingModule} from './modules/site/site-routing.module';
+import { AgmCoreModule } from '@agm/core';
+import { SiteRoutingModule } from './modules/site/site-routing.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ArtistComponent,
-    SiteComponent,
-  ],
+  declarations: [AppComponent, ArtistComponent, SiteComponent],
   imports: [
     SiteRoutingModule,
     SiteModule,
@@ -41,6 +37,6 @@ import {SiteRoutingModule} from './modules/site/site-routing.module';
       multi: true,
     },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

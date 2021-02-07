@@ -1,4 +1,9 @@
-<form class="search-bar" fxLayoutAlign="space-between center" [formGroup]="formGroup" (ngSubmit)="doFilter()">
+<form
+  class="search-bar"
+  fxLayoutAlign="space-between center"
+  [formGroup]="formGroup"
+  (ngSubmit)="doFilter()"
+>
   <mat-form-field fxFlex class="search">
     <input
       matInput
@@ -8,28 +13,58 @@
     />
   </mat-form-field>
   <mat-form-field class="date-interval">
-    <mat-label>Selecine uma data</mat-label>
+    <mat-label>Selecine uma data ou período</mat-label>
     <mat-date-range-input [rangePicker]="picker">
-      <input matStartDate (ngModelChange)="doFilter()" formControlName="date_begin" placeholder="Início">
-      <input matEndDate (ngModelChange)="doFilter()" formControlName="date_end" placeholder="Final">
+      <input
+        #inputStart
+        matStartDate
+        (ngModelChange)="doFilter()"
+        formControlName="date_begin"
+        placeholder="Início"
+        (focus)="picker.open()"
+      />
+      <input
+        #inputEnd
+        matEndDate
+        (ngModelChange)="doFilter()"
+        formControlName="date_end"
+        placeholder="Final"
+        (focus)="picker.open()"
+      />
     </mat-date-range-input>
-    <mat-date-range-picker #picker></mat-date-range-picker>
+    <mat-date-range-picker
+      #picker
+      (closed)="inputStart.blur(); inputEnd.blur()"
+    ></mat-date-range-picker>
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
   </mat-form-field>
   <mat-form-field class="city">
     <mat-label>Cidade</mat-label>
-    <input matInput
-           matGoogleMapsAutocomplete
-           [value]="formGroup.value.city"
-           [country]="'br'"
-           [types]="['(cities)']"
-           (onAutocompleteSelected)="onAutocompleteSelected($event)"
-           (onLocationSelected)="onLocationSelected($event)">
+    <input
+      matInput
+      matGoogleMapsAutocomplete
+      [value]="formGroup.value.city"
+      [country]="'br'"
+      [types]="['(cities)']"
+      (onAutocompleteSelected)="onAutocompleteSelected($event)"
+      (onLocationSelected)="onLocationSelected($event)"
+    />
   </mat-form-field>
-  <button *ngIf="clearButton" type="button" mat-flat-button color="default" (click)="clearFilter()">
+  <button
+    *ngIf="clearButton"
+    type="button"
+    mat-flat-button
+    color="default"
+    (click)="clearFilter()"
+  >
     Limpar
   </button>
-  <button mat-flat-button color="primary" type="submit" (click)="doFilter(true)">
+  <button
+    mat-flat-button
+    color="primary"
+    type="submit"
+    (click)="doFilter(true)"
+  >
     <mat-icon>search</mat-icon>
     Buscar evento
   </button>
