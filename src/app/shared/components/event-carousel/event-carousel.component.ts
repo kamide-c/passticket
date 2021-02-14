@@ -1,15 +1,16 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {EventsService} from '../../../../core/services/events/events.service';
-import {IEvent, IEventFilter} from '../../../../core/interfaces/event';
-import {ScrollPaginationService} from '../../../../core/services/scroll-pagination/scroll-pagination.service';
-import {Subscription} from 'rxjs';
+import { Component, Input, OnInit } from '@angular/core';
+import { EventsService } from '../../../core/services/events/events.service';
+import { IEvent } from '../../../core/interfaces/event';
+import { ScrollPaginationService } from '../../../core/services/scroll-pagination/scroll-pagination.service';
+import { Subscription } from 'rxjs';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
-  selector: 'app-events-list',
-  templateUrl: './events-list.component.html',
-  styleUrls: ['./events-list.component.scss']
+  selector: 'app-event-carousel',
+  templateUrl: './event-carousel.component.html',
+  styleUrls: ['./event-carousel.component.scss'],
 })
-export class EventsListComponent implements OnInit {
+export class EventCarouselComponent implements OnInit {
   @Input()
   public filter: any;
   // @ts-ignore
@@ -19,12 +20,29 @@ export class EventsListComponent implements OnInit {
   public events: Array<IEvent> = [];
   // @ts-ignore
   public scrollPaginationSubscription: Subscription;
+
+  customOptions: OwlOptions = {
+    loop: false,
+    margin: 10,
+    items: 4,
+    responsive: {
+      0: {
+        items: 1,
+        loop: true,
+      },
+      600: {
+        items: 3,
+      },
+      1000: {
+        items: 4,
+      },
+    },
+  };
+
   constructor(
     private eventsService: EventsService,
     private scrollPaginationService: ScrollPaginationService
-  ) {
-
-  }
+  ) {}
 
   ngOnInit(): void {
     if (this.paginate || typeof this.paginate === 'undefined') {
@@ -58,14 +76,14 @@ export class EventsListComponent implements OnInit {
     this.loading = true;
     this.eventsService
       .events(this.filter)
-      .subscribe(response => {
-          if (!response.success) {
-            // @todo Treat errors
-            return;
-          }
-          this.filter.page_number = response.nextPage;
-          this.events = this.events.concat(response.data);
+      .subscribe((response) => {
+        if (!response.success) {
+          // @todo Treat errors
+          return;
+        }
+        this.filter.page_number = response.nextPage;
+        this.events = this.events.concat(response.data);
       })
-      .add(() => this.loading = false);
+      .add(() => (this.loading = false));
   }
 }

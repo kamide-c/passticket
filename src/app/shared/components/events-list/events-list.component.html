@@ -1,0 +1,21 @@
+<div fxLayout="column" fxLayoutAlign="start center">
+  <div *ngIf="!loading && !events.length">
+    <h1>Puxa, não encontramos nenhum evento com este filtro!</h1>
+  </div>
+  <div fxFlexFill fxLayout="row wrap" fxLayoutGap="10px grid" class="events">
+    <div
+      [fxFlex]="100 / 4 + '%'"
+      fxFlex.xs="100%"
+      [fxFlex.sm]="100 / 2 + '%'"
+      [fxFlex.md]="100 / 3 + '%'"
+      *ngFor="let event of events"
+    >
+      <app-event fxFlex [event]="event"></app-event>
+    </div>
+  </div>
+  <mat-progress-spinner
+    class="margin-top"
+    *ngIf="loading"
+    mode="indeterminate"
+  ></mat-progress-spinner>
+</div>

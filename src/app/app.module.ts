@@ -12,6 +12,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AgmCoreModule } from '@agm/core';
 import { SiteRoutingModule } from './modules/site/site-routing.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent, ArtistComponent, SiteComponent],
@@ -29,6 +30,7 @@ import { SiteRoutingModule } from './modules/site/site-routing.module';
     /*ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
     }),*/
+    SharedModule,
   ],
   providers: [
     {
