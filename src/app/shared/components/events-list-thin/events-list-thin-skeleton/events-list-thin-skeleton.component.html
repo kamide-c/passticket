@@ -1,0 +1,80 @@
+<ng-container *ngFor="let time of repeat; let last = last">
+  <div
+    fxLayout="row"
+    fxLayout.xs="column"
+    fxLayoutAlign="space-between stretch"
+    fxLayoutGap="1rem"
+    class="item"
+  >
+    <div
+      fxLayout="row"
+      fxLayoutAlign="space-between stretch"
+      fxLayoutGap="1rem"
+      fxFlex
+    >
+      <div class="item-thumbnail">
+        <ngx-skeleton-loader [theme]="{ width: '70px', height: '70px' }">
+        </ngx-skeleton-loader>
+      </div>
+      <div
+        fxLayout="column"
+        fxLayoutAlign="center center"
+        class="item-date"
+        fxHide.sm
+        fxHide.xs
+      >
+        <div class="month">
+          <ngx-skeleton-loader [theme]="{ width: '17px', height: '13px' }">
+          </ngx-skeleton-loader>
+        </div>
+        <div class="day">
+          <ngx-skeleton-loader [theme]="{ width: '28px', height: '29px' }">
+          </ngx-skeleton-loader>
+        </div>
+      </div>
+      <div
+        fxFlex="80"
+        fxFlex.sm="100"
+        fxFlex.xs="100"
+        fxLayout="row"
+        fxLayout.sm="column"
+        fxLayout.xs="column"
+        fxLayoutAlign="space-between center"
+        fxLayoutAlign.sm="center start"
+        fxLayoutAlign.xs="center start"
+      >
+        <div>
+          <ngx-skeleton-loader [theme]="{ width: '180px', height: '16px' }">
+          </ngx-skeleton-loader>
+        </div>
+        <div
+          fxLayout="column"
+          fxLayoutAlign="center end"
+          fxLayoutAlign.sm="center start"
+          fxLayoutAlign.xs="center start"
+        >
+          <div>
+            <ngx-skeleton-loader [theme]="{ width: '110px', height: '16px' }">
+            </ngx-skeleton-loader>
+          </div>
+          <div>
+            <ngx-skeleton-loader [theme]="{ width: '40px', height: '16px' }">
+            </ngx-skeleton-loader>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      fxFlex="15"
+      fxFlex.sm="25"
+      fxFlex.xs="25"
+      fxLayout="column"
+      fxLayoutAlign="center stretch"
+    >
+      <ngx-skeleton-loader [theme]="{ width: '150px', height: '36px' }">
+      </ngx-skeleton-loader>
+    </div>
+  </div>
+  <mat-divider *ngIf="!last"></mat-divider>
+</ng-container>

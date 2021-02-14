@@ -1,0 +1,39 @@
+.example-viewport {
+  height: 610px;
+}
+.item {
+  padding: 0.5rem 0;
+}
+.item-thumbnail {
+  width: 70px;
+  height: 70px;
+  border-radius: 3px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.item-date {
+  font-weight: 500;
+  .month {
+    font-size: 11px;
+  }
+  .day {
+    font-size: 25px;
+  }
+}
+
+.mat-list-base {
+  padding-top: 0px !important;
+}
+
+.mat-list-option {
+  height: auto !important;
+  padding: 0.5rem 0 !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .item {
+    padding: 2rem 0;
+  }
+}

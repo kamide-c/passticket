@@ -1,4 +1,13 @@
 <div class="container">
-  <app-search-bar class="margin-top margin-bottom" [filter]="filter" (filtered)="doFilter($event)"></app-search-bar>
-  <app-events-list [filter]="filter" [changeFilter]="filterChange"></app-events-list>
+  <div class="margin-16-tb padding-5-lr">
+    <app-search-bar
+      class="margin-top margin-bottom"
+      [filter]="filter"
+      (filtered)="doFilter($event)"
+    ></app-search-bar>
+  </div>
+  <app-events-list
+    [filter]="filter"
+    [changeFilter]="filterChange"
+  ></app-events-list>
 </div>

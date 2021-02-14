@@ -4,68 +4,98 @@
   [formGroup]="formGroup"
   (ngSubmit)="doFilter()"
 >
-  <mat-form-field fxFlex class="search">
-    <input
-      matInput
-      formControlName="search"
-      (ngModelChange)="doFilter()"
-      placeholder="Pesquise o evento, festival ou show do seu artista favorito"
-    />
-  </mat-form-field>
-  <mat-form-field class="date-interval">
-    <mat-label>Selecine uma data ou período</mat-label>
-    <mat-date-range-input [rangePicker]="picker">
-      <input
-        #inputStart
-        matStartDate
-        (ngModelChange)="doFilter()"
-        formControlName="date_begin"
-        placeholder="Início"
-        (focus)="picker.open()"
-      />
-      <input
-        #inputEnd
-        matEndDate
-        (ngModelChange)="doFilter()"
-        formControlName="date_end"
-        placeholder="Final"
-        (focus)="picker.open()"
-      />
-    </mat-date-range-input>
-    <mat-date-range-picker
-      #picker
-      (closed)="inputStart.blur(); inputEnd.blur()"
-    ></mat-date-range-picker>
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-  </mat-form-field>
-  <mat-form-field class="city">
-    <mat-label>Cidade</mat-label>
-    <input
-      matInput
-      matGoogleMapsAutocomplete
-      [value]="formGroup.value.city"
-      [country]="'br'"
-      [types]="['(cities)']"
-      (onAutocompleteSelected)="onAutocompleteSelected($event)"
-      (onLocationSelected)="onLocationSelected($event)"
-    />
-  </mat-form-field>
-  <button
-    *ngIf="clearButton"
-    type="button"
-    mat-flat-button
-    color="default"
-    (click)="clearFilter()"
+  <div
+    fxLayout.lg="row"
+    fxLayout.md="row"
+    fxLayout="column"
+    fxLayoutAlign.lg="center center"
+    fxLayoutAlign.md="center center"
+    fxLayoutAlign="center stretch"
+    class="search-bar"
   >
-    Limpar
-  </button>
-  <button
-    mat-flat-button
-    color="primary"
-    type="submit"
-    (click)="doFilter(true)"
-  >
-    <mat-icon>search</mat-icon>
-    Buscar evento
-  </button>
+    <div fxFlex>
+      <mat-form-field fxFlex class="search">
+        <input
+          matInput
+          formControlName="search"
+          (ngModelChange)="doFilter()"
+          placeholder="Pesquise o evento, festival ou show do seu artista favorito"
+        />
+      </mat-form-field>
+    </div>
+
+    <div
+      fxFlex
+      fxLayout="row"
+      fxLayoutAlign="center center"
+      fxLayout.xs="column"
+      fxLayoutAlign.xs="center stretch"
+    >
+      <div fxFlex>
+        <mat-form-field class="date-interval">
+          <mat-label>Selecine uma data ou período</mat-label>
+          <mat-date-range-input [rangePicker]="picker">
+            <input
+              #inputStart
+              matStartDate
+              (ngModelChange)="doFilter()"
+              formControlName="date_begin"
+              placeholder="Início"
+              (focus)="picker.open()"
+            />
+            <input
+              #inputEnd
+              matEndDate
+              (ngModelChange)="doFilter()"
+              formControlName="date_end"
+              placeholder="Final"
+              (focus)="picker.open()"
+            />
+          </mat-date-range-input>
+          <mat-date-range-picker
+            #picker
+            (closed)="inputStart.blur(); inputEnd.blur()"
+          ></mat-date-range-picker>
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+        </mat-form-field>
+      </div>
+      <div fxFlex>
+        <mat-form-field class="cities">
+          <mat-label>Cidade</mat-label>
+          <input
+            matInput
+            matGoogleMapsAutocomplete
+            [value]="formGroup.value.city"
+            [country]="'br'"
+            [types]="['(cities)']"
+            (onAutocompleteSelected)="onAutocompleteSelected($event)"
+            (onLocationSelected)="onLocationSelected($event)"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="end center">
+      <button
+        *ngIf="clearButton"
+        type="button"
+        mat-flat-button
+        color="default"
+        (click)="clearFilter()"
+      >
+        Limpar
+      </button>
+      <button
+        mat-flat-button
+        color="primary"
+        type="submit"
+        (click)="doFilter(true)"
+      >
+        <mat-icon>search</mat-icon>
+        Buscar evento
+      </button>
+    </div>
+  </div>
 </form>

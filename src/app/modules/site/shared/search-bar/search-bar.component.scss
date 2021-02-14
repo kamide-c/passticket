@@ -1,9 +1,17 @@
 .search {
+  @extend .search-bar;
   margin-right: 10px;
 }
 .date-interval {
+  @extend .search-bar;
   margin-right: 10px;
 }
-.city {
+.cities {
+  @extend .search-bar;
   margin-right: 10px;
+}
+.search-bar {
+  width: -moz-available;
+  width: -webkit-fill-available;
+  width: fill-available;
 }
