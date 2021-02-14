@@ -15,7 +15,6 @@ export class ViewComponent implements OnInit {
   // @ts-ignore
   public event: IEvent;
   url!: string;
-  eventStart!: Date;
   constructor(
     private activatedRoute: ActivatedRoute,
     private eventsService: EventsService,
@@ -44,8 +43,7 @@ export class ViewComponent implements OnInit {
           return;
         }
         this.event = response.data[0];
-        this.eventStart = this.event.d_data_iso;
-        this.url = `https://www.stay22.com/embed/gm?aid=5f845198216db60017f08372&address=${this.event.local}&checkin=${this.eventStart}`;
+        this.url = `https://www.stay22.com/embed/gm?aid=5f845198216db60017f08372&address=${this.event.local}&checkin=${this.event.d_data_iso}`;
       })
       .add(() => (this.loading = false));
   }

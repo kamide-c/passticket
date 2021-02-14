@@ -34,7 +34,6 @@ export class EventsService {
   constructor(private httpClient: HttpClient) {}
 
   public events(filter: any): Observable<IPaginatedResponse<IEvent>> {
-    console.log(filter);
     this.loadingSubject.next(true);
     // @ts-ignore
     const filterTreated: IEventFilter = {};

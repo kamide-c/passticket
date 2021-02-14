@@ -11,7 +11,7 @@
         let dataSource of dataSources;
         let i = index;
         trackBy: trackByFn;
-        templateCacheSize: 0;
+        templateCacheSize: 12;
         let last = last
       "
       class="example-item"
@@ -56,7 +56,7 @@
               fxLayoutAlign.sm="center start"
               fxLayoutAlign.xs="center start"
             >
-              <div>
+              <div class="item-titulo">
                 {{ dataSource.titulo }}
               </div>
               <div
@@ -65,7 +65,7 @@
                 fxLayoutAlign.sm="center start"
                 fxLayoutAlign.xs="center start"
               >
-                <div style="text-align: end">
+                <div class="item-local">
                   {{ dataSource.local }}
                 </div>
                 <div>
@@ -81,8 +81,8 @@
 
           <div
             fxFlex="15"
-            fxFlex.sm="25"
-            fxFlex.xs="25"
+            fxHide.sm
+            fxHide.xs
             fxLayout="column"
             fxLayoutAlign="center stretch"
           >
