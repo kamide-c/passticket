@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SiteRoutingModule } from './site-routing.module';
-import { HeaderComponent } from './shared/header/header.component';
+import {
+  HeaderComponent,
+  HeaderResaleDialog,
+} from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -13,7 +16,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent],
+  declarations: [HeaderComponent, FooterComponent, HeaderResaleDialog],
   exports: [HeaderComponent, FooterComponent],
   imports: [
     HomeModule,
