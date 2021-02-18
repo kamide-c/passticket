@@ -76,14 +76,14 @@ export class SearchBarComponent implements OnInit {
       // @ts-ignore
       if (
         addressComponent.types.some(
-          (type) => type === 'administrative_area_level_2'
+          (type: any) => type === 'administrative_area_level_2'
         )
       ) {
         city = addressComponent.long_name;
         // @ts-ignore
       } else if (
         addressComponent.types.some(
-          (type) => type === 'administrative_area_level_1'
+          (type: any) => type === 'administrative_area_level_1'
         )
       ) {
         state = addressComponent.short_name;
