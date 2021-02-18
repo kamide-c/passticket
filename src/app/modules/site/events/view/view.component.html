@@ -10,21 +10,32 @@
     >
       <div class="background"></div>
       <div class="container" fxFlexFill fxFlex fxLayoutAlign="end end">
-        <div class="description" fxLayout="row">
+        <div
+          class="description"
+          fxLayout="row"
+          fxLayout.sm="column"
+          fxLayout.xs="column"
+          fxLayoutGap="16px"
+          fxLayoutGap.sm="8px"
+          fxLayoutGap.xs="8px"
+          fxLayoutAlign="start start"
+        >
           <button
-            color="primary"
-            class="margin-right"
-            mat-icon-button
+            mat-button
             (click)="goBack()"
+            fxFlexOrder.sm="1"
+            fxFlexOrder.xs="1"
+            class="padding-no"
           >
             <mat-icon>arrow_left</mat-icon>
+            voltar
           </button>
-          <div fxLayout="column">
-            <div class="title">
+          <div fxLayout="column" fxFlexOrder.sm="-1" fxFlexOrder.xs="-1">
+            <h1 class="title">
               {{ event?.titulo }}
-            </div>
+            </h1>
             <div class="date">
-              {{ event?.data | date }}
+              {{ event?.data | date: "fullDate":"UTC" }}
             </div>
           </div>
         </div>
@@ -70,7 +81,12 @@
             >Mais informações</a
           >
         </div>
-        <div class="margin-bottom" fxLayout="row" fxLayoutAlign="start center">
+        <div
+          class="margin-bottom"
+          fxLayout="row"
+          fxLayoutAlign="start center"
+          *ngIf="event.endereco"
+        >
           <mat-icon>room</mat-icon>
           <div>
             <span *ngIf="event.endereco !== 'Não informado'"
@@ -79,15 +95,35 @@
             <b>{{ event.cidade }}</b> - {{ event.estado }}
           </div>
         </div>
-        <div class="margin-bottom" fxLayout="row" fxLayoutAlign="start center">
+        <div
+          class="margin-bottom"
+          fxLayout="row"
+          fxLayoutAlign="start center"
+          *ngIf="event.local"
+        >
           <mat-icon>apartment</mat-icon>
           <div>{{ event.local }}</div>
         </div>
-        <div class="margin-bottom" fxLayout="row" fxLayoutAlign="start center">
+        <div
+          class="margin-bottom"
+          fxLayout="row"
+          fxLayoutAlign="start center"
+          *ngIf="event.data"
+        >
           <mat-icon>event</mat-icon>
           <div>
-            <b>{{ event.d_data_iso | date }}</b> às
-            <b>{{ event.hora_inicio }}</b>
+            <b>{{ event.data | date: "fullDate":"UTC" }}</b>
+          </div>
+        </div>
+        <div
+          class="margin-bottom"
+          fxLayout="row"
+          fxLayoutAlign="start center"
+          *ngIf="event.hora_inicio"
+        >
+          <mat-icon>access_time</mat-icon>
+          <div>
+            às <b>{{ event.hora_inicio }}</b>
           </div>
         </div>
       </div>

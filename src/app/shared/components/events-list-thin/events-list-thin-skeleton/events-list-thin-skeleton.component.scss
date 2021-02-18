@@ -1,5 +1,6 @@
 .example-viewport {
   height: 610px;
+  overflow-x: hidden !important;
 }
 .item {
   padding: 0.5rem 0;

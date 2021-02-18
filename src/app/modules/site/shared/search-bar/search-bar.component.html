@@ -34,7 +34,11 @@
       <div fxFlex>
         <mat-form-field class="date-interval">
           <mat-label>Selecine uma data ou período</mat-label>
-          <mat-date-range-input [rangePicker]="picker">
+          <mat-date-range-input
+            [rangePicker]="picker"
+            separator="a"
+            [ngClass]="{ dtpicker: !formGroup.controls['date_end'].value }"
+          >
             <input
               #inputStart
               matStartDate
