@@ -2,7 +2,6 @@ export interface IEvent {
   id?: string;
   atracoes?: string;
   cidade?: string;
-  d_data_iso?: Date;
   data?: Date;
   descricao?: string;
   endereco?: string;

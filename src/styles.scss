@@ -51,26 +51,26 @@ $listProperty: margin padding;
     .#{$property}-#{$item} {
       $thisItem: index($listName, $item);
       $varItem: nth($listVariable, $thisItem);
-      #{$property}: $varItem;
+      #{$property}: $varItem !important;
       &-t {
-        #{$property}-top: $varItem;
+        #{$property}-top: $varItem !important;
       }
       &-r {
-        #{$property}-right: $varItem;
+        #{$property}-right: $varItem !important;
       }
       &-b {
-        #{$property}-bottom: $varItem;
+        #{$property}-bottom: $varItem !important;
       }
       &-l {
-        #{$property}-left: $varItem;
+        #{$property}-left: $varItem !important;
       }
       &-tb {
-        #{$property}-top: $varItem;
-        #{$property}-bottom: $varItem;
+        #{$property}-top: $varItem !important;
+        #{$property}-bottom: $varItem !important;
       }
       &-lr {
-        #{$property}-left: $varItem;
-        #{$property}-right: $varItem;
+        #{$property}-left: $varItem !important;
+        #{$property}-right: $varItem !important;
       }
     }
   }

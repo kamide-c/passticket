@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,7 +13,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AgmCoreModule } from '@agm/core';
 import { SiteRoutingModule } from './modules/site/site-routing.module';
 import { SharedModule } from './shared/shared.module';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
 
+registerLocaleData(localePt, 'pt');
 @NgModule({
   declarations: [AppComponent, ArtistComponent, SiteComponent],
   imports: [
@@ -33,6 +36,7 @@ import { SharedModule } from './shared/shared.module';
     SharedModule,
   ],
   providers: [
+    { provide: LOCALE_ID, useValue: 'pt' },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ApiInterceptor,

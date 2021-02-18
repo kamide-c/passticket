@@ -15,3 +15,8 @@
   width: -webkit-fill-available;
   width: fill-available;
 }
+.dtpicker {
+  .mat-date-range-input-separator {
+    display: none;
+  }
+}
