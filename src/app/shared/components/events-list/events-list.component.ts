@@ -21,15 +21,14 @@ export class EventsListComponent implements OnInit {
   public scrollPaginationSubscription: Subscription;
   constructor(
     private eventsService: EventsService,
-    private scrollPaginationService: ScrollPaginationService,
-    private ref: ChangeDetectorRef
+    private scrollPaginationService: ScrollPaginationService
   ) {}
 
   ngOnInit(): void {
     if (this.paginate || typeof this.paginate === 'undefined') {
-      this.scrollPaginationSubscription = this.scrollPaginationService.endPageSubject.subscribe(
-        () => this.getEvents()
-      );
+      this.scrollPaginationSubscription = this.scrollPaginationService
+        .listener()
+        .subscribe(() => this.getEvents());
     }
     this.getEvents();
   }
@@ -64,8 +63,6 @@ export class EventsListComponent implements OnInit {
         }
         this.filter.page_number = response.nextPage;
         this.events = this.events.concat(response.data);
-
-        this.ref.detectChanges();
       })
       .add(() => (this.loading = false));
   }
