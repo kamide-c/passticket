@@ -3,7 +3,6 @@ import { Observable, Subject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class ScrollPaginationService {
-  public endPageSubject = new Subject<any>();
   constructor() {}
 
   public listener(

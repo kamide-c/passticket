@@ -43,7 +43,6 @@
     "express": "^4.17.1",
     "moment": "^2.29.1",
     "ngx-owl-carousel-o": "^5.0.0",
-    "ngx-perfect-scrollbar": "^10.1.0",
     "ngx-skeleton-loader": "^2.7.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
