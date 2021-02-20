@@ -1,7 +1,10 @@
-<div fxLayout="column" fxFlexFill>
+<perfect-scrollbar fxLayout="column" fxFlexFill (psYReachEnd)="getEvents()">
   <app-header></app-header>
   <div fxFlex>
     <router-outlet></router-outlet>
   </div>
   <app-footer></app-footer>
-</div>
+  <!-- <div fxFlex>
+    <app-sidenav></app-sidenav>
+  </div> -->
+</perfect-scrollbar>

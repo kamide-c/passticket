@@ -8,6 +8,7 @@ import {
   ChangeDetectorRef,
 } from '@angular/core';
 import { Router } from '@angular/router';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { throwError } from 'rxjs';
 import { catchError, map, share } from 'rxjs/operators';
 import { EventsService } from 'src/app/core/services/events/events.service';
@@ -26,6 +27,8 @@ export class EventsListThinComponent implements OnInit {
   @ViewChild('scrollViewport')
   scrollViewport!: CdkVirtualScrollViewport;
   private _dataSources!: EventsDataSource;
+
+  public config: PerfectScrollbarConfigInterface = {};
 
   constructor(
     private router: Router,
