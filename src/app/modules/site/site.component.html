@@ -1,4 +1,11 @@
-<perfect-scrollbar fxLayout="column" fxFlexFill (psYReachEnd)="getEvents()">
+<perfect-scrollbar
+  fxLayout="column"
+  fxFlexFill
+  (psYReachEnd)="getEvents()"
+  (psScrollDown)="scrollDown($event)"
+  (psYReachStart)="psYReachStart()"
+  [config]="{ suppressScrollX: true }"
+>
   <app-header></app-header>
   <div fxFlex>
     <router-outlet></router-outlet>
@@ -7,4 +14,8 @@
   <!-- <div fxFlex>
     <app-sidenav></app-sidenav>
   </div> -->
+  <app-scroll-to-top
+    (scrollToTop)="scrollToTop()"
+    [windowScrolled]="detectScrollDown"
+  ></app-scroll-to-top>
 </perfect-scrollbar>
