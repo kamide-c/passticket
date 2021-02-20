@@ -1,5 +1,8 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
-import { PerfectScrollbarComponent } from 'ngx-perfect-scrollbar';
+import {
+  PerfectScrollbarConfigInterface,
+  PerfectScrollbarDirective,
+} from 'ngx-perfect-scrollbar';
 import { ScrollPaginationService } from 'src/app/core/services/scroll-pagination/scroll-pagination.service';
 
 @Component({
@@ -8,8 +11,11 @@ import { ScrollPaginationService } from 'src/app/core/services/scroll-pagination
   styleUrls: ['./site.component.scss'],
 })
 export class SiteComponent implements OnInit {
-  @ViewChild(PerfectScrollbarComponent, { static: false })
-  componentRef?: PerfectScrollbarComponent;
+  @ViewChild(PerfectScrollbarDirective, { static: false })
+  directiveRef?: PerfectScrollbarDirective;
+
+  public config: PerfectScrollbarConfigInterface = {};
+
   detectScrollDown = false;
   constructor(
     private scrollPaginationService: ScrollPaginationService,
@@ -24,7 +30,7 @@ export class SiteComponent implements OnInit {
   }
 
   public scrollToTop(): void {
-    this.componentRef?.directiveRef?.scrollToTop();
+    this?.directiveRef?.scrollToTop();
   }
 
   public scrollDown(event: CustomEvent): void {

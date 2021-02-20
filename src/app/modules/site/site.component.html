@@ -1,10 +1,12 @@
-<perfect-scrollbar
+<div
   fxLayout="column"
   fxFlexFill
   (psYReachEnd)="getEvents()"
   (psScrollDown)="scrollDown($event)"
   (psYReachStart)="psYReachStart()"
-  [config]="{ suppressScrollX: true }"
+  [perfectScrollbar]="config"
+  clas="ps"
+  style="position: relative"
 >
   <app-header></app-header>
   <div fxFlex>
@@ -18,4 +20,4 @@
     (scrollToTop)="scrollToTop()"
     [windowScrolled]="detectScrollDown"
   ></app-scroll-to-top>
-</perfect-scrollbar>
+</div>
