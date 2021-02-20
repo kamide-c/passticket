@@ -13,6 +13,7 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { EventCarouselComponent } from './components/event-carousel/event-carousel.component';
 import { EventsListThinComponent } from './components/events-list-thin/events-list-thin.component';
 import { EventsListThinSkeletonComponent } from './components/events-list-thin/events-list-thin-skeleton/events-list-thin-skeleton.component';
+import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.component';
 
 // pipes
 import { SafePipe } from './pipes/safe.pipe';
@@ -40,6 +41,7 @@ const components = [
   EventCarouselComponent,
   EventsListThinComponent,
   EventsListThinSkeletonComponent,
+  ScrollToTopComponent,
 ];
 @NgModule({
   declarations: [components, SafePipe],
