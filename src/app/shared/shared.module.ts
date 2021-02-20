@@ -17,6 +17,15 @@ import { EventsListThinSkeletonComponent } from './components/events-list-thin/e
 // pipes
 import { SafePipe } from './pipes/safe.pipe';
 
+// Perfect scrollbar
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true,
+};
+
 const modules = [
   MaterialModule,
   FlexLayoutModule,
@@ -24,6 +33,7 @@ const modules = [
   CarouselModule,
   ScrollingModule,
   NgxSkeletonLoaderModule,
+  PerfectScrollbarModule,
 ];
 
 const components = [
@@ -35,5 +45,11 @@ const components = [
   declarations: [components, SafePipe],
   imports: [CommonModule, modules],
   exports: [modules, components, SafePipe],
+  providers: [
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG,
+    },
+  ],
 })
 export class SharedModule {}

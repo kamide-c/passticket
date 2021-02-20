@@ -16,6 +16,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 const materialModules = [
   MatToolbarModule,
@@ -34,6 +35,7 @@ const materialModules = [
   MatTooltipModule,
   MatProgressBarModule,
   MatDatepickerModule,
+  MatSidenavModule,
 ];
 
 @NgModule({

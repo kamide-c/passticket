@@ -1,0 +1,25 @@
+<mat-drawer-container>
+  <mat-drawer #drawer mode="side">
+    <mat-selection-list #shoes [multiple]="false" class="padding-no">
+      <mat-list-option [value]="'Busca de evento'">
+        <mat-icon mat-list-icon>search</mat-icon>
+        <div mat-line>Busca de evento</div>
+      </mat-list-option>
+      <mat-list-option [value]="'Revenda de ingresso'">
+        <mat-icon mat-list-icon>wifi_protected_setup</mat-icon>
+        <div mat-line>Revenda de ingresso</div>
+      </mat-list-option>
+    </mat-selection-list>
+  </mat-drawer>
+
+  <div>
+    <button
+      type="button"
+      mat-icon-button
+      color="primary"
+      (click)="drawer.toggle()"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+</mat-drawer-container>

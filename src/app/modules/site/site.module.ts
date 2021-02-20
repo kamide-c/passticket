@@ -14,10 +14,16 @@ import { EventsModule } from './events/events.module';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
+import { SidenavComponent } from '../../core/sidenav/sidenav.component';
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, HeaderResaleDialog],
-  exports: [HeaderComponent, FooterComponent],
+  declarations: [
+    HeaderComponent,
+    FooterComponent,
+    HeaderResaleDialog,
+    SidenavComponent,
+  ],
+  exports: [HeaderComponent, FooterComponent, SidenavComponent],
   imports: [
     HomeModule,
     EventsModule,

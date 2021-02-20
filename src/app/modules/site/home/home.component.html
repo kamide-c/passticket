@@ -1,7 +1,7 @@
 <div class="banner">
   <div class="container" fxFlex fxFlexFill>
-    <div fxLayout="column" fxFlex fxFlexFill fxLayoutAlign="center center">
-      <div
+    <div fxLayout="column" fxFlex fxFlexFill fxLayoutAlign="center start">
+      <!-- <div
         fxLayout.lg="row"
         fxLayout.md="row"
         fxLayout="column"
@@ -24,6 +24,15 @@
             favorito!</span
           >
         </div>
+      </div> -->
+      <div class="title margin-right" fxLayout="column">
+        <h1>
+          Encontre todos os ingressos das plataformas digitais em um só lugar
+        </h1>
+        <span
+          >Busque uma cidade, uma data, um lugar famoso ou seu artista
+          favorito!</span
+        >
       </div>
       <div class="margin-16-b"></div>
       <app-search-bar
@@ -41,7 +50,7 @@
         <h2>Eventos em São Paulo</h2>
         <button
           class="margin-left"
-          (click)="seeMore(filterRioDeJaneiro)"
+          (click)="seeMore(filterSaoPaulo)"
           mat-button
         >
           <mat-icon>link</mat-icon>
@@ -77,7 +86,7 @@
         <h2>Eventos em Curitiba</h2>
         <button
           class="margin-left"
-          (click)="seeMore(filterRioDeJaneiro)"
+          (click)="seeMore(filterCuritiba)"
           mat-button
         >
           <mat-icon>link</mat-icon>

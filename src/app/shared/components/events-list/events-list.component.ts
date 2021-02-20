@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { EventsService } from '../../../core/services/events/events.service';
 import { IEvent } from '../../../core/interfaces/event';
 import { ScrollPaginationService } from '../../../core/services/scroll-pagination/scroll-pagination.service';
@@ -21,14 +21,15 @@ export class EventsListComponent implements OnInit {
   public scrollPaginationSubscription: Subscription;
   constructor(
     private eventsService: EventsService,
-    private scrollPaginationService: ScrollPaginationService
+    private scrollPaginationService: ScrollPaginationService,
+    private ref: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
     if (this.paginate || typeof this.paginate === 'undefined') {
-      this.scrollPaginationSubscription = this.scrollPaginationService
-        .listener()
-        .subscribe(() => this.getEvents());
+      this.scrollPaginationSubscription = this.scrollPaginationService.endPageSubject.subscribe(
+        () => this.getEvents()
+      );
     }
     this.getEvents();
   }
@@ -63,6 +64,8 @@ export class EventsListComponent implements OnInit {
         }
         this.filter.page_number = response.nextPage;
         this.events = this.events.concat(response.data);
+
+        this.ref.detectChanges();
       })
       .add(() => (this.loading = false));
   }

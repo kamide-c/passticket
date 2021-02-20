@@ -1,7 +1,6 @@
 <div
-  fxHide.lg
-  fxHide.md
-  *ngIf="showLogo()"
+  fxHide
+  fxShow.xs
   fxLayout="row"
   fxLayoutAlign="center center"
   [routerLink]="['']"
@@ -14,10 +13,10 @@
 <nav mat-tab-nav-bar class="header">
   <div fxLayout="row" fxLayoutAlign="space-between center">
     <a
+      mat-tab-link
+      [active]="false"
       class="logo padding-16-lr"
       [routerLink]="'/'"
-      *ngIf="showLogo()"
-      fxHide.sm
       fxHide.xs
     >
       <img src="assets/images/logo.png" alt="Passticket" class="logo" />
