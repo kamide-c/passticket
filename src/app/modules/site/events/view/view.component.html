@@ -6,7 +6,11 @@
       fxLayout="column"
       fxLayoutAlign="start start"
       class="top"
-      [style.background-image]="'url(' + event?.poster + ')'"
+      [style.background-image]="
+        'url(' +
+        (event?.poster ? event?.poster : 'assets/images/default.png') +
+        ')'
+      "
     >
       <div class="background"></div>
       <div class="container" fxFlexFill fxFlex fxLayoutAlign="end end">

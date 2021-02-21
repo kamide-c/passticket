@@ -13,7 +13,13 @@
       >
         <div
           class="item-thumbnail"
-          [style.background-image]="'url(' + dataSource.poster + ')'"
+          [style.background-image]="
+            'url(' +
+            (dataSource.poster
+              ? dataSource.poster
+              : 'assets/images/default.png') +
+            ')'
+          "
         ></div>
         <div
           fxLayout="column"
