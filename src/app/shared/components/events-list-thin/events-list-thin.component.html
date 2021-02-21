@@ -17,7 +17,7 @@
             'url(' +
             (dataSource.poster
               ? dataSource.poster
-              : 'assets/images/default.png') +
+              : 'assets/images/icone-azul.png') +
             ')'
           "
         ></div>
@@ -52,7 +52,7 @@
             <div class="item-local">
               {{ dataSource.local }}
             </div>
-            <div>
+            <div class="item-dataHora">
               <span fxHide.lg fxHide.md>
                 {{ dataSource.data | date: "MMM":"UTC" }}
                 {{ dataSource.data | date: "dd":"UTC" }}
@@ -85,5 +85,13 @@
       mode="indeterminate"
       diameter="50"
     ></mat-progress-spinner>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="filter.page_number > 4">
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <button mat-raised-button color="primary" (click)="goToEvents()">
+      Mostrar mais resultados
+    </button>
   </div>
 </ng-container>

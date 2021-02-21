@@ -49,15 +49,31 @@
 }
 
 .item-local {
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* number of lines to show */
+  -webkit-box-orient: vertical;
   text-align: end;
   max-width: 240px;
+}
+
+.item-dataHora {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* number of lines to show */
+  -webkit-box-orient: vertical;
 }
 
 @media only screen and (max-width: 600px) {
   .item {
     padding: 2rem 0;
+  }
+}
+
+@media only screen and (max-width: 960px) {
+  .item-local {
+    text-align: start;
   }
 }
