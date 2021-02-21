@@ -3,7 +3,9 @@
   fxLayoutAlign="end start"
   class="event"
   [routerLink]="['/', 'events', 'view', event.id]"
-  [style.background-image]="'url(' + event.poster + ')'"
+  [style.background-image]="
+    'url(' + (event?.poster ? event?.poster : 'assets/images/default.png') + ')'
+  "
 >
   <div class="description">
     <div class="title">
