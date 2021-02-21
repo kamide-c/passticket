@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { EventsService } from '../../../core/services/events/events.service';
 import { IEvent } from '../../../core/interfaces/event';
 import { ScrollPaginationService } from '../../../core/services/scroll-pagination/scroll-pagination.service';

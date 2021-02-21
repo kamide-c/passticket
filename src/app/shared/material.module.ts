@@ -17,6 +17,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 const materialModules = [
   MatToolbarModule,
@@ -36,6 +37,7 @@ const materialModules = [
   MatProgressBarModule,
   MatDatepickerModule,
   MatSidenavModule,
+  MatProgressSpinnerModule,
 ];
 
 @NgModule({

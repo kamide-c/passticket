@@ -13,7 +13,7 @@ import { map } from 'rxjs/operators';
 export class EventsService {
   loadingSubject = new Subject();
 
-  public filters: IEventFilter = {
+  _filters: IEventFilter = {
     Paginacao: {
       page_number: 0,
       page_size: 0,
@@ -31,6 +31,11 @@ export class EventsService {
     data_inicio: '',
     data_fim: '',
   };
+
+  get filters() {
+    return this._filters;
+  }
+
   constructor(private httpClient: HttpClient) {}
 
   public events(filter: any): Observable<IPaginatedResponse<IEvent>> {
@@ -38,12 +43,12 @@ export class EventsService {
     // @ts-ignore
     const filterTreated: IEventFilter = {};
     if (!filter.date_begin) {
-      filterTreated.data_inicio = moment().toISOString();
+      filterTreated.data_inicio = moment().format('YYYY-MM-DD');
     }
     filterTreated.titulo = filter.search ? filter.search : null;
     filterTreated.data_inicio = filter.date_begin
       ? filter.date_begin
-      : new Date();
+      : moment().format('YYYY-MM-DD');
     filterTreated.data_fim = filter.date_end ? filter.date_end : null;
     filterTreated.cidade = filter.city ? filter.city : null;
     filterTreated.estado = filter.state ? filter.state : null;
