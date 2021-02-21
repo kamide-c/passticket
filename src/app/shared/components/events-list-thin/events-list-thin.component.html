@@ -1,92 +1,82 @@
-<ng-container *ngIf="dataSources; else elseNoDataSources">
-  <cdk-virtual-scroll-viewport
-    #scrollViewport
-    itemSize="87"
-    class="example-viewport"
+<ng-container *ngIf="events">
+  <mat-selection-list
+    [multiple]="false"
+    *ngFor="let dataSource of events; let i = index; let last = last"
+    class="example-item"
   >
-    <mat-selection-list
-      #dataSources
-      [multiple]="false"
-      *cdkVirtualFor="
-        let dataSource of dataSources;
-        let i = index;
-        trackBy: trackByFn;
-        templateCacheSize: 12;
-        let last = last
-      "
-      class="example-item"
-    >
-      <mat-list-option *ngIf="dataSource; else elseLoadingCard">
+    <mat-list-option *ngIf="dataSource">
+      <div
+        fxLayout="row"
+        fxLayoutAlign="space-between stretch"
+        fxLayoutGap="1rem"
+        (click)="goToRouter(dataSource.id)"
+      >
         <div
-          fxLayout="row"
-          fxLayoutAlign="space-between stretch"
-          fxLayoutGap="1rem"
-          (click)="goToRouter(dataSource.id)"
+          class="item-thumbnail"
+          [style.background-image]="'url(' + dataSource.poster + ')'"
+        ></div>
+        <div
+          fxLayout="column"
+          fxLayoutAlign="center center"
+          class="item-date"
+          fxHide.sm
+          fxHide.xs
         >
-          <div
-            class="item-thumbnail"
-            [style.background-image]="'url(' + dataSource.poster + ')'"
-          ></div>
-          <div
-            fxLayout="column"
-            fxLayoutAlign="center center"
-            class="item-date"
-            fxHide.sm
-            fxHide.xs
-          >
-            <div class="month">{{ dataSource.data | date: "MMM":"UTC" }}</div>
-            <div class="day">{{ dataSource.data | date: "dd":"UTC" }}</div>
+          <div class="month">{{ dataSource.data | date: "MMM":"UTC" }}</div>
+          <div class="day">{{ dataSource.data | date: "dd":"UTC" }}</div>
+        </div>
+        <div
+          fxFlex
+          fxLayout="row"
+          fxLayout.sm="column"
+          fxLayout.xs="column"
+          fxLayoutAlign="space-between center"
+          fxLayoutAlign.sm="center start"
+          fxLayoutAlign.xs="center start"
+        >
+          <div class="item-titulo">
+            {{ dataSource.titulo }}
           </div>
           <div
-            fxFlex
-            fxLayout="row"
-            fxLayout.sm="column"
-            fxLayout.xs="column"
-            fxLayoutAlign="space-between center"
+            fxLayout="column"
+            fxLayoutAlign="center end"
             fxLayoutAlign.sm="center start"
             fxLayoutAlign.xs="center start"
           >
-            <div class="item-titulo">
-              {{ dataSource.titulo }}
+            <div class="item-local">
+              {{ dataSource.local }}
             </div>
-            <div
-              fxLayout="column"
-              fxLayoutAlign="center end"
-              fxLayoutAlign.sm="center start"
-              fxLayoutAlign.xs="center start"
-            >
-              <div class="item-local">
-                {{ dataSource.local }}
-              </div>
-              <div>
-                <span fxHide.lg fxHide.md>
-                  {{ dataSource.data | date: "MMM":"UTC" }}
-                  {{ dataSource.data | date: "dd":"UTC" }}
-                </span>
-                {{ dataSource.hora_inicio }}
-              </div>
+            <div>
+              <span fxHide.lg fxHide.md>
+                {{ dataSource.data | date: "MMM":"UTC" }}
+                {{ dataSource.data | date: "dd":"UTC" }}
+              </span>
+              {{ dataSource.hora_inicio }}
             </div>
-          </div>
-          <div
-            fxFlex="15"
-            fxHide.sm
-            fxHide.xs
-            fxLayout="column"
-            fxLayoutAlign="center stretch"
-          >
-            <button mat-stroked-button color="primary">Acessar</button>
           </div>
         </div>
-      </mat-list-option>
-
-      <ng-template #elseLoadingCard>
-        <app-events-thin-skeleton [repeat]="1"></app-events-thin-skeleton>
-      </ng-template>
-      <mat-divider *ngIf="!last"></mat-divider>
-    </mat-selection-list>
-  </cdk-virtual-scroll-viewport>
+        <div
+          fxFlex="15"
+          fxHide.sm
+          fxHide.xs
+          fxLayout="column"
+          fxLayoutAlign="center stretch"
+        >
+          <button mat-stroked-button color="primary">Acessar</button>
+        </div>
+      </div>
+    </mat-list-option>
+    <mat-divider *ngIf="!last"></mat-divider>
+  </mat-selection-list>
 </ng-container>
 
-<ng-template #elseNoDataSources>
+<ng-container *ngIf="loading">
   <app-events-thin-skeleton [repeat]="12"></app-events-thin-skeleton>
-</ng-template>
+  <div fxLayoutAlign="center center">
+    <mat-progress-spinner
+      class="margin-top"
+      *ngIf="loading"
+      mode="indeterminate"
+    ></mat-progress-spinner>
+  </div>
+</ng-container>

@@ -1,79 +1,61 @@
-import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
-import {
-  Component,
-  OnInit,
-  ChangeDetectionStrategy,
-  ViewChild,
-  ChangeDetectorRef,
-} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { throwError } from 'rxjs';
-import { catchError, map, share } from 'rxjs/operators';
+import { IEvent } from 'src/app/core/interfaces/event';
 import { EventsService } from 'src/app/core/services/events/events.service';
-import {
-  EventsDataSource,
-  EventsDataSourceConfig,
-} from 'src/app/data/events.datasource';
+import { ScrollPaginationService } from 'src/app/core/services/scroll-pagination/scroll-pagination.service';
 
 @Component({
   selector: 'app-events-list-thin',
   templateUrl: './events-list-thin.component.html',
   styleUrls: ['./events-list-thin.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventsListThinComponent implements OnInit {
-  @ViewChild('scrollViewport')
-  scrollViewport!: CdkVirtualScrollViewport;
-  private _dataSources!: EventsDataSource;
-
+  public filter: any = {
+    page_number: 1,
+    page_size: 12,
+  };
+  // @ts-ignore
+  public paginate: boolean;
+  private page = 1;
+  public loading = false;
+  public events: Array<IEvent> = [];
+  // @ts-ignore
+  public scrollPaginationSubscription: Subscription;
   constructor(
-    private router: Router,
     private eventsService: EventsService,
-    private ref: ChangeDetectorRef
+    private scrollPaginationService: ScrollPaginationService,
+    private router: Router
   ) {}
 
-  get dataSources() {
-    return this._dataSources;
+  ngOnInit(): void {
+    if (this.paginate || typeof this.paginate === 'undefined') {
+      this.scrollPaginationSubscription = this.scrollPaginationService
+        .listener()
+        .subscribe(() => this.getEvents());
+    }
+    this.getEvents();
+    console.log('rola');
   }
 
-  ngOnInit(): void {
+  private getEvents(): void {
+    if (this.loading) {
+      return;
+    }
+    this.loading = true;
     this.eventsService
-      .events(this.eventsService.filters)
-      .pipe(
-        map((res: any) => {
-          if (this._dataSources) {
-            this._dataSources.update(res, this.eventsService.filters);
-          } else {
-            const dataSourceConfig: EventsDataSourceConfig = {
-              data: res.data,
-              currentDataCount: res.currentDataCount,
-              totalDataCount: res.totalDataCount,
-              pageSize: 11,
-              filters: this.eventsService.filters,
-            };
-            this._dataSources = new EventsDataSource(
-              dataSourceConfig,
-              this.eventsService
-            );
-          }
-
-          return res;
-        }),
-        catchError((error) => {
-          return throwError(error);
-        }),
-        share()
-      )
-      .subscribe(() => this.ref.detectChanges());
+      .events(this.filter)
+      .subscribe((response) => {
+        if (!response.success) {
+          // @todo Treat errors
+          return;
+        }
+        this.filter.page_number = response.nextPage;
+        this.events = this.events.concat(response.data);
+      })
+      .add(() => (this.loading = false));
   }
 
   goToRouter(id: any) {
     this.router.navigate(['/', 'events', 'view', id]);
-  }
-
-  public trackByFn(index: any, element: any) {
-    if (element) return element.id;
-
-    return index;
   }
 }

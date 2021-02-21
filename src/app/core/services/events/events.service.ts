@@ -13,7 +13,7 @@ import { map } from 'rxjs/operators';
 export class EventsService {
   loadingSubject = new Subject();
 
-  public filters: IEventFilter = {
+  _filters: IEventFilter = {
     Paginacao: {
       page_number: 0,
       page_size: 0,
@@ -31,6 +31,11 @@ export class EventsService {
     data_inicio: '',
     data_fim: '',
   };
+
+  get filters() {
+    return this._filters;
+  }
+
   constructor(private httpClient: HttpClient) {}
 
   public events(filter: any): Observable<IPaginatedResponse<IEvent>> {
