@@ -38,7 +38,7 @@ export class EventsListThinComponent implements OnInit {
   }
 
   private getEvents(): void {
-    if (this.loading) {
+    if (this.loading || this.filter.page_number > 4) {
       return;
     }
     this.loading = true;
@@ -57,5 +57,9 @@ export class EventsListThinComponent implements OnInit {
 
   goToRouter(id: any) {
     this.router.navigate(['/', 'events', 'view', id]);
+  }
+
+  goToEvents() {
+    this.router.navigate(['/', 'events']);
   }
 }
