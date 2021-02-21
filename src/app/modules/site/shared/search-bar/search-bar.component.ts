@@ -1,7 +1,14 @@
-import {Component, OnInit, Output, ViewEncapsulation, EventEmitter, Input} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
-import {IEventFilter} from '../../../../core/interfaces/event';
-import {Router} from "@angular/router";
+import {
+  Component,
+  OnInit,
+  Output,
+  ViewEncapsulation,
+  EventEmitter,
+  Input,
+} from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { IEventFilter } from '../../../../core/interfaces/event';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-bar',
@@ -20,10 +27,7 @@ export class SearchBarComponent implements OnInit {
   // @ts-ignore
   @Input() public clearButton: boolean;
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private router: Router,
-  ) {
+  constructor(private formBuilder: FormBuilder, private router: Router) {
     this.formGroup = this.formBuilder.group({
       search: [],
       city: [],
@@ -45,7 +49,7 @@ export class SearchBarComponent implements OnInit {
     const formattedAddress = this.getAddress(address);
     this.formGroup.patchValue({
       city: formattedAddress.city,
-      state: formattedAddress.state
+      state: formattedAddress.state,
     });
     this.doFilter();
   }
@@ -57,23 +61,31 @@ export class SearchBarComponent implements OnInit {
       return;
     }
     const formData = this.formGroup.value;
-    if (!formData.date_begin) {
-      formData.date_begin = new Date();
-    }
     this.filtered.emit(formData);
-    this.router.navigate(['events'], { queryParams: { filter: JSON.stringify(this.formGroup.value) } , queryParamsHandling: 'merge' });
+    this.router.navigate(['events'], {
+      queryParams: { filter: JSON.stringify(this.formGroup.value) },
+      queryParamsHandling: 'merge',
+    });
   }
 
   private getAddress(address: any) {
     let city = '';
     let state = '';
     // @ts-ignore
-    address.address_components?.forEach(addressComponent => {
+    address.address_components?.forEach((addressComponent) => {
       // @ts-ignore
-      if (addressComponent.types.some(type => type === 'administrative_area_level_2')) {
+      if (
+        addressComponent.types.some(
+          (type: any) => type === 'administrative_area_level_2'
+        )
+      ) {
         city = addressComponent.long_name;
         // @ts-ignore
-      } else if (addressComponent.types.some(type => type === 'administrative_area_level_1')) {
+      } else if (
+        addressComponent.types.some(
+          (type: any) => type === 'administrative_area_level_1'
+        )
+      ) {
         state = addressComponent.short_name;
       }
     });

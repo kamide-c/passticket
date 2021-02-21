@@ -1,25 +1,54 @@
 import { Injectable } from '@angular/core';
-import {Observable} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
-import {environment} from '../../../../environments/environment';
-import {IPaginatedResponse} from '../../interfaces/ipaginated-response';
-import {IEvent, IEventFilter} from '../../interfaces/event';
+import { Observable, Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../../environments/environment';
+import { IPaginatedResponse } from '../../interfaces/ipaginated-response';
+import { IEvent, IEventFilter } from '../../interfaces/event';
 import * as moment from 'moment';
+import { map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EventsService {
+  loadingSubject = new Subject();
+
+  _filters: IEventFilter = {
+    Paginacao: {
+      page_number: 0,
+      page_size: 0,
+    },
+    descricao: '',
+    informacoes: '',
+    atracoes: '',
+    titulo: '',
+    endereco: '',
+    cidade: '',
+    estado: '',
+    local: '',
+    ticketeria: '',
+    buscageral: '',
+    data_inicio: '',
+    data_fim: '',
+  };
+
+  get filters() {
+    return this._filters;
+  }
+
   constructor(private httpClient: HttpClient) {}
 
   public events(filter: any): Observable<IPaginatedResponse<IEvent>> {
+    this.loadingSubject.next(true);
     // @ts-ignore
     const filterTreated: IEventFilter = {};
     if (!filter.date_begin) {
-      filterTreated.data_inicio = moment().toISOString();
+      filterTreated.data_inicio = moment().format('YYYY-MM-DD');
     }
     filterTreated.titulo = filter.search ? filter.search : null;
-    filterTreated.data_inicio = filter.date_begin ? filter.date_begin : new Date();
+    filterTreated.data_inicio = filter.date_begin
+      ? filter.date_begin
+      : moment().format('YYYY-MM-DD');
     filterTreated.data_fim = filter.date_end ? filter.date_end : null;
     filterTreated.cidade = filter.city ? filter.city : null;
     filterTreated.estado = filter.state ? filter.state : null;
@@ -27,10 +56,29 @@ export class EventsService {
       page_number: filter.page_number ? filter.page_number : 1,
       page_size: filter.page_size ? filter.page_size : 12,
     };
-    return this.httpClient.post<IPaginatedResponse<IEvent>>(environment.baseUrl + '/Events/filtro', filterTreated);
+
+    return this.httpClient
+      .post<IPaginatedResponse<IEvent>>(
+        environment.baseUrl + '/Events/filtro',
+        filterTreated
+      )
+      .pipe(
+        map((response) => {
+          this.loadingSubject.next(false);
+          return response;
+        })
+      );
   }
 
   public event(id: string): Observable<IPaginatedResponse<IEvent>> {
-    return this.httpClient.get<IPaginatedResponse<IEvent>>(environment.baseUrl + '/Events/' + id);
+    this.loadingSubject.next(true);
+    return this.httpClient
+      .get<IPaginatedResponse<IEvent>>(environment.baseUrl + '/Events/' + id)
+      .pipe(
+        map((response) => {
+          this.loadingSubject.next(false);
+          return response;
+        })
+      );
   }
 }

@@ -1,0 +1,19 @@
+<div
+  fxLayout="column"
+  fxLayoutAlign="end start"
+  class="event"
+  [routerLink]="['/', 'events', 'view', event.id]"
+  [style.background-image]="
+    'url(' + (event?.poster ? event?.poster : 'assets/images/default.png') + ')'
+  "
+>
+  <div class="description">
+    <div class="title">
+      {{ event.titulo }}
+    </div>
+    <div class="date">
+      {{ event.data | date: "mediumDate":"UTC" }}
+    </div>
+  </div>
+  <div class="background"></div>
+</div>

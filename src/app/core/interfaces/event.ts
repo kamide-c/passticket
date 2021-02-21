@@ -2,7 +2,6 @@ export interface IEvent {
   id?: string;
   atracoes?: string;
   cidade?: string;
-  d_date?: Date;
   data?: Date;
   descricao?: string;
   endereco?: string;
@@ -27,8 +26,8 @@ export interface IEventImage {
 
 export interface IEventFilter {
   Paginacao: {
-    page_number: number,
-    page_size: number
+    page_number: number;
+    page_size: number;
   };
   descricao?: string;
   informacoes?: string;

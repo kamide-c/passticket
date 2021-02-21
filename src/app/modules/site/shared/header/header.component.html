@@ -1,15 +1,39 @@
-<header class="header">
-  <div class="container" fxFlex fxLayoutAlign="space-between center">
-    <a [routerLink]="['/']" class="logo">
+<div
+  fxHide
+  fxShow.xs
+  fxLayout="row"
+  fxLayoutAlign="center center"
+  [routerLink]="['']"
+  style="cursor: pointer"
+  class="header margin-no-b"
+>
+  <img src="assets/images/logo.png" alt="Passticket" class="logo" />
+</div>
+
+<nav mat-tab-nav-bar class="header">
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <a
+      mat-tab-link
+      [active]="false"
+      class="logo padding-16-lr"
+      [routerLink]="'/'"
+      fxHide.xs
+    >
       <img src="assets/images/logo.png" alt="Passticket" class="logo" />
     </a>
-    <div>
-      <button color="primary" mat-flat-button [routerLink]="['/']">
-        Revender meu Ingresso
-      </button>
-      <button mat-button [routerLink]="['events']">
-        Comprar um Ingresso
-      </button>
-    </div>
+
+    <a mat-tab-link [active]="activeLink('events')" [routerLink]="'/events'">
+      <mat-icon>search</mat-icon>
+      Busca de evento
+    </a>
+    <a mat-tab-link [active]="activeLink('resale')" (click)="openDialog()">
+      <mat-icon>wifi_protected_setup</mat-icon>
+      Revenda de ingresso
+    </a>
   </div>
-</header>
+</nav>
+
+<mat-progress-bar
+  mode="indeterminate"
+  *ngIf="showLoadingProgressBar"
+></mat-progress-bar>

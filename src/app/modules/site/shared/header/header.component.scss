@@ -1,8 +1,16 @@
 .header {
   background: #ededed;
-  height: 60px;
   .logo {
-    height: 50px;
+    height: 38px;
+    opacity: 1 !important;
   }
   border-bottom: 1px solid #ededed;
+}
+
+.header__navbar {
+  width: 100%;
+}
+
+mat-progress-bar {
+  position: absolute;
 }

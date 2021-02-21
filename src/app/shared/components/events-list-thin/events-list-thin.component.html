@@ -1,0 +1,97 @@
+<ng-container *ngIf="events">
+  <mat-selection-list
+    [multiple]="false"
+    *ngFor="let dataSource of events; let i = index; let last = last"
+    class="example-item"
+  >
+    <mat-list-option *ngIf="dataSource">
+      <div
+        fxLayout="row"
+        fxLayoutAlign="space-between stretch"
+        fxLayoutGap="1rem"
+        (click)="goToRouter(dataSource.id)"
+      >
+        <div
+          class="item-thumbnail"
+          [style.background-image]="
+            'url(' +
+            (dataSource.poster
+              ? dataSource.poster
+              : 'assets/images/icone-azul.png') +
+            ')'
+          "
+        ></div>
+        <div
+          fxLayout="column"
+          fxLayoutAlign="center center"
+          class="item-date"
+          fxHide.sm
+          fxHide.xs
+        >
+          <div class="month">{{ dataSource.data | date: "MMM":"UTC" }}</div>
+          <div class="day">{{ dataSource.data | date: "dd":"UTC" }}</div>
+        </div>
+        <div
+          fxFlex
+          fxLayout="row"
+          fxLayout.sm="column"
+          fxLayout.xs="column"
+          fxLayoutAlign="space-between center"
+          fxLayoutAlign.sm="center start"
+          fxLayoutAlign.xs="center start"
+        >
+          <div class="item-titulo">
+            {{ dataSource.titulo }}
+          </div>
+          <div
+            fxLayout="column"
+            fxLayoutAlign="center end"
+            fxLayoutAlign.sm="center start"
+            fxLayoutAlign.xs="center start"
+          >
+            <div class="item-local">
+              {{ dataSource.local }}
+            </div>
+            <div class="item-dataHora">
+              <span fxHide.lg fxHide.md>
+                {{ dataSource.data | date: "MMM":"UTC" }}
+                {{ dataSource.data | date: "dd":"UTC" }}
+              </span>
+              {{ dataSource.hora_inicio }}
+            </div>
+          </div>
+        </div>
+        <div
+          fxFlex="15"
+          fxHide.sm
+          fxHide.xs
+          fxLayout="column"
+          fxLayoutAlign="center stretch"
+        >
+          <button mat-stroked-button color="primary">Acessar</button>
+        </div>
+      </div>
+    </mat-list-option>
+    <mat-divider *ngIf="!last"></mat-divider>
+  </mat-selection-list>
+</ng-container>
+
+<ng-container *ngIf="loading">
+  <app-events-thin-skeleton [repeat]="12"></app-events-thin-skeleton>
+  <div fxLayoutAlign="center center">
+    <mat-progress-spinner
+      class="margin-top"
+      *ngIf="loading"
+      mode="indeterminate"
+      diameter="50"
+    ></mat-progress-spinner>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="filter.page_number > 4">
+  <div fxLayout="row" fxLayoutAlign="center center" class="margin-16-t">
+    <button mat-raised-button color="primary" (click)="goToEvents()">
+      Mostrar mais resultados
+    </button>
+  </div>
+</ng-container>

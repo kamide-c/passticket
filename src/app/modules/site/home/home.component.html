@@ -1,47 +1,115 @@
 <div class="banner">
-  <div class="container" fxFlex fxFlexFill fxLayoutAlign="center center">
-    <div class="title margin-right" fxLayout="column">
-      <h1>
-        Encontre todos os ingressos das plataformas digitais em um só lugar
-      </h1>
-      <span>Busque uma cidade, uma data, um lugar famoso ou seu artista
-        favorito!</span>
+  <div class="container" fxFlex fxFlexFill>
+    <div
+      fxLayout="column"
+      fxFlex
+      fxFlexFill
+      fxLayoutAlign="center start"
+      class="margin-16-tb"
+    >
+      <!-- <div
+        fxLayout.lg="row"
+        fxLayout.md="row"
+        fxLayout="column"
+        fxLayoutAlign="center center"
+      >
+        <div>
+          <img
+            src="assets/images/logo-white.png"
+            alt="Passticket"
+            class="logo-home"
+          />
+        </div>
+        <div class="logo-left"></div>
+        <div class="title margin-right" fxLayout="column">
+          <h1>
+            Encontre todos os ingressos das plataformas digitais em um só lugar
+          </h1>
+          <span
+            >Busque uma cidade, uma data, um lugar famoso ou seu artista
+            favorito!</span
+          >
+        </div>
+      </div> -->
+      <div class="title margin-right" fxLayout="column">
+        <h1>
+          Encontre todos os ingressos das plataformas digitais em um só lugar
+        </h1>
+        <span
+          >Busque uma cidade, uma data, um lugar famoso ou seu artista
+          favorito!</span
+        >
+      </div>
+      <div class="margin-16-b"></div>
+      <app-search-bar
+        class="search-bar"
+        [clearButton]="false"
+        (filtered)="filtered($event)"
+      ></app-search-bar>
     </div>
-    <app-search-bar class="search-bar" [clearButton]="false" (filtered)="filtered($event)"></app-search-bar>
   </div>
 </div>
-
-<div class="container">
-  <div class="city">
-    <div fxLayout="row" fxLayoutAlign="start center">
-      <h2>Eventos em São Paulo</h2>
-      <button class="margin-left" (click)="seeMore(filterRioDeJaneiro)" mat-button>
-        <mat-icon>link</mat-icon>
-        Ver mais
-      </button>
+<div class="padding-16">
+  <div class="container">
+    <div class="city">
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <h2>Eventos em São Paulo</h2>
+        <button
+          class="margin-left"
+          (click)="seeMore(filterSaoPaulo)"
+          mat-button
+        >
+          <mat-icon>link</mat-icon>
+          Ver mais
+        </button>
+      </div>
+      <app-event-carousel
+        [paginate]="false"
+        [filter]="filterSaoPaulo"
+      ></app-event-carousel>
     </div>
-    <app-events-list [paginate]="false" [filter]="filterSaoPaulo"></app-events-list>
-  </div>
 
-  <div class="city">
-    <div fxLayout="row" fxLayoutAlign="start center">
-      <h2>Eventos no Rio</h2>
-      <button class="margin-left" (click)="seeMore(filterRioDeJaneiro)" mat-button>
-        <mat-icon>link</mat-icon>
-        Ver mais
-      </button>
+    <div class="city">
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <h2>Eventos no Rio</h2>
+        <button
+          class="margin-left"
+          (click)="seeMore(filterRioDeJaneiro)"
+          mat-button
+        >
+          <mat-icon>link</mat-icon>
+          Ver mais
+        </button>
+      </div>
+      <app-event-carousel
+        [paginate]="false"
+        [filter]="filterRioDeJaneiro"
+      ></app-event-carousel>
     </div>
-    <app-events-list [paginate]="false" [filter]="filterRioDeJaneiro"></app-events-list>
-  </div>
 
-  <div class="city">
-    <div fxLayout="row" fxLayoutAlign="start center">
-      <h2>Eventos em Curitiba</h2>
-      <button class="margin-left" (click)="seeMore(filterRioDeJaneiro)" mat-button>
-        <mat-icon>link</mat-icon>
-        Ver mais
-      </button>
+    <div class="city">
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <h2>Eventos em Curitiba</h2>
+        <button
+          class="margin-left"
+          (click)="seeMore(filterCuritiba)"
+          mat-button
+        >
+          <mat-icon>link</mat-icon>
+          Ver mais
+        </button>
+      </div>
+      <app-event-carousel
+        [paginate]="false"
+        [filter]="filterCuritiba"
+      ></app-event-carousel>
     </div>
-    <app-events-list [paginate]="false" [filter]="filterCuritiba"></app-events-list>
+
+    <div class="city">
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <h2>Próximos eventos</h2>
+      </div>
+      <app-events-list-thin></app-events-list-thin>
+    </div>
   </div>
 </div>
