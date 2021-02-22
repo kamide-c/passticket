@@ -9,7 +9,7 @@ app.use(express.static(__dirname + '/dist/passtick/browser'));
 
 app.get('/*', function(req,res) {
     
-res.sendFile(path.join(__dirname+'/dist/passtick/index.html'));
+res.sendFile(path.join(__dirname+'/dist/passtick/browser/index.html'));
 });
 
 // Inicia a aplicação pela porta configurada
