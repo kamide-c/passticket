@@ -117,3 +117,13 @@ $listProperty: margin padding;
     margin-bottom: 2rem;
   }
 }
+
+.btn-whatsapp {
+  background-color: #25d366 !important;
+
+  .mat-button-wrapper {
+    border: 3px solid;
+    border-radius: 50px;
+    padding: 4px !important;
+  }
+}
