@@ -1,12 +1,26 @@
 <footer>
   <div class="padding-16-lr">
     <div class="container">
-      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
+      <div
+        fxLayout="row"
+        fxLayout.xs="column"
+        fxLayoutAlign="start center"
+        fxLayoutGap="16px"
+      >
         <div>© 2021 Passticket</div>
         <div>
           <a href="mailto:contato@passticket.com.br"
             >contato@passticket.com.br</a
           >
+        </div>
+        <div fxFlex></div>
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <button mat-button [routerLink]="['/', 'politics', 'privacy-policy']">
+            Privacidade
+          </button>
+          <button mat-button [routerLink]="['/', 'politics', 'terms-of-use']">
+            Termos
+          </button>
         </div>
       </div>
     </div>
