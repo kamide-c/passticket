@@ -11,9 +11,6 @@ export class WhatsappButtonComponent implements OnInit {
   ngOnInit(): void {}
 
   goToWhatsapp(): void {
-    window.open(
-      'https://api.whatsapp.com/send?phone=seunumerodetelefone',
-      '_blank'
-    );
+    window.open('https://api.whatsapp.com/send?phone=+5511978689779', '_blank');
   }
 }
