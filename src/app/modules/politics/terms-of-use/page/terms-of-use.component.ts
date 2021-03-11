@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-terms-of-use',
@@ -7,14 +6,7 @@ import { NavigationEnd, Router } from '@angular/router';
   styleUrls: [],
 })
 export class TermsOfUseComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor() {}
 
-  ngOnInit(): void {
-    this.router.events.subscribe((evt) => {
-      if (!(evt instanceof NavigationEnd)) {
-        return;
-      }
-      window.scrollTo(0, 0);
-    });
-  }
+  ngOnInit(): void {}
 }
