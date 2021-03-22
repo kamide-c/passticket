@@ -5,6 +5,7 @@
 export const environment = {
   baseUrl: '/api',
   production: false,
+  hostUrl: 'https://passticket.com.br/',
 };
 
 /*

@@ -34,7 +34,7 @@ export class HeaderComponent implements OnInit {
   }
 
   showLogo() {
-    return this.location.path() !== '/home';
+    return this.location.path() !== '/';
   }
 
   openDialog() {
