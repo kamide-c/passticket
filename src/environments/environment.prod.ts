@@ -1,4 +1,5 @@
 export const environment = {
   baseUrl: 'https://passticket-app.herokuapp.com',
-  production: true
+  production: true,
+  hostUrl: 'https://passticket.com.br/',
 };

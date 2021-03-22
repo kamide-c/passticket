@@ -9,7 +9,7 @@ const routes: Routes = [
     canActivate: [],
     children: [
       {
-        path: 'home',
+        path: '',
         loadChildren: () =>
           import('./home/home.module').then((m) => m.HomeModule),
       },
@@ -25,7 +25,7 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: 'home',
+        redirectTo: '',
         pathMatch: 'full',
       },
     ],
