@@ -16,6 +16,8 @@ import { SharedModule } from './shared/shared.module';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 
+import { NgxGoogleAnalyticsModule } from 'ngx-google-analytics';
+
 registerLocaleData(localePt, 'pt');
 @NgModule({
   declarations: [AppComponent, ArtistComponent, SiteComponent],
@@ -34,6 +36,7 @@ registerLocaleData(localePt, 'pt');
       enabled: environment.production,
     }),*/
     SharedModule,
+    NgxGoogleAnalyticsModule.forRoot('G-126S8G2241'),
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt' },

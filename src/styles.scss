@@ -105,3 +105,25 @@ $listProperty: margin padding;
     }
   }
 }
+
+.politics {
+  h1 {
+    margin-bottom: 2rem;
+  }
+
+  p {
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.btn-whatsapp {
+  background-color: #25d366 !important;
+
+  .mat-button-wrapper {
+    border: 3px solid;
+    border-radius: 50px;
+    padding: 4px !important;
+  }
+}

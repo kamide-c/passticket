@@ -1,18 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import {IEventFilter} from '../../../core/interfaces/event';
-import {Router} from "@angular/router";
+import { IEventFilter } from '../../../core/interfaces/event';
+import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
   public filterSaoPaulo: any;
   public filterRioDeJaneiro: any;
   public filterCuritiba: any;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private titleService: Title) {
+    this.titleService.setTitle('PassTicket | Todos os eventos. Um só lugar.');
+
     this.filterSaoPaulo = {
       page_size: 4,
       page_number: 1,
@@ -28,16 +31,16 @@ export class HomeComponent implements OnInit {
       page_number: 1,
       city: 'Curitiba',
     };
-
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  public filtered(filter: IEventFilter): void {
-  }
+  public filtered(filter: IEventFilter): void {}
 
   public seeMore(filter: any) {
-    this.router.navigate(['events'], { queryParams: { filter: JSON.stringify(filter) } , queryParamsHandling: 'merge' });
+    this.router.navigate(['events'], {
+      queryParams: { filter: JSON.stringify(filter) },
+      queryParamsHandling: 'merge',
+    });
   }
 }
