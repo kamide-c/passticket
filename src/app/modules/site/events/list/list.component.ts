@@ -3,8 +3,9 @@ import { IEventFilter } from '../../../../core/interfaces/event';
 import { Subscription } from 'rxjs';
 import { ScrollPaginationService } from '../../../../core/services/scroll-pagination/scroll-pagination.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Title } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 import * as moment from 'moment';
+import { CanonicalService } from 'src/app/shared/services/canonical.service';
 
 @Component({
   selector: 'app-list',
@@ -21,7 +22,9 @@ export class ListComponent implements OnInit {
   constructor(
     private scrollPaginationService: ScrollPaginationService,
     private activatedRoute: ActivatedRoute,
-    private titleService: Title
+    private titleService: Title,
+    private metaTagService: Meta,
+    private canonicalService: CanonicalService
   ) {
     let urlFilter = this.activatedRoute.snapshot.queryParams.filter;
     if (urlFilter) {
@@ -42,8 +45,29 @@ export class ListComponent implements OnInit {
         : '');
 
     this.titleService.setTitle(
-      'PassTicket | Todos os eventos. Um só lugar.' + this.concatTerms
+      this.concatTerms + ' | PassTicket | Todos os eventos. Um só lugar.'
     );
+
+    this.metaTagService.addTags([
+      {
+        name: 'description',
+        content: this.concatTerms,
+      },
+      {
+        name: 'keywords',
+        content:
+          'Pesquisar eventos | PassTicket | Todos os eventos. Um só lugar.',
+      },
+      { property: 'og:url', content: window.location.href },
+      {
+        property: 'og:title',
+        content:
+          'Pesquisar eventos | PassTicket | Todos os eventos. Um só lugar.',
+      },
+      { property: 'og:description', content: this.concatTerms },
+    ]);
+
+    this.canonicalService.setCanonicalURL();
   }
 
   public doFilter(searchFilter: any): void {
