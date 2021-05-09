@@ -3,7 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { EventsService } from '../../../../core/services/events/events.service';
 import { IEvent } from '../../../../core/interfaces/event';
 import { Location } from '@angular/common';
-import { Title } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
+import { CanonicalService } from 'src/app/shared/services/canonical.service';
 
 @Component({
   selector: 'app-view',
@@ -20,13 +21,17 @@ export class ViewComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private eventsService: EventsService,
     private _location: Location,
-    private titleService: Title
+    private titleService: Title,
+    private metaTagService: Meta,
+    private canonicalService: CanonicalService
   ) {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
   }
 
   ngOnInit(): void {
     this.get();
+
+    this.canonicalService.setCanonicalURL();
   }
 
   goBack() {
@@ -45,8 +50,37 @@ export class ViewComponent implements OnInit {
           return;
         }
         this.event = response.data[0];
+
+        const description = this.event.descricao ?? '';
+        const keywords = this.event.titulo ?? '';
+        const placename = this.event.cidade + ' - ' + this.event.uf ?? '';
+        const region = this.event.uf + '-BR' ?? '';
+        const title = this.event.titulo ?? '';
+
+        this.metaTagService.addTags([
+          {
+            name: 'description',
+            content: description?.slice(0, 150),
+          },
+          {
+            name: 'keywords',
+            content: keywords,
+          },
+          {
+            name: 'geo.placename',
+            content: placename,
+          },
+          {
+            name: 'geo.region',
+            content: region,
+          },
+          { property: 'og:url', content: window.location.href },
+          { property: 'og:title', content: title },
+          { property: 'og:description', content: description?.slice(0, 150) },
+        ]);
+
         this.titleService.setTitle(
-          'PassTicket | Todos os eventos. Um só lugar. | ' + this.event?.titulo
+          this.event?.titulo + ' | PassTicket | Todos os eventos. Um só lugar.'
         );
         this.url = `https://www.stay22.com/embed/gm?aid=5f845198216db60017f08372&address=${this.event.local}&checkin=${this.event.data}`;
       })
