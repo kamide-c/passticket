@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import * as moment from 'moment';
 import { CanonicalService } from './shared/services/canonical.service';
+import { CookiesService } from './shared/services/cookies.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { LgpdComponent } from './shared/components/lgpd/lgpd.component';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +15,8 @@ export class AppComponent implements OnInit {
   date = new Date();
   constructor(
     private metaTagService: Meta,
-    private canonicalService: CanonicalService
+    private _snackBar: MatSnackBar,
+    private cookiesService: CookiesService
   ) {}
 
   ngOnInit() {
@@ -36,5 +40,17 @@ export class AppComponent implements OnInit {
       { property: 'og:region', content: 'Brasil' },
       { property: 'og:image', content: 'assets/images/logo.png' },
     ]);
+
+    this.checkCookie();
+  }
+
+  openSnackBar() {
+    this._snackBar.openFromComponent(LgpdComponent);
+  }
+
+  checkCookie() {
+    setTimeout(() => {
+      if (!this.cookiesService.checkCookie()) this.openSnackBar();
+    }, 2000);
   }
 }

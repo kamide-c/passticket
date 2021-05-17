@@ -16,6 +16,10 @@ import { SharedModule } from './shared/shared.module';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 
+// services
+import { CanonicalService } from './shared/services/canonical.service';
+import { CookiesService } from './shared/services/cookies.service';
+
 registerLocaleData(localePt, 'pt');
 @NgModule({
   declarations: [AppComponent, ArtistComponent, SiteComponent],
@@ -42,6 +46,8 @@ registerLocaleData(localePt, 'pt');
       useClass: ApiInterceptor,
       multi: true,
     },
+    CanonicalService,
+    CookiesService,
   ],
   bootstrap: [AppComponent],
 })
