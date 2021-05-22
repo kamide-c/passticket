@@ -17,6 +17,7 @@ export class ViewComponent implements OnInit {
   // @ts-ignore
   public event: IEvent;
   url!: string;
+  path!: string;
   constructor(
     private activatedRoute: ActivatedRoute,
     private eventsService: EventsService,
@@ -30,7 +31,6 @@ export class ViewComponent implements OnInit {
 
   ngOnInit(): void {
     this.get();
-
     this.canonicalService.setCanonicalURL();
   }
 

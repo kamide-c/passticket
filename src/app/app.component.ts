@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import * as moment from 'moment';
-import { CanonicalService } from './shared/services/canonical.service';
 import { CookiesService } from './shared/services/cookies.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LgpdComponent } from './shared/components/lgpd/lgpd.component';
@@ -12,15 +11,20 @@ import { LgpdComponent } from './shared/components/lgpd/lgpd.component';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+  schema = {
+    '@context': 'http://schema.org',
+    '@type': 'WebSite',
+    name: 'Passticket',
+    url: 'https://passticket.com.br'
+  };
+
   date = new Date();
   constructor(
-    private metaTagService: Meta,
+    private meta: Meta,
     private _snackBar: MatSnackBar,
     private cookiesService: CookiesService
-  ) {}
-
-  ngOnInit() {
-    this.metaTagService.addTags([
+  ) {
+    this.meta.addTags([
       {
         name: 'revisit-after',
         content: '7 days',
@@ -40,7 +44,9 @@ export class AppComponent implements OnInit {
       { property: 'og:region', content: 'Brasil' },
       { property: 'og:image', content: 'assets/images/logo.png' },
     ]);
+  }
 
+  ngOnInit() {
     this.checkCookie();
   }
 

@@ -29,6 +29,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
+              "src/manifest.webmanifest",
               "src/manifest.webmanifest"
             ],
             "styles": [
@@ -37,7 +38,9 @@
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "serviceWorker": true,
+            "ngswConfigPath": "ngsw-config.json"
           },
           "configurations": {
             "production": {
@@ -98,6 +101,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
+              "src/manifest.webmanifest",
               "src/manifest.webmanifest"
             ],
             "styles": [
@@ -172,7 +176,7 @@
           "options": {
             "browserTarget": "passtick:build:production",
             "serverTarget": "passtick:server:production",
-            "routes": ["/"]
+            "routes": ["/", "/events",  "/events/view:id", "/politics/terms-of-use", "/politics/privacy-policy"]
           },
           "configurations": {
             "production": {}

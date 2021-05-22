@@ -15,6 +15,9 @@ import { SiteRoutingModule } from './modules/site/site-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
+import { NgxJsonLdModule } from '@ngx-lite/json-ld';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 // services
 import { CanonicalService } from './shared/services/canonical.service';
@@ -34,10 +37,17 @@ registerLocaleData(localePt, 'pt');
       apiKey: 'AIzaSyAqD36CZLk6QJIHovC5N9qhp25YeltAPKQ',
       libraries: ['places'],
     }),
+    NgxJsonLdModule,
     /*ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
     }),*/
     SharedModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt' },
