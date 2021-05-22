@@ -1,0 +1,20 @@
+<div fxLayout="column" fxLayoutAlign="space-between start" fxLayoutGap="16px">
+  <div>
+    <span>
+      Utilizamos cookies para fornecer uma melhor experiência para nossos
+      usuários. Para saber mais sobre o uso de cookies, consulte nossa
+      <a href="/politics/privacy-policy" style="color: inherit"
+        >política de privacidade.</a
+      >
+      Ao continuar navegando em nosso site, você concorda com a nossa política.
+    </span>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="space-around start" fxLayoutGap="8px">
+    <button mat-flat-button color="primary" (click)="acceptCookies()">
+      Aceitar
+    </button>
+
+    <button mat-stroked-button (click)="snackBarRef.dismiss()">Recusar</button>
+  </div>
+</div>

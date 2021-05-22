@@ -127,3 +127,11 @@ $listProperty: margin padding;
     padding: 4px !important;
   }
 }
+
+.mat-snack-bar-container {
+  border-radius: unset !important;
+  margin: unset !important;
+  max-width: unset !important;
+  width: 100vw !important;
+  background-color: rgba(0, 0, 0, 0.86) !important;
+}

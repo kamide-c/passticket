@@ -15,6 +15,7 @@ import { EventsListThinComponent } from './components/events-list-thin/events-li
 import { EventsListThinSkeletonComponent } from './components/events-list-thin/events-list-thin-skeleton/events-list-thin-skeleton.component';
 import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.component';
 import { WhatsappButtonComponent } from './components/whatsapp-button/whatsapp-button.component';
+import { LgpdComponent } from './components/lgpd/lgpd.component';
 
 // pipes
 import { SafePipe } from './pipes/safe.pipe';
@@ -34,6 +35,7 @@ const components = [
   EventsListThinSkeletonComponent,
   ScrollToTopComponent,
   WhatsappButtonComponent,
+  LgpdComponent,
 ];
 @NgModule({
   declarations: [components, SafePipe],
