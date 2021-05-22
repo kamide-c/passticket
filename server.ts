@@ -91,7 +91,7 @@ async function sitemap(req: Request, res: Response) {
     sitemapStream.write({
       changefreq: EnumChangefreq.DAILY,
       priority: 1,
-      url: '/events/view',
+      url: '/events/view:id',
     } as SitemapItem);
     sitemapStream.write({
       changefreq: EnumChangefreq.DAILY,

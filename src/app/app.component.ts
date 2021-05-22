@@ -1,22 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import * as moment from 'moment';
-import { CanonicalService } from './shared/services/canonical.service';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+  schema = {
+    '@context': 'http://schema.org',
+    '@type': 'WebSite',
+    name: 'Passticket',
+    url: 'https://passticket.com.br'
+  };
+
   date = new Date();
   constructor(
-    private metaTagService: Meta,
-    private canonicalService: CanonicalService
-  ) {}
-
-  ngOnInit() {
-    this.metaTagService.addTags([
+    private meta: Meta,
+  ) {
+    this.meta.addTags([
       {
         name: 'revisit-after',
         content: '7 days',
@@ -35,6 +37,9 @@ export class AppComponent implements OnInit {
       { property: 'og:site_name', content: 'PassTicket' },
       { property: 'og:region', content: 'Brasil' },
       { property: 'og:image', content: 'assets/images/logo.png' },
-    ]);
+    ], true);
+  }
+
+  ngOnInit() {
   }
 }
