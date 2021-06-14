@@ -11,7 +11,7 @@
     "build:stats": "ng build --stats-json",
     "analyze": "webpack-bundle-analyzer dist/passtick/stats.json",
     "postinstall": "ngcc",
-    "heroku-postbuild": "ng build --prod",
+    "heroku-postbuild": "ng build --prod && ng run passtick:server:production",
     "dev:ssr": "ng run passtick:serve-ssr",
     "serve:ssr": "node dist/passtick/server/main.js",
     "build:ssr": "ng build --prod && ng run passtick:server:production",

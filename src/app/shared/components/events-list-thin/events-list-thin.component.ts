@@ -34,7 +34,6 @@ export class EventsListThinComponent implements OnInit {
         .subscribe(() => this.getEvents());
     }
     this.getEvents();
-    console.log('rola');
   }
 
   private getEvents(): void {
