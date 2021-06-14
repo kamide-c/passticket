@@ -33,10 +33,6 @@ registerLocaleData(localePt, 'pt');
     ArtistModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAqD36CZLk6QJIHovC5N9qhp25YeltAPKQ',
-      libraries: ['places'],
-    }),
     NgxJsonLdModule,
     /*ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
